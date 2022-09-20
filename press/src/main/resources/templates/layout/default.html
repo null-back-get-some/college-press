@@ -1,32 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-	<title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">INHATCWARE</title>
-</head>
-    <body id="page-top">
-        <div id="wrapper">
-            <!-- 사이드바-->
-            <div id="content-wrapper" class="d-flex flex-column left-main">
-                <div id="content">
-                    <!-- 상단바-->
-                    <th:block th:replace="fragments/topbar :: topbarFragment"></th:block>
-                    <!-- 본문-->
-                    <th:block layout:fragment="content"></th:block>
-                    <!-- 채팅창 -->
-                    
-                </div>
-                
-                <!-- 공통 하단-->
-            </div>
-            
-        </div>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-        <!-- 공통 스크립트-->
-    </body>
-    
-	<script>
-		window.addEventListener('offline', ()=>{ 
-			alert("연결이 끊겼습니다.");
-		});
-	</script>
-</html>
+<head th:replace="fragments/config :: configFragment"></head>
+
+<header th:replace="fragments/topbar :: topbarFragment"></header>
+
+<div layout:fragment="content"></div>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+

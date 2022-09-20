@@ -36,4 +36,8 @@ public class IndexController {
 		return "paper";
 	}
 
+	@GetMapping("/tests")
+	public String teset() {
+		return "tests";
+	}
 }

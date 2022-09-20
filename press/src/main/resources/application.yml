@@ -2,5 +2,12 @@ spring:
   output:
     ansi:
       enabled: always
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+
 server:
   port: 8000
+
+  

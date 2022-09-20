@@ -5,13 +5,27 @@
 <th:block th:fragment="topbarFragment">
 	
     <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-    	style="display:flex; justify-content: space-between;">
-        <img src="/img/main_logo.png" alt="My Image" width="250" style="padding-top:10px;">
-    	<a id="logoutBtn" href='#' style="color:#03206c;" class="logoutBtn"> 
-			<i class="fas fa-sign-out-alt fa-lg logout"></i>
-		</a>
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+            <div class="container px-5">
+                <div>
+                	<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    	<li class="nav-item"><a class="navbar-brand" href="/index">
+                    		<img class = "mainlogo"  src = "img/mainlogo.png" style="width:200px; height:50px;" ></a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index">보도대학</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/social">사회</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/culture">종합문화</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/picture">사진/영상</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/paper">신문 보기</a></li>
+                    </ul>
+                </div>
+                <div>
+                	<ul class="navbar-nav ms-auto mb-2 mb-lg-0"  style="display: flex">
+                        <li class="nav-item"><a class="nav-link" href="#!">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">검색</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     <!-- End of Topbar -->
 
 </th:block>
