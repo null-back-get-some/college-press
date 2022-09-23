@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.loginContainer{
+	margin: 100px;
+	text-align: center;
+	
+}
+
+.form-control{
+	width:300px;
+	margin: 5px;
+}
+
+.loginForm{
+	display: flex;
+	flex-direction: row;
+	justify-content: center
+}
+
+.inputForm{
+	display:flex;
+	flex-direction: column;
+	justify-content: space-between
+}
+
+.loginTitle{
+	padding-bottom: 50px;
+	
+}
+
+.findPW, .findID{
+	text-decoration: none;
+	color: black;
+	margin:10px;
+}
+
+hr{
+	width:50%;
+	margin-left : auto;
+  margin-right : auto;
+}

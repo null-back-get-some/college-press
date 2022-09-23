@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+
+<div layout:fragment="content">
+	<div class="loginContainer">
+		<h2 class="loginTitle">로그인</h2>
+		<form action="" method="post" class="loginForm mx-auto">
+			<div class="mb-3 inputForm">
+				<input class="form-control" type="text" name="id" id="id" /> 
+				<input class="form-control" type="password" name="pwd" id="pwd" />
+				<button class="btn btn-primary form-control" type="submit">로그인</button>
+			</div>
+			
+		</form>
+		<hr>
+		<a class="findID" href="#">아이디 찾기</a>
+		<a class="findPW" href="#">패스워드 찾기</a>
+	</div>
+
+
+</div>
+
+</html>
