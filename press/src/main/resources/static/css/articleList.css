@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.main-content{
+	display:flex;
+	padding:30px;
+	height:100vh;
+	flex-direction: column;
+}
+
+.headline-news{
+	display:block;
+}
