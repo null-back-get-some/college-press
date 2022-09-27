@@ -47,6 +47,12 @@ public class IndexController {
 	public String paper() {
 		return "paper";
 	}
+	
+	// 관리저 게시판
+	@GetMapping("/manager")
+	public String manager() {
+		return "manager";
+	}
 
 	@GetMapping("/test")
 	public String teset() {
