@@ -48,14 +48,20 @@ public class IndexController {
 		return "paper";
 	}
 	
-	// 관리저 게시판
-	@GetMapping("/manager")
+	// 관리자 게시판
+	@GetMapping("/manager/manager")
 	public String manager() {
-		return "manager";
+		return "manager/manager";
+	}
+	
+	// 캘린더
+	@GetMapping("/manager/calendar")
+	public String calendar() {
+		return "manager/calendar";
 	}
 
-	@GetMapping("/test")
+	@GetMapping("/tests")
 	public String teset() {
-		return "test";
+		return "tests";
 	}
 }

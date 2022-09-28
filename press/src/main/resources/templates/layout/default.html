@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" 
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">인공학보</title>
+</head>
+<th:block th:replace="fragments/config :: configFragment"></th:block>
 
-<head th:replace="fragments/config :: configFragment"></head>
+<th:block th:replace="fragments/topbar :: topbarFragment"></th:block>
 
-<header th:replace="fragments/topbar :: topbarFragment"></header>
-
-<div layout:fragment="content"></div>
+<th:block layout:fragment="content"></th:block>
 
 <footer th:replace="fragments/footer :: footerFragment"></footer>
 
