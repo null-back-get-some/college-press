@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+<div layout:fragment="content">
+<div style="display: flex;">
+	<nav class="nav flex-column sidemenu">
+		<div class="side-contents">
+			<hr />
+			<a class="nav-link" href="manager">관리자 등록</a> 
+			<a class="nav-link" href="calendar">캘린더</a> 
+			<a class="nav-link" href="board">게시판</a>
+			<hr />
+		</div>
+
+	</nav>
+
+	<div class="container manager-container">
+		<div class="managerList" id="managerList">
+			<h2>관리자 리스트</h2>
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>아이디</th>
+						<th>이메일</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>gildongchan</td>
+						<td>dongdong@naver.com</td>
+						<td><button type="button" class="btn btn-danger">delete</button></td>
+					</tr>
+					<tr>
+						<td>gildongchan</td>
+						<td>dongdong@naver.com</td>
+						<td><button type="button" class="btn btn-danger">delete</button></td>
+					</tr>
+					<tr>
+						<td>gildongchan</td>
+						<td>dongdong@naver.com</td>
+						<td><button type="button" class="btn btn-danger">delete</button></td>
+					</tr>
+					<tr>
+						<td>gildongchan</td>
+						<td>dongdong@naver.com</td>
+						<td><button type="button" class="btn btn-danger">delete</button></td>
+					</tr>
+					<!-- <tr th:unless="${#lists.size(list)} > 0"> -->
+					<tr>
+						<td colspan="4">조회된 결과가 없습니다.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+			
+			<div style="border:solid 1px lightgray; display: flex; flex-direction: column; justify-content: space-between; padding:20px">
+				<div>새로 추가할 관리자 학번을 입력하세요</div>
+				<div style="display: flex; flex-direction: row; justify-content: space-between;">
+					<div style="color: gray; border:solid 1px lightgray; margin:10px; padding:10px 40px">예:202045055</div>
+					<button type="button" class="btn btn-outline-warning" style="">
+					<a href="/user/userInsert">관리자 권한 추가</a>
+					</button>
+				</div>
+				
+				
+				
+			</div>
+			
+
+		</div>
+
+
+	</div>
+</div>
+	
+
+
+</div>
+</html>

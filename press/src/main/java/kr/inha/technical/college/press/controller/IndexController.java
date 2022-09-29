@@ -59,6 +59,12 @@ public class IndexController {
 	public String calendar() {
 		return "manager/calendar";
 	}
+	
+	// 게시판
+	@GetMapping("/manager/board")
+	public String board() {
+		return "manager/board";
+	}
 
 	@GetMapping("/tests")
 	public String teset() {
