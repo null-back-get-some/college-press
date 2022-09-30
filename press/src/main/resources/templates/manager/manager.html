@@ -3,13 +3,13 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/default">
 <div layout:fragment="content">
-<div style="display: flex;">
+<div id="mainPage" style="display: flex;">
 	<nav class="nav flex-column sidemenu">
 		<div class="side-contents">
 			<hr />
-			<a class="nav-link" href="#">관리자 등록</a> 
+			<a class="nav-link" href="manager">관리자 등록</a> 
 			<a class="nav-link" href="calendar">캘린더</a> 
-			<a class="nav-link" href="#">게시판</a>
+			<a class="nav-link" href="board/board">게시판</a>
 			<hr />
 		</div>
 
@@ -61,7 +61,7 @@
 				<div>새로 추가할 관리자 학번을 입력하세요</div>
 				<div style="display: flex; flex-direction: row; justify-content: space-between;">
 					<div style="color: gray; border:solid 1px lightgray; margin:10px; padding:10px 40px">예:202045055</div>
-					<button type="button" class="btn btn-outline-warning" style="">
+					<button type="button" class="btn btn-outline-warning">
 					<a href="/user/userInsert">관리자 권한 추가</a>
 					</button>
 				</div>

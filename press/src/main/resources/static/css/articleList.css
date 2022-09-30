@@ -3,13 +3,9 @@
 .main-content{
 	display:flex;
 	padding:60px;
-	height:100vh;
 	flex-direction: column;
 }
 
-.headline-news{
-	display:block;
-}
 
 .newslist{
 	display: flex; 
@@ -28,17 +24,3 @@
 	text-decoration: none;
 }
 
-@media screen and (min-width:50%) {
-    #managerList{
-    	background-color: red;
-    }
-}
-
-.manager-container{
-	min-height:100vh;
-	padding:90px;
-}
-.managerList{
-	display:flex;
-	flex-direction: column;
-}

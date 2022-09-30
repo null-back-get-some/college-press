@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.manager-container{
+	padding:40px;
+}
+
+.managerList{
+	display:flex;
+	flex-direction: column;
+}

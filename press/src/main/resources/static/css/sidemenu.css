@@ -2,10 +2,11 @@
 
 .sidemenu{
 	float:left;
-	height:100vh;
 	padding:30px 20px;
 	padding-left:100px;
 	border-right: solid 1px lightgray;
+	min-width: 180px;
+	height:100%;
 }
 
 .page-title{

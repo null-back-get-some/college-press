@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+
+<div layout:fragment="content">
+	<div id="mainPage" style="display: flex;">
+		<nav class="nav flex-column sidemenu">
+			<div class="side-contents">
+				<hr />
+				<a class="nav-link" href="../manager">관리자 등록</a>
+				<a class="nav-link" href="../calendar">캘린더</a> 
+				<a class="nav-link" href="board">게시판</a>
+				<hr />
+			</div>
+
+		</nav>
+
+		<div class="container manager-container">
+			<h2>게시판 작성</h2>
+    	
+	    	<form id="frm" name="frm" method="post" action="/board/boardInsert" enctype="multipart/form-data">
+	    		<table class="board_detail">
+					<tr>
+						<td>제목</td>
+						<td><input type="text" id="title" name="title"/></td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<textarea id="contents" name="contents"></textarea>
+						</td>
+						
+					</tr>
+					<tr>
+						<td>카테고리</td>
+						<td><input type="text" id="category" name="category" disabled/></td>
+					</tr>
+					<tr>
+						<td>태그</td>
+						<td><input type="text" id="tags" name="tags" disabled/></td>
+					</tr>
+				</table>
+				<div class="filechooser">
+					<input type="file" id="files" name="files" multiple="multiple">
+					<input type="submit" id="submit" value="저장" class="btn btn-outline-primary"/>
+				</div>
+				
+	    	</form>
+		
+		</div>
+	</div>
+</div>
+
+</html>
