@@ -8,6 +8,7 @@
 @import "main.css";
 @import "manager.css";
 @import "boardWrite.css";
+@import "index.css";
 
 html, body{
 	height:100%;
