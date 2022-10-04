@@ -3,64 +3,94 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/default">
 
-<div layout:fragment="content">
-<div id="mainPage">
-	<div style="float: right; padding-right: 100px;  position: sticky; top: 10%; z-index:-1; ">
-      	<h4>많이 본 뉴스</h4>
-      	<ol style="padding-left:15%">
-      		<li>많이 본 뉴스1</li>
-      		<li>많이 본 뉴스2</li>
-      		<li>많이 본 뉴스3</li>
-      		<li>많이 본 뉴스4</li>
-      		<li>많이 본 뉴스5</li>
-      	</ol>
-	</div>
-	<nav class="nav flex-column sidemenu">
-		<div class="side-contents">
-			<h4 class="active page-title" aria-current="page">보도/대학</h4>
-			<hr />
-			<a class="nav-link" href="#">일반</a> 
-			<a class="nav-link" href="#">수업 교육</a>
-			<a class="nav-link" href="#">대학 행정</a>
-			<hr />
-		</div>
+	<div layout:fragment="content">
+		<div id="board_grid" class="container_frame">
+			<div class="news_board_l">
+				<div>
+					<h5>보도 대학</h5>
+					<div class="sub_category">
+						<div>일반</div>
+						<div>수업 교육</div>
+						<div>대학 행정</div>
+					</div>
+				</div>
+			</div>
 
-	</nav>
-	<main class="main-content">
-		<div class="headline-news">
-			<h3>헤드라인 뉴스</h3>
-			<hr>
-		</div>
-		<div>
-			<div class="newslist">
-				<div class="news-contents">
-						<img class="img-fluid rounded mb-4 mb-lg-0"
-							src="https://dummyimage.com/200x200/dee2e6/6c757d.jpg" alt="..." />
-						<div class="article-contents">
-							<h3 class="font-weight-light"><a class="article-title" href="/#">신당역 살해범, 도주 계획했나… 범행 8시간 전 예금
-						인출 시도</a></h3>
-							<span>내용내용내용내용내용내용내용내용내용ㅇ내욘ㅇ내욘앤요내요내요내ㅛ애뇨애뇨ㅐ욘요ㅐㄴㅇ</span>
+			<div class="news_board_c">
+				<div class="board_top"><h5>일반</h5></div>
+				<div class="board_bottom">
+					<div class="board_list">
+						<div class="board_list_img"><img src="img/test4.jpg"></div>
+						<div class="board_content">
+							<h>신당역 살해범, 도주 계획했나… 범행 8시간 전 예금 인출 시도</h>
+							<p>서울 지하철 2호선 신당역 여자 화장실에서 동료인 20대 여성 역무원을 살해한 혐의로 구속된 전모(31)씨가 범행 당일 자신의 예금을 인출하려 했던 사실이 확인됐다...</p>
 						</div>
-						
 					</div>
-					<hr/>
-				<div class="news-contents">
-						<img class="img-fluid rounded mb-4 mb-lg-0"
-							src="https://dummyimage.com/200x200/dee2e6/6c757d.jpg" alt="..." />
-						<div class="article-contents">
-							<h3 class="font-weight-light"><a class="article-title" href="/#">신당역 살해범, 도주 계획했나… 범행 8시간 전 예금
-						인출 시도</a></h3>
-							<span>내용내용내용내용내용내용내용내용내용ㅇ내욘ㅇ내욘앤요내요내요내ㅛ애뇨애뇨ㅐ욘요ㅐㄴㅇ</span>
+					<div class="board_list">
+						<div class="board_list_img"><img src="img/test4.jpg"></div>
+						<div class="board_content">
+							<h>신당역 살해범, 도주 계획했나… 범행 8시간 전 예금 인출 시도</h>
+							<p>서울 지하철 2호선 신당역 여자 화장실에서 동료인 20대 여성 역무원을 살해한 혐의로 구속된 전모(31)씨가 범행 당일 자신의 예금을 인출하려 했던 사실이 확인됐다...</p>
 						</div>
-						
 					</div>
-					<hr/>	
+					<div class="board_list">
+						<div class="board_list_img"><img src="img/test4.jpg"></div>
+						<div class="board_content">
+							<h>신당역 살해범, 도주 계획했나… 범행 8시간 전 예금 인출 시도</h>
+							<p>서울 지하철 2호선 신당역 여자 화장실에서 동료인 20대 여성 역무원을 살해한 혐의로 구속된 전모(31)씨가 범행 당일 자신의 예금을 인출하려 했던 사실이 확인됐다...</p>
+						</div>
+					</div>
+					<div class="board_list">
+						<div class="board_list_img"><img src="img/test4.jpg"></div>
+						<div class="board_content">
+							<h>신당역 살해범, 도주 계획했나… 범행 8시간 전 예금 인출 시도</h>
+							<p>서울 지하철 2호선 신당역 여자 화장실에서 동료인 20대 여성 역무원을 살해한 혐의로 구속된 전모(31)씨가 범행 당일 자신의 예금을 인출하려 했던 사실이 확인됐다...</p>
+						</div>
+					</div>
+					<div class="board_list">
+						<div class="board_list_img"><img src="img/test4.jpg"></div>
+						<div class="board_content">
+							<h>신당역 살해범, 도주 계획했나… 범행 8시간 전 예금 인출 시도</h>
+							<p>서울 지하철 2호선 신당역 여자 화장실에서 동료인 20대 여성 역무원을 살해한 혐의로 구속된 전모(31)씨가 범행 당일 자신의 예금을 인출하려 했던 사실이 확인됐다...</p>
+						</div>
+					</div>
+					<div class="board_list">
+						<div class="board_list_img"><img src="img/test4.jpg"></div>
+						<div class="board_content">
+							<h>신당역 살해범, 도주 계획했나… 범행 8시간 전 예금 인출 시도</h>
+							<p>서울 지하철 2호선 신당역 여자 화장실에서 동료인 20대 여성 역무원을 살해한 혐의로 구속된 전모(31)씨가 범행 당일 자신의 예금을 인출하려 했던 사실이 확인됐다...</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="news_board_r">
+				<div>
+					<h5>많이 본 뉴스</h5>
+				</div>
+				<div>
+					<div id="first"	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		
-	</main>
-</div>
-	
-	
-</div>
+	</div>
 </html>

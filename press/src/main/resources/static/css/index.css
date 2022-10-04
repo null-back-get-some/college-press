@@ -1,5 +1,5 @@
 /* 메인 뉴스 css */
-.main_news { display: flex; padding: 2.5rem 0; border-bottom: 1px solid #d7d7d7; align-items: center; }
+.main_news { display: flex; padding: 2rem 0; border-bottom: 1px solid #d7d7d7; align-items: center; }
 .main_news div:nth-child(1) { padding-right: 10px; width: 1000px; height: 280px; }
 .main_img {object-fit: cover; width: 100%; height:100%; }
 .main_news div:nth-child(2) { padding-left:30px; }
