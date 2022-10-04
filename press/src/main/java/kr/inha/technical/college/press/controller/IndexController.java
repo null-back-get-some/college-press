@@ -12,9 +12,9 @@ public class IndexController {
 		return "login";
 	}
 	// 로그인 페이지
-	@GetMapping("/index2")
+	@GetMapping("/univ2")
 	public String index2() {
-		return "index2";
+		return "univ2";
 	}
 
 	// 메인 페이지

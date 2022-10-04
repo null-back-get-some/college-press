@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-PressApplication<press>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "kr.inha.technical.college.press.PressApplication",
+      "projectName": "press",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

@@ -1,5 +1,3 @@
-.container_frame { width:1110px; margin: 0 auto;  padding: 0 2rem; }
-
 /* 메인 뉴스 css */
 .main_news { display: flex; padding: 2.5rem 0; border-bottom: 1px solid #d7d7d7; align-items: center; }
 .main_news div:nth-child(1) { padding-right: 10px; width: 1000px; height: 280px; }
