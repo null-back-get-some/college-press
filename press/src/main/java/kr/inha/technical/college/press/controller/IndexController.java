@@ -59,11 +59,7 @@ public class IndexController {
 		return "manager/manager";
 	}
 
-	// 캘린더
-	@GetMapping("/manager/calendar")
-	public String calendar() {
-		return "manager/calendar";
-	}
+	
 
 	// 게시판
 	@GetMapping("/manager/board/board")
