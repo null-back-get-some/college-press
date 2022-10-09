@@ -72,6 +72,11 @@ public class IndexController {
 	public String boardWrite() {
 		return "manager/board/boardWrite";
 	}
+	
+	@GetMapping("/manager/board/pictureWrite")
+	public String pictureWrite() {
+		return "manager/board/pictureWrite";
+	}
 
 	@GetMapping("/tests")
 	public String teset() {

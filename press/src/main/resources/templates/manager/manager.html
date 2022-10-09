@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout/default">
+	layout:decorate="layout/manager_default">
 <div layout:fragment="content">
 <div id="mainPage" style="display: flex;">
-	<nav class="nav flex-column sidemenu">
-		<div class="side-contents">
-			<hr />
-			<a class="nav-link" href="manager">관리자 등록</a> 
-			<a class="nav-link" href="calendar">캘린더</a> 
-			<a class="nav-link" href="board/board">게시판</a>
-			<hr />
-		</div>
-
-	</nav>
-
 	<div class="container manager-container">
 		<div class="managerList" id="managerList">
 			<h2>관리자 리스트</h2>

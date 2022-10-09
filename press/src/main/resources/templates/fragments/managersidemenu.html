@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<th:block th:fragment="managersideFragment">
+    <!-- sidebar -->
+    <nav class="nav flex-column sidemenu">
+			<div id="menu" class="side-contents">
+				<hr />
+				<ul class="sidelist">
+					<li>
+						<a class="nav-link" href="manager">관리자 등록</a> 
+					</li>
+					<li>
+						<a class="nav-link" href="calendar">캘린더</a> 
+					</li>
+					<li class='dropdown'>
+						<a class="nav-link" href="">게시판</a>
+						<ul class="dropdown-list">
+							<li><a class="nav-link" href="board/board">기사 쓰기</a></li>
+							<li><a class="nav-link" href="board/pictureWrite">사진/영상</a></li>
+						</ul>
+					</li>
+				</ul>
+				
+				<hr />
+			</div>
+
+		</nav>
+    <!-- End of sidebar -->
+
+</th:block>
+</html>
