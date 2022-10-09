@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+ul li{
+	list-style: none;
+}
+
+.dropdown > ul {
+		display:none;
+}
+
+.dropdown:hover > ul {
+		display:block;
+		
+}
+
+#menu > ul > li > ul > li:hover {
+		background: skyblue;
+		transition: ease 1s;
+}
+
+.dropdown-list{
+	padding:0px;
+	border: solid 1px #0a58ca;
+}

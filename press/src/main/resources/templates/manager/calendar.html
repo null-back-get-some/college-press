@@ -10,11 +10,25 @@
 <th:block layout:fragment="content">
 	<div style="display: flex;">
 		<nav class="nav flex-column sidemenu">
-			<div class="side-contents">
+			<div id="menu" class="side-contents">
 				<hr />
-				<a class="nav-link" href="manager">관리자 등록</a> <a class="nav-link"
-					href="calendar">캘린더</a> <a class="nav-link" href="board/board">게시판</a>
-				<hr/>
+				<ul class="sidelist">
+					<li>
+						<a class="nav-link" href="manager">관리자 등록</a> 
+					</li>
+					<li>
+						<a class="nav-link" href="calendar">캘린더</a> 
+					</li>
+					<li class='dropdown'>
+						<a class="nav-link" href="">게시판</a>
+						<ul class="dropdown-list">
+							<li><a class="nav-link" href="board/board">기사 쓰기</a></li>
+							<li><a class="nav-link" href="#">사진/영상</a></li>
+						</ul>
+					</li>
+				</ul>
+				
+				<hr />
 			</div>
 
 		</nav>
@@ -68,6 +82,7 @@
 	      initialDate: '2022-10-12',
 	      navLinks: true, // can click day/week names to navigate views
 	      editable : true, //수정가능 여부
+	      dayMaxEvents: true, // allow "more" link when too many events
 	      selectable: true,
 	      selectMirror: true,
 	      select: function(arg) { //날짜 셀렉트 시 이벤트
