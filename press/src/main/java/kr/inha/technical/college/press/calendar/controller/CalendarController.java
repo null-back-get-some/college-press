@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,6 +80,27 @@ public class CalendarController {
 			System.out.println("삭제할 데이터 : "+calDTOList.get(i).getTitle()+", "+calDTOList.get(i).getId());
 			service.calendarDelete(calDTOList.get(i).getId());
 		}
+		return new ResponseEntity<List<entity>>(calDTOList, HttpStatus.OK);
+    }
+	
+	
+	@RequestMapping(value = "/manager/calendar", method = RequestMethod.PATCH)
+    public @ResponseBody ResponseEntity updateEvent(@RequestBody List<entity> calDTOList) {
+		System.out.println("수정 시작");
+		
+		entity dto = new entity();
+		
+		for (int i = 0; i < calDTOList.size(); i++) {
+			System.out.println("수정할 데이터 : "+calDTOList.get(i).getTitle()+", "+calDTOList.get(i).getId());
+			dto.setId(calDTOList.get(i).getId());
+			dto.setWriter(calDTOList.get(i).getWriter());
+			dto.setTitle(calDTOList.get(i).getTitle());
+			
+			dto.setStart(calDTOList.get(i).getStart());
+			dto.setEnd(calDTOList.get(i).getEnd());
+			service.calendarUpdate(dto);
+		}
+		
 		return new ResponseEntity<List<entity>>(calDTOList, HttpStatus.OK);
     }
 	

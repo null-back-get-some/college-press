@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "calendar")
+@Table(name = "TB_CALENDAR")
 @Getter //필수로 만들어야 함
 @Setter //안 만드는게 좋음. 외부에서 접근할 수 있기 때문에
 @NoArgsConstructor //디폴트 생성자

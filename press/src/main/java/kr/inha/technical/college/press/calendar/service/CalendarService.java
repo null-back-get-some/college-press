@@ -25,5 +25,10 @@ public class CalendarService {
 	public void calendarDelete(Long id) {
 		repository.deleteById(id);
 	}
+
+	public void calendarUpdate(entity dto) {
+		entity itemList = repository.save(dto);
+		
+	}
 	
 }
