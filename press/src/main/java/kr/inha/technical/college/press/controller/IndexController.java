@@ -11,11 +11,23 @@ public class IndexController {
 	public String login() {
 		return "login";
 	}
+	
 	// 로그인 페이지
 	@GetMapping("/univ2")
 	public String index2() {
 		return "univ2";
 	}
+	
+	// 회원가입
+	@GetMapping("/member/memberForm")
+	public String memberForm() {
+		return "member/memberForm";
+	}
+	
+//	@GetMapping("/members/new")
+//	public String members() {
+//		return "members/new";
+//	}
 
 	// 메인 페이지
 	@GetMapping("/index")
@@ -59,8 +71,6 @@ public class IndexController {
 		return "manager/manager";
 	}
 
-	
-
 	// 게시판
 	@GetMapping("/manager/board/board")
 	public String board() {
@@ -82,4 +92,5 @@ public class IndexController {
 	public String teset() {
 		return "tests";
 	}
+	
 }
