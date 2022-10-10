@@ -26,11 +26,6 @@ import kr.inha.technical.college.press.calendar.service.CalendarService;
 @Controller
 public class CalendarController {
 	
-	@Autowired
-	EntityManager em;
-	
-	@Autowired
-	CalendarRepository Repository;
 	
 	@Autowired
 	CalendarService service;

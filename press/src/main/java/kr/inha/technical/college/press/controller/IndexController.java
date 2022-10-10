@@ -71,22 +71,7 @@ public class IndexController {
 		return "manager/manager";
 	}
 
-	// 게시판
-	@GetMapping("/manager/board/board")
-	public String board() {
-		return "manager/board/board";
-	}
-
-	// 게시판
-	@GetMapping("/manager/board/boardWrite")
-	public String boardWrite() {
-		return "manager/board/boardWrite";
-	}
 	
-	@GetMapping("/manager/board/pictureWrite")
-	public String pictureWrite() {
-		return "manager/board/pictureWrite";
-	}
 
 	@GetMapping("/tests")
 	public String teset() {

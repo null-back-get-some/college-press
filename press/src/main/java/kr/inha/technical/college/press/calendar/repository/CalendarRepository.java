@@ -10,4 +10,3 @@ public interface CalendarRepository extends JpaRepository<entity, Long>{
 	List<entity> findById(long id);
 	
 }
-

@@ -13,8 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
-	protected void configure(HttpSecurity http) {
-		
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable(); //CSRF : 사이트 간 요청 위조
 	}
 	
 	@Bean

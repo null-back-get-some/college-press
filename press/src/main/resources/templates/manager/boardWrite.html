@@ -11,11 +11,26 @@
 		<div class="container manager-container">
 			<h2>게시판 작성</h2>
     	
-	    	<form id="frm" name="frm" method="post" action="/board/boardInsert" enctype="multipart/form-data">
+	    	<form id="frm" name="frm" method="post" action="/manager/boardInsert" enctype="multipart/form-data">
+	    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	    		<table class="board_detail">
 					<tr>
 						<td>제목</td>
 						<td><input type="text" id="title" name="title"/></td>
+					</tr>
+					<tr>
+						<td>카테고리</td>
+						<!--  <td><input type="text" id="category" name="category" disabled/></td>-->
+						<td>
+						  <select name="language" >
+						    <option value="none">=== 선택 ===</option>
+						    <option value="korean" selected>한국어</option>
+						    <option value="english">영어</option>
+						    <option value="chinese">중국어</option>
+						    <option value="spanish">스페인어</option>
+						  </select>
+						</td>
+						
 					</tr>
 					<tr>
 						<td colspan="4">
@@ -23,10 +38,7 @@
 						</td>
 						
 					</tr>
-					<tr>
-						<td>카테고리</td>
-						<td><input type="text" id="category" name="category" disabled/></td>
-					</tr>
+					
 				</table>
 				<div class="filechooser">
 					<input type="file" id="files" name="files" multiple="multiple">
