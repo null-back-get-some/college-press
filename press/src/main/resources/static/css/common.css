@@ -3,15 +3,18 @@
   큰 사진은 16:9
  */
 
+/* navbar 영역 */
+#navbar { position: fixed; width: 100%; }
+
 /* content 영역 */
-.container_frame { width:1150px; margin: 0 auto;  padding: 0 2rem; }
+.container_frame { width:1150px; margin: 0 auto;  padding: 0 2rem; padding-top: 52px;}
 
 /* 많이 본 기사 순위 */
 .rank { padding: 5px 0; border-top: 1px solid #d7d7d7;}
 
 #first { border: none; }
 
-/* 뉴스 보드 오른쪽  */
+/* 뉴스 보드 오른쪽 + 사진 보드  */
 .news_board_r {
   padding-top: 0.5rem;
   padding-left: 20px;
