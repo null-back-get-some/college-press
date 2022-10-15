@@ -59,12 +59,6 @@ public class IndexController {
 		return "picture";
 	}
 
-	// 사진/영상 게시판
-	@GetMapping("/picture2")
-	public String picture2() {
-		return "picture2";
-	}
-
 	// 신문보기 게시판
 	@GetMapping("/paper")
 	public String paper() {
