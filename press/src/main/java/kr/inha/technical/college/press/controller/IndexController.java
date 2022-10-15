@@ -64,6 +64,11 @@ public class IndexController {
 	public String paper() {
 		return "paper";
 	}
+	// 신문보기 게시판
+	@GetMapping("/paper2")
+	public String paper2() {
+		return "paper2";
+	}
 
 	// 관리자 게시판
 	@GetMapping("/manager/manager")
