@@ -4,6 +4,14 @@
 .paper_month :nth-child(2){padding: 0 10px; }
 .paper_month :nth-child(3){padding-left:10px; }
 
+#board_grid_paper { display: grid; grid-template-columns: 3.5fr 1fr; padding: 1.5rem 0; padding-top: 91px; }
+#board_grid_paper .news_board_c { border-left: none; }
 .paper_list { display: grid; grid-template-columns: 0.5fr 2fr; padding: 5px 0; margin: 15px 0; border: 1px solid #d7d7d7; border-radius: 5px;}
 .paper_list_img { width: 150px; height: 200px; margin-left: 10px;}
 .paper_list_img img { object-fit: cover; width: 100%; height:100%; }
+.paper_content { display: flex; flex-direction: column; justify-content: space-evenly;}
+.paper_title{ display: flex; align-items: center; }
+.paper_content span { padding-left: 10px; }
+.paper_title :nth-child(1){ font-size: 20px; font-weight: bold;}
+.paper_title :nth-child(2){ font-size: 13px; }
+.paper_title :nth-child(3){ padding-bottom: 10px; }
