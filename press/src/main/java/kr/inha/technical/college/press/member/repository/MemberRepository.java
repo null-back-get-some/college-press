@@ -1,8 +1,8 @@
-package kr.inha.technical.college.press.Repository;
+package kr.inha.technical.college.press.member.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kr.inha.technical.college.press.entity.Member;
+import kr.inha.technical.college.press.member.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 	
