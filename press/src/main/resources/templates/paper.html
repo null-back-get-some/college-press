@@ -3,55 +3,99 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/default">
 
-<div layout:fragment="content">
-	<div style="float: right; padding-right: 100px;  position: sticky; top: 15%;">
-		<h4>많이 본 뉴스</h4>
-		<ol style="padding-left:15%">
-			<li>많이 본 뉴스1</li>
-			<li>많이 본 뉴스2</li>
-			<li>많이 본 뉴스3</li>
-			<li>많이 본 뉴스4</li>
-			<li>많이 본 뉴스5</li>
-		</ol>
-  	</div>
-	<nav class="nav flex-column sidemenu">
-		<div class="side-contents">
-			<h4 class="active page-title" aria-current="page">신문 보기</h4>
-			<!-- <hr />
-			<a class="nav-link" href="#">일반</a> 
-			<a class="nav-link" href="#">수업 교육</a>
-			<a class="nav-link" href="#">대학 행정</a>
-			<hr /> -->
-		</div>
+	<div layout:fragment="content">
+		<div id="board_grid_paper" class="container_frame">
 
-	</nav>
-	<main class="main-content">
-		<div class="headline-news">
-			<h2>헤드라인 뉴스</h2>
-			<hr>
-		</div>
-		<div>
-			<div style="display: flex; flex-direction: column; justify-content: space-around;">
-					<div
-						style="display: flex; flex-direction: row; justify-content: space-between;">
-						<h3 class="font-weight-light">신당역 살해범, 도주 계획했나… 범행 8시간 전 예금
-							인출 시도</h3>
-						<img class="img-fluid rounded mb-4 mb-lg-0"
-							src="https://dummyimage.com/100x100/dee2e6/6c757d.jpg" alt="..." />
-					</div>
-					<time datetime="2022-09-17">2022-09-17</time>
-					<hr />
-					<div
-						style="display: flex; flex-direction: row; justify-content: space-between;">
-						<h3 class="font-weight-light">전북도 아파트 매매가 하락세 확연</h3>
-						<img class="img-fluid rounded mb-4 mb-lg-0"
-							src="https://dummyimage.com/100x100/dee2e6/6c757d.jpg" alt="..." />
-					</div>
-					<time datetime="2022-09-17">2022-09-17</time>
+			<div class="news_board_c">
+				<div class="board_top">
+					<span class="paper_month">
+						<a><</a>
+						<h5>10월</h5>
+						<a>></a>
+					</span>
 				</div>
+				<div class="board_bottom">
+					<div class="paper_list">
+						<div class="paper_list_img"><img src="img/paper.png"></div>
+						<div class="paper_content">
+							<div class="paper_title">
+								<span>제 371호</span>
+								<span >총 6면</span>
+							</div>
+							<span>2021년 3월 11 목요일</span>
+						</div>
+					</div>
+					<div class="paper_list">
+						<div class="paper_list_img"><img src="img/paper.png"></div>
+						<div class="paper_content">
+							<div class="paper_title">
+								<span>제 371호</span>
+								<span >총 6면</span>
+							</div>
+							<span>2021년 3월 11 목요일</span>
+						</div>
+					</div>
+					<div class="paper_list">
+						<div class="paper_list_img"><img src="img/paper.png"></div>
+						<div class="paper_content">
+							<div class="paper_title">
+								<span>제 371호</span>
+								<span >총 6면</span>
+							</div>
+							<span>2021년 3월 11 목요일</span>
+						</div>
+					</div>
+					<div class="paper_list">
+						<div class="paper_list_img"><img src="img/paper.png"></div>
+						<div class="paper_content">
+							<div class="paper_title">
+								<span>제 371호</span>
+								<span >총 6면</span>
+							</div>
+							<span>2021년 3월 11 목요일</span>
+						</div>
+					</div>
+					<div class="paper_list">
+						<div class="paper_list_img"><img src="img/paper.png"></div>
+						<div class="paper_content">
+							<div class="paper_title">
+								<span>제 371호</span>
+								<span >총 6면</span>
+							</div>
+							<span>2021년 3월 11 목요일</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="news_board_r">
+				<div>
+					<h5>많이 본 뉴스</h5>
+				</div>
+				<div>
+					<div id="first"	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		
-	</main>
-	
-</div>
+	</div>
 </html>
