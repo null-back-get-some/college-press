@@ -1,12 +1,12 @@
-package kr.inha.technical.college.press.entity;
+package kr.inha.technical.college.press.member.entity;
 
 import javax.persistence.*;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import groovy.transform.ToString;
-import kr.inha.technical.college.press.constant.Role;
-import kr.inha.technical.college.press.dto.MemberFormDto;
+import kr.inha.technical.college.press.member.constant.Role;
+import kr.inha.technical.college.press.member.dto.MemberFormDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +18,7 @@ import lombok.Setter;
 public class Member {
 
 	@Id
-	@Column(name="ID")
+	@Column(name="MEMBER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	

@@ -1,4 +1,4 @@
-package kr.inha.technical.college.press.dto;
+package kr.inha.technical.college.press.member.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

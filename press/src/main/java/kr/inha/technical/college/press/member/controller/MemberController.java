@@ -1,4 +1,4 @@
-package kr.inha.technical.college.press.controller;
+package kr.inha.technical.college.press.member.controller;
 
 import javax.validation.Valid;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.inha.technical.college.press.dto.MemberFormDto;
-import kr.inha.technical.college.press.entity.Member;
-import kr.inha.technical.college.press.service.MemberService;
+import kr.inha.technical.college.press.member.dto.MemberFormDto;
+import kr.inha.technical.college.press.member.entity.Member;
+import kr.inha.technical.college.press.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/members")
@@ -39,6 +39,11 @@ public class MemberController {
 //		
 //	}
 	
+	@GetMapping("/login")
+	public String loginMember() {
+		return "login";
+	}
+	
 	@PostMapping(value = "/new")
 	public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 		
@@ -60,6 +65,12 @@ public class MemberController {
 		
 		return "redirect:/";
 		
+	}
+	
+	@GetMapping("/login/error")
+	public String loginError(Model model) {
+		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
+		return "login";
 	}
 
 }
