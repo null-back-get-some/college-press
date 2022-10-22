@@ -1,10 +1,13 @@
 @charset "UTF-8";
 
+#board_grid_manager {display: grid; grid-template-columns: 0.5fr 4fr; padding: 1.5rem 0; padding-top: 91px;}
+
 .manager-container{
-	padding:40px;
+	border-left: 1px solid #d7d7d7;
+	padding: 0.5rem 20px;
 }
 
-.managerList{
-	display:flex;
-	flex-direction: column;
-}
+/* .managerList{
+  padding-top: 0.5rem;
+  padding-left: 20px;
+} */
