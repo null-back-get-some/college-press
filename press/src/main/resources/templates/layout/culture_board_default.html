@@ -9,10 +9,8 @@
 <div>
 	<th:block th:replace="fragments/topbar :: topbarFragment"></th:block>
 	<div id="board_grid" class="container_frame">	
-		<th:block th:replace="fragments/sidemenu/univSidemenu :: univsideFragment"></th:block>
+		<th:block th:replace="fragments/sidemenu/cultureSidemenu :: cultureSideFragment"></th:block>
 		<th:block layout:fragment="content"></th:block>
 	</div>
 	<footer th:replace="fragments/footer :: footerFragment"></footer>
 </div>
-<script src="/js/ckeditor.js"></script>
-<script src="/js/inputfile.js"></script>

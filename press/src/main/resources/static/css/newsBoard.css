@@ -1,5 +1,7 @@
 /* 전체 콘텐츠  */
-#board_grid { display: grid; grid-template-columns: 0.5fr 3fr 1fr; padding: 1.5rem 0; padding-top: 91px;}
+#board_grid { display: grid; grid-template-columns: 0.5fr 3fr; padding: 1.5rem 0; padding-top: 91px;}
+
+.new_board_r { display: grid; grid-template-columns: 3fr 1fr; }
 
 /* 뉴스 보드 왼쪽 카테고리  + 사진 보드*/ 
 .news_board_l { padding-top: 0.5rem; padding-right: 20px;}
@@ -9,7 +11,7 @@
 
 
 /* 뉴스+사진 보드 중앙 */
-.news_board_c, .picture_c{ border-right: 1px solid #d7d7d7;  border-left: 1px solid #d7d7d7;  padding: 0.5rem 20px; }
+.news_board_r1, .picture_c{ border-right: 1px solid #d7d7d7;  border-left: 1px solid #d7d7d7;  padding: 0.5rem 20px; }
 .board_top, .picture_top {border-bottom: 1px solid #d7d7d7;}
 .board_top h5, .picture_top h5 { margin: 0px; padding: 5px 0; }
 .board_list { display: grid; grid-template-columns: 0.5fr 2fr; padding: 15px 0; border-bottom: 1px solid #d7d7d7;}
