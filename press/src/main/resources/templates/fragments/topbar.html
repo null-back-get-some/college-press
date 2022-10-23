@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.thymeleaf.org/extras/spring-security">
 
 
 <th:block th:fragment="topbarFragment">
@@ -11,19 +12,19 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class=""><a class="navbar-brand" href="/index">
                             <img class = "mainlogo"  src = "../../img/mainlogo.png" style="width:200px; height:50px;" ></a></li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link active" aria-current="page" href="/board/univ">보도/대학</a></li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link" href="/board/social">사회</a></li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link" href="/board/culture">종합문화</a></li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link" href="/board/picture">사진/영상</a></li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link" href="/board/paper">신문 보기</a></li>
+                        <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link active" aria-current="page" href="/board/univ">보도/대학</a></li>
+                        <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/board/social">사회</a></li>
+                        <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/board/culture">종합문화</a></li>
+                        <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/board/picture">사진/영상</a></li>
+                        <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/board/paper">신문 보기</a></li>
                         <li class="nav-item" sec:autorize="hasAnyAuthority('ROLE_ADMIN')"><a class="nav-link top-link" href=/manager/manager>관리자</a></li>
                     </ul>
                 </div>
                 <div>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0"  style="display: flex">
                         <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/login">로그인</a></li>
-                        <!-- <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link" href="/logout">로그아웃</a></li> -->
-                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link" href="#!">검색</a></li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link top-link" href="/logout">로그아웃</a></li>
+                        <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="#!">검색</a></li>
                     </ul>
                 </div>
             </div>
