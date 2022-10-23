@@ -17,7 +17,7 @@
                         <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/board/culture">종합문화</a></li>
                         <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/board/picture">사진/영상</a></li>
                         <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link top-link" href="/board/paper">신문 보기</a></li>
-                        <li class="nav-item" sec:autorize="hasAnyAuthority('ROLE_ADMIN')"><a class="nav-link top-link" href=/manager/manager>관리자</a></li>
+                        <li class="nav-item" sec:autorize="isAuthenticated()"><a class="nav-link top-link" href=/manager/manager>관리자</a></li>
                     </ul>
                 </div>
                 <div>
