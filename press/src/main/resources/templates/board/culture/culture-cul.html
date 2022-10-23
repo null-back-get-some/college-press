@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/culture_board_default">
+	
+	<div layout:fragment="content">
+		<div class="new_board_r">
+			<div class="news_board_r1">
+				<div class="board_top"><h5>문화</h5></div>
+				<div class="board_bottom">
+					<div class="board_list">
+						<div class="board_list_img"><img src="/img/test3.jpg"></div>
+						<div class="board_content">
+							<h th:text="${t}"></h>
+							<p th:text="${c}"></p>
+						</div>
+					</div>
+					<div class="board_list">
+						<div class="board_list_img"><img src="/img/test3.jpg"></div>
+						<div class="board_content">
+							<h th:text="${t}"></h>
+							<p th:text="${c}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="news_board_r2">
+				<div>
+					<h5>많이 본 뉴스</h5>
+				</div>
+				<div>
+					<div id="first"	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+					<div 	class="rank">
+						<div >많이 본 뉴스</div>
+						<div>2021.09.03 | aaa기자</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>
