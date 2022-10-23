@@ -12,12 +12,6 @@ public class IndexController {
 		return "login";
 	}
 	
-	// 로그인 페이지
-	@GetMapping("/univ2")
-	public String index2() {
-		return "univ2";
-	}
-	
 	// 회원가입
 	@GetMapping("/member/memberForm")
 	public String memberForm() {
@@ -36,33 +30,33 @@ public class IndexController {
 	}
 
 	// 보도대학 게시판
-	@GetMapping("/univ")
+	@GetMapping("/board/univ")
 	public String univ() {
-		return "univ";
+		return "board/univ";
 	}
 
 	// 사회 게시판
-	@GetMapping("/social")
+	@GetMapping("/board/social")
 	public String social() {
-		return "social";
+		return "board/social";
 	}
 
 	// 종합문화 게시판
-	@GetMapping("/culture")
+	@GetMapping("/board/culture")
 	public String culture() {
-		return "culture";
+		return "board/culture";
 	}
 
 	// 사진/영상 게시판
-	@GetMapping("/picture")
+	@GetMapping("/board/picture")
 	public String picture() {
-		return "picture";
+		return "board/picture";
 	}
 
 	// 신문보기 게시판
-	@GetMapping("/paper")
+	@GetMapping("/board/paper")
 	public String paper() {
-		return "paper";
+		return "board/paper";
 	}
 
 	// 관리자 게시판
