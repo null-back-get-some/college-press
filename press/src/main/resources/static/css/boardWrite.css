@@ -38,7 +38,16 @@
 	height: 750px;
 }
 
+.ck-editor{
+	/* z-index : -1; */
+}
+
+.categorys{
+	width:140px;
+}
+
 #mainPage{
 	display: flex;
 	
 }
+

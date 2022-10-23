@@ -3,14 +3,53 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/manager_default}">
 <head>
-	
+	<script th:inline="javascript"> 
+		function categoryChange(num){
+			console.log(num.value);
+			var num = num.value;
+			var target = document.getElementById("sub_category");
+			var category = new Array();
+			if(num == "none"){
+				var opt = document.createElement("option");
+				var text = "=== 선택 ===";
+				category[0] = text;
+				opt.value = category[0];
+				opt.innerHTML = category[0];
+				target.appendChild(opt);
+			}
+			const subcategory = [[${subCateList}]];
+			
+			for(var i = 0; i<subcategory.length; i++){
+				if(subcategory[i].category==num){
+					console.log(subcategory[i].sub_category_name);
+					category[i] = subcategory[i].sub_category_name;
+				}
+			}
+			
+			target.options.length = 0;
+			
+			for(x in category){
+				var opt = document.createElement("option");
+				opt.value = category[x];
+				opt.innerHTML = category[x];
+				target.appendChild(opt);
+				
+			}
+			
+			console.log($("#main_category").val());
+			console.log($("#frm").serialize());
+		}
+		
+		
+	</script>
 </head>
+
+	
 <div layout:fragment="content">
 	<div id="mainPage">
 
 		<div class="container manager-container">
 			<h2>게시판 작성</h2>
-    	
 	    	<form id="frm" name="frm" method="post" action="/manager/boardInsert" >
 	    		
 	    		<table class="board_detail">
@@ -22,12 +61,18 @@
 						<td>카테고리</td>
 						<!--  <td><input type="text" id="category" name="category" disabled/></td>-->
 						<td>
-						  <select name="language" >
+						  <select id="main_category" name="category" class="categorys" onchange="categoryChange(this)">
+						    <option value="none" name="none">=== 선택 ===</option>
+						    <option th:value = "${mainCateList[0].category}" th:name = "${mainCateList[0].category_name}" th:text="${mainCateList[0].category_name}"></option> <!-- 보도/대학 -->
+						    <option th:value = "${mainCateList[1].category}" th:name = "${mainCateList[1].category_name}" th:text="${mainCateList[1].category_name}"></option> <!-- 사회 -->
+						    <option th:value = "${mainCateList[2].category}" th:name = "${mainCateList[2].category_name}" th:text="${mainCateList[2].category_name}"></option> <!-- 종합 문화 -->
+						  </select>
+						  
+						  <select id="sub_category" name="subcategory" class="categorys">
 						    <option value="none">=== 선택 ===</option>
-						    <!-- <option value="korean" selected>한국어</option>
-						    <option value="english">영어</option>
-						    <option value="chinese">중국어</option>
-						    <option value="spanish">스페인어</option> -->
+						    <!-- <option value="univ" th:text="${subCateList[0].sub_category_name}"></option> 보도/대학
+						    <option value="social" th:text="${subCateList[1].sub_category_name}"></option> 사회
+						    <option value="culture" th:text="${subCateList[2].sub_category_name}"></option> 종합 문화 -->
 						  </select>
 						</td>
 						
@@ -44,7 +89,7 @@
 					<input type="file" id="files" name="files" multiple="multiple">
 					<input type="submit" id="submit" value="저장" class="btn btn-outline-primary"/>
 				</div>
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				<!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
 	    	</form>
 		
 		</div>
