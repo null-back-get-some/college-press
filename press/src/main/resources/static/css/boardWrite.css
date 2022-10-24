@@ -34,16 +34,10 @@
 	padding-top:20px;
 }
 
-.ck-editor__editable { 
-	height: 750px;
-}
-
-.ck-editor{
-	/* z-index : -1; */
-}
-
+.dropdown-toggle::after { display: none; } /* 드롭다운 우측 화살표 2개 나오는 문제 처리*/
+		
 .categorys{
-	width:140px;
+	width:140px; 
 }
 
 #mainPage{

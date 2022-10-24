@@ -95,6 +95,23 @@
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
 		
+		<!-- json 변환 -->
+          <dependency>
+              <groupId>com.google.code.gson</groupId>
+              <artifactId>gson</artifactId>
+              <version>2.8.6</version>
+          </dependency>
+
+          <!-- commons-fileupload -->
+          <!-- multipart등을 사용할수 있음 -->
+          <dependency>
+              <groupId>commons-fileupload</groupId>
+              <artifactId>commons-fileupload</artifactId>
+              <version>1.3.1</version>
+          </dependency>	
+		
+		
+		
 	</dependencies>
 
 	<build>
