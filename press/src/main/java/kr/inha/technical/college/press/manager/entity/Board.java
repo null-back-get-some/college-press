@@ -36,11 +36,11 @@ public class Board {
 	@Column(name = "TITLE", nullable = false)
 	private String title;
 	
-	@Column(name = "CONTENTS", nullable = false)
+	@Column(name = "CONTENTS", nullable = false, length = 500000)
 	private String contents;
 	
 	@Column(name = "MEMBER")
-	private String start;
+	private String member;
 	
 	@Column(name = "REGDATE")
 	private LocalDateTime regdate;

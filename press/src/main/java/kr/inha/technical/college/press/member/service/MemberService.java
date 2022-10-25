@@ -1,5 +1,7 @@
 package kr.inha.technical.college.press.member.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.security.core.userdetails.User;
@@ -48,6 +50,11 @@ public class MemberService implements UserDetailsService{
 				.roles(member.getRole().toString())
 				.build();
 		
+	}
+	
+	public Member findByEmail(String email) {
+		Member list =  memberRepository.findByEmail(email);
+		return list;
 	}
 	
 }

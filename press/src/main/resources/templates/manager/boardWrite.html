@@ -19,6 +19,7 @@
 			}
 			const subcategory = [[${subCateList}]];
 			
+			
 			for(var i = 0; i<subcategory.length; i++){
 				if(subcategory[i].category==num){
 					console.log(subcategory[i].sub_category_name);
@@ -39,7 +40,6 @@
 			console.log($("#main_category").val());
 			console.log($("#frm").serialize());
 		}
-		
 		
 	</script>
 	<script>
@@ -90,7 +90,7 @@
 					}
 				}
 		        
-		  });
+				});
 		});
 		
 		
@@ -100,15 +100,20 @@
 		function uploadSummernoteImageFile(file, editor) {
 			data = new FormData();
 			data.append("file", file);
+			console.log(data);
 			$.ajax({
 				data : data,
 				type : "POST",
 				url : "/uploadSummernoteImageFile",
 				contentType : false,
 				processData : false,
+				enctype : 'multipart/form-data',
 				success : function(data) {
 	            	//항상 업로드된 파일의 url이 있어야 한다.
 					$(editor).summernote('insertImage', data.url);
+				},
+				error : function(e){
+					console.log(e);
 				}
 			});
 		}
@@ -123,8 +128,8 @@
 	<div id="mainPage">
 
 		<div class="container manager-container">
-			<h2>게시판 작성</h2>
-	    	<form id="frm" name="frm" method="post" action="/manager/boardInsert" >
+			<h2>기사 쓰기</h2>
+	    	<form id="frm" name="frm" method="post" action="/manager/boardInsert" enctype="multipart/form-data">
 	    		
 	    		<table class="board_detail">
 					<tr>
@@ -132,11 +137,15 @@
 						<td><input type="text" id="title" name="title"/></td>
 					</tr>
 					<tr>
+						<td>작성자</td>
+						<td th:text = "${username}"></td>
+					</tr>
+					<tr>
 						<td>카테고리</td>
 						<!--  <td><input type="text" id="category" name="category" disabled/></td>-->
 						<td>
 						  <select id="main_category" name="category" class="categorys" onchange="categoryChange(this)">
-						    <option value="none">=== 선택 ===</option>
+						    <option value="" disabled selected>=== 선택 ===</option>
 						    <option th:value = "${mainCateList[0].category}" th:name = "${mainCateList[0].category_name}" th:text="${mainCateList[0].category_name}"></option> <!-- 보도/대학 -->
 						    <option th:value = "${mainCateList[1].category}" th:name = "${mainCateList[1].category_name}" th:text="${mainCateList[1].category_name}"></option> <!-- 사회 -->
 						    <option th:value = "${mainCateList[2].category}" th:name = "${mainCateList[2].category_name}" th:text="${mainCateList[2].category_name}"></option> <!-- 종합 문화 -->
@@ -160,10 +169,9 @@
 					
 				</table>
 				<div class="filechooser">
-					<input type="file" id="files" name="files" multiple="multiple">
-					<input type="submit" id="submit" value="저장" class="btn btn-outline-primary" onclick = "goWrite(this.form)"/>
+					<!-- <input type="file" id="files" name="files" multiple="multiple"> -->
+					<input type="submit" id="submit" value="저장" class="btn btn-outline-primary"/>
 				</div>
-				<!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
 	    	</form>
 		
 		</div>
