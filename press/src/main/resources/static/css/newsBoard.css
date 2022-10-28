@@ -4,7 +4,7 @@
 .new_board_r { display: grid; grid-template-columns: 3fr 1fr; }
 
 /* 뉴스 보드 왼쪽 카테고리  + 사진 보드*/ 
-.news_board_l { padding-top: 0.5rem; padding-right: 20px;}
+.news_board_l { padding-top: 0.5rem; padding-right: 20px; padding-left:20px;}
 .news_board_l h5 { margin: 0px; padding-bottom:10px; }
 .sub_category { border-bottom: 1px solid #d7d7d7; border-top: 1px solid #d7d7d7; padding: 5px 0; }
 .sub_category div { padding: 5px 0; }

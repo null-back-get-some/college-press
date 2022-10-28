@@ -29,3 +29,6 @@ body{
 	/* height:clac(100vh - 120px); */
 }
 
+a:hover{
+	color:grey;
+}

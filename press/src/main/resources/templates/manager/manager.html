@@ -3,69 +3,84 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/manager_default">
 <div layout:fragment="content">
-<div id="mainPage" style="display: flex;">
-	<div class="container manager-container">
-		<div class="managerList" id="managerList">
-			<h2>관리자 리스트</h2>
+	<div id="mainPage" style="display: flex;">
+		<div class="container manager-container">
+			<div class="managerList" id="managerList">
+				<h2>관리자 리스트</h2>
 
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>아이디</th>
-						<th>이메일</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>gildongchan</td>
-						<td>dongdong@naver.com</td>
-						<td><button type="button" class="btn btn-danger">delete</button></td>
-					</tr>
-					<tr>
-						<td>gildongchan</td>
-						<td>dongdong@naver.com</td>
-						<td><button type="button" class="btn btn-danger">delete</button></td>
-					</tr>
-					<tr>
-						<td>gildongchan</td>
-						<td>dongdong@naver.com</td>
-						<td><button type="button" class="btn btn-danger">delete</button></td>
-					</tr>
-					<tr>
-						<td>gildongchan</td>
-						<td>dongdong@naver.com</td>
-						<td><button type="button" class="btn btn-danger">delete</button></td>
-					</tr>
-					<!-- <tr th:unless="${#lists.size(list)} > 0"> -->
-					<tr>
-						<td colspan="4">조회된 결과가 없습니다.</td>
-					</tr>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>이름</th>
+							<th>이메일</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${!#lists.isEmpty(member)}" th:each="member : ${member}">
+			        		<td th:text="${member.name}"></td>
+							<td th:text="${member.email}"></td>
+							<td><button type="button" class="btn btn-danger">delete</button></td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(member)}">
+							<td colspan="4">조회된 결과가 없습니다.</td>
+						</tr>
 
-				</tbody>
+					</tbody>
 
-			</table>
-			
-			<div style="border:solid 1px lightgray; display: flex; flex-direction: column; justify-content: space-between; padding:20px">
-				<div>새로 추가할 관리자 학번을 입력하세요</div>
-				<div style="display: flex; flex-direction: row; justify-content: space-between;">
-					<div style="color: gray; border:solid 1px lightgray; margin:10px; padding:10px 40px">예:202045055</div>
-					<button type="button" class="btn btn-outline-warning">
-					<a href="/user/userInsert">관리자 권한 추가</a>
+				</table>
+
+				
+
+				<div
+					style="border: solid 1px lightgray; display: flex; flex-direction: column; justify-content: space-between; padding: 20px">
+					<div>새로 추가할 관리자 이메일을 입력하세요</div>
+					<div
+						style="display: flex; flex-direction: row; justify-content: space-between;">
+						<div
+							style="color: gray; border: solid 1px lightgray; margin: 10px; padding: 10px 40px">예: gildong@naver.com</div>
+						<!-- <button type="button"
+							class="btn 
+							data-bs-toggle="modal" data-bs-target="#addManagerModal">
+							관리자 권한추가 onclick="location.href='/manager/empowerment'"
+							</button> -->
+					
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-outline-warning insertManager" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					  	관리자 권한추가
 					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">관리자 추가</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        <input type="text" id="input-email" placeholder="이메일을 입력해주세요">
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-success btn-addAdmin">Add manager</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+		
+		</div>
+		
+		
+		
 				</div>
-				
-				
-				
+
 			</div>
-			
+
 
 		</div>
-
-
 	</div>
-</div>
-	
+
 
 
 </div>

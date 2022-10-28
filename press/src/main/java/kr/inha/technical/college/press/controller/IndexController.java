@@ -29,15 +29,4 @@ public class IndexController {
 		return "index";
 	}
 
-	// 관리자 게시판
-	@GetMapping("/manager/manager")
-	public String manager() {
-		return "manager/manager";
-	}
-
-	@GetMapping("/tests")
-	public String teset() {
-		return "tests";
-	}
-	
 }

@@ -5,9 +5,15 @@
 .manager-container{
 	border-left: 1px solid #d7d7d7;
 	padding: 0.5rem 20px;
+	
 }
 
 /* .managerList{
   padding-top: 0.5rem;
   padding-left: 20px;
 } */
+
+
+.insertManager:hover{
+	color:white;
+}
