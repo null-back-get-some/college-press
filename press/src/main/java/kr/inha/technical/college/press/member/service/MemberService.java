@@ -31,6 +31,11 @@ public class MemberService implements UserDetailsService {
 		memberRepository.save(member);
 	}
 
+	public void deleteAdmin(String email) {
+		Member member = memberRepository.findByEmail(email);
+		member.setRole(Role.USER);
+		memberRepository.save(member);
+	}
 
 	private void validationDuplicateMember(Member member) {
 
@@ -59,8 +64,8 @@ public class MemberService implements UserDetailsService {
 		return list;
 	}
 
-	public Member findByRole(Role role) {
-		Member list = memberRepository.findByRole(role);
+	public List<Member> findByRole(Role role) {
+		List<Member> list = memberRepository.findByRole(role);
 		return list;
 	}
 

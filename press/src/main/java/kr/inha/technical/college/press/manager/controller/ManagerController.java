@@ -18,7 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +54,26 @@ public class ManagerController {
 	@Autowired
 	SubCategoryRepository subCategory;
 
+	// 관리자 게시판
+	@GetMapping("/manager/manager")
+	public String manager(Model model) {
+		
+		//관리자 권한을 갖고 있는 유저만 불러와서 관리자 리스트 작성
+		List<Member> member = memberService.findByRole(Role.ADMIN);
+		model.addAttribute("member", member);
+		return "manager/manager";
+	}
+	
+	@PatchMapping("/manager/manager")
+	public @ResponseBody ResponseEntity deleteAdmin(@RequestBody Map<String, String> email, Model model) {
+
+		String user_email = email.get("email");
+		System.out.println("===========>"+user_email);
+		memberService.deleteAdmin(user_email);
+		
+		return new ResponseEntity<Map>(email, HttpStatus.OK);
+	}
+
 	@PostMapping("/manager/manager")
 	public @ResponseBody ResponseEntity InsertAdmin(@RequestBody Map<String, String> email, Model model) {
 
@@ -64,18 +86,7 @@ public class ManagerController {
 
 		return new ResponseEntity<Map>(email, HttpStatus.OK);
 	}
-
-	// 관리자 게시판
-	@GetMapping("/manager/manager")
-	public String manager(Model model) {
-		
-		Member member = memberService.findByRole(Role.ADMIN);
-		
-		model.addAttribute("member", member);
-		System.out.println(model);
-		return "manager/manager";
-	}
-
+	
 	// 게시판 작성
 	@RequestMapping("/manager/boardWrite")
 	public String boardWrite(Model model, Principal principal) {

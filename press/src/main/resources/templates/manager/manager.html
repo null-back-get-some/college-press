@@ -17,10 +17,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:if="${!#lists.isEmpty(member)}" th:each="member : ${member}">
-			        		<td th:text="${member.name}"></td>
-							<td th:text="${member.email}"></td>
-							<td><button type="button" class="btn btn-danger">delete</button></td>
+						<tr th:if="${!#lists.isEmpty(member)}"
+							th:each="member : ${member}">
+							<td th:text="${member.name}"></td>
+							<td class="member-email" th:text="${member.email}"></td>
+							<td><button type="button" class="btn btn-danger btn-admindelete">delete</button></td>
 						</tr>
 						<tr th:if="${#lists.isEmpty(member)}">
 							<td colspan="4">조회된 결과가 없습니다.</td>
@@ -30,7 +31,7 @@
 
 				</table>
 
-				
+
 
 				<div
 					style="border: solid 1px lightgray; display: flex; flex-direction: column; justify-content: space-between; padding: 20px">
@@ -38,41 +39,41 @@
 					<div
 						style="display: flex; flex-direction: row; justify-content: space-between;">
 						<div
-							style="color: gray; border: solid 1px lightgray; margin: 10px; padding: 10px 40px">예: gildong@naver.com</div>
-						<!-- <button type="button"
-							class="btn 
-							data-bs-toggle="modal" data-bs-target="#addManagerModal">
-							관리자 권한추가 onclick="location.href='/manager/empowerment'"
-							</button> -->
-					
-					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-outline-warning insertManager" data-bs-toggle="modal" data-bs-target="#exampleModal">
-					  	관리자 권한추가
-					</button>
-					
-					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">관리자 추가</h5>
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					      </div>
-					      <div class="modal-body">
-					        <input type="text" id="input-email" placeholder="이메일을 입력해주세요">
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-success btn-addAdmin">Add manager</button>
-					      </div>
-					    </div>
-					  </div>
+							style="color: gray; border: solid 1px lightgray; margin: 10px; padding: 10px 40px">예:
+							gildong@naver.com</div>
+						<!-- Button trigger modal -->
+						<button type="button"
+							class="btn btn-outline-warning insertManager"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">
+							관리자 권한추가</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">관리자 추가</h5>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<input type="text" id="input-email" placeholder="이메일을 입력해주세요">
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-success btn-addAdmin">Add
+											manager</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
-		
-		</div>
-		
-		
-		
+
+
+
 				</div>
 
 			</div>

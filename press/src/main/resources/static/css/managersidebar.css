@@ -2,6 +2,7 @@
 
 ul li{
 	list-style: none;
+	padding:5px;
 }
 
 .dropdown > ul {
@@ -20,5 +21,7 @@ ul li{
 
 .dropdown-list{
 	padding:0px;
-	border: solid 1px #0a58ca;
+	border: dotted 1px lightgray;
+	margin:10px 0px;
+	padding:10px;
 }
