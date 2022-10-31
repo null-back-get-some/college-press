@@ -64,6 +64,7 @@ public class ManagerController {
 		return "manager/manager";
 	}
 	
+	
 	@PatchMapping("/manager/manager")
 	public @ResponseBody ResponseEntity deleteAdmin(@RequestBody Map<String, String> email, Model model) {
 

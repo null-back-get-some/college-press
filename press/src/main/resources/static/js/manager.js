@@ -3,8 +3,9 @@
  */
 
 var saveBtn = document.querySelector(".btn-addAdmin");
-var deleteBtn = document.querySelector(".btn-admindelete");
 var inputemail = document.querySelector("#input-email");
+var deleteBtn = document.querySelector(".btn-admindelete");
+
 
 inputemail.addEventListener('keyup', function(e) {
 	if (e.keyCode === 13) {
@@ -30,10 +31,7 @@ saveBtn.addEventListener('click', function() {
 	var newdata = JSON.stringify(data);
 
 	addAdmin(newdata);
-
-});
-
-
+})
 
 
 deleteBtn.addEventListener('click', function() {
@@ -42,6 +40,7 @@ deleteBtn.addEventListener('click', function() {
 		"email": email
 	}
 	var newdata = JSON.stringify(data);
+	console.log(newdata);
 	deleteAdmin(newdata);
 });
 
