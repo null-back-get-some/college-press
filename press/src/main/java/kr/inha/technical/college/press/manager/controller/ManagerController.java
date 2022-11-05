@@ -35,7 +35,8 @@ import kr.inha.technical.college.press.manager.entity.Category;
 import kr.inha.technical.college.press.manager.entity.SubCategory;
 import kr.inha.technical.college.press.manager.repository.CategoryRepository;
 import kr.inha.technical.college.press.manager.repository.SubCategoryRepository;
-import kr.inha.technical.college.press.manager.service.BoardService;
+import kr.inha.technical.college.press.manager.service.CategorySevice;
+import kr.inha.technical.college.press.manager.service.ManagerService;
 import kr.inha.technical.college.press.member.constant.Role;
 import kr.inha.technical.college.press.member.entity.Member;
 import kr.inha.technical.college.press.member.service.MemberService;
@@ -44,13 +45,14 @@ import kr.inha.technical.college.press.member.service.MemberService;
 public class ManagerController {
 
 	@Autowired
-	BoardService service;
+	ManagerService service;
 
 	@Autowired
 	MemberService memberService;
-	@Autowired
-	CategoryRepository category;
 
+	@Autowired
+	CategorySevice categorySevice;
+	
 	@Autowired
 	SubCategoryRepository subCategory;
 
@@ -95,7 +97,7 @@ public class ManagerController {
 
 		String username = memberService.findByEmail(principal.getName()).getName();
 
-		List<Category> mainCategory = category.findAll();
+		List<Category> mainCategory = categorySevice.findAll();
 		List<SubCategory> sub_category = subCategory.findAll();
 
 		model.addAttribute("username", username);

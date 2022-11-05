@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.inha.technical.college.press.manager.entity.Board;
-import kr.inha.technical.college.press.manager.repository.BoardRepository;
 
 @ComponentScan(basePackages = {"kr.inha.technical.college.press.controller"})
 @SpringBootTest

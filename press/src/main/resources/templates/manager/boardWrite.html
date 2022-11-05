@@ -144,11 +144,12 @@
 						<td>카테고리</td>
 						<!--  <td><input type="text" id="category" name="category" disabled/></td>-->
 						<td>
-						  <select id="main_category" name="category" class="categorys" onchange="categoryChange(this)">
+						  <select  id="main_category" name="category" class="categorys" onchange="categoryChange(this)">
 						    <option value="" disabled selected>=== 선택 ===</option>
-						    <option th:value = "${mainCateList[0].category}" th:name = "${mainCateList[0].category_name}" th:text="${mainCateList[0].category_name}"></option> <!-- 보도/대학 -->
-						    <option th:value = "${mainCateList[1].category}" th:name = "${mainCateList[1].category_name}" th:text="${mainCateList[1].category_name}"></option> <!-- 사회 -->
-						    <option th:value = "${mainCateList[2].category}" th:name = "${mainCateList[2].category_name}" th:text="${mainCateList[2].category_name}"></option> <!-- 종합 문화 -->
+						    <option th:each="mainCateList : ${mainCateList}" th:value = "${mainCateList.category}" th:name = "${mainCateList.category_name}" th:utext="${mainCateList.category_name}"></option> <!-- 보도/대학 -->
+						    <!-- <option th:value = "${mainCateList[1].category}" th:name = "${mainCateList[1].category_name}" th:text="${mainCateList[1].category_name}"></option> 사회
+						    <option th:value = "${mainCateList[2].category}" th:name = "${mainCateList[2].category_name}" th:text="${mainCateList[2].category_name}"></option> 종합 문화
+						    <option th:value = "${mainCateList[3].category}" th:name = "${mainCateList[3].category_name}" th:text="${mainCateList[3].category_name}"></option> 종합 문화 -->
 						  </select>
 						  
 						  <select id="sub_category" name="subcategory" class="categorys">

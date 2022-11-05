@@ -5,14 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.inha.technical.college.press.calendar.entity.entity;
 import kr.inha.technical.college.press.manager.entity.Board;
-import kr.inha.technical.college.press.manager.repository.BoardRepository;
+import kr.inha.technical.college.press.manager.repository.ManagerRepository;
 
 @Service
-public class BoardService {
+public class ManagerService {
 	@Autowired
-	BoardRepository repository;
+	ManagerRepository repository;
 	
 	public void boardInsert(Board list) {
 		 Board itemList = repository.save(list);
