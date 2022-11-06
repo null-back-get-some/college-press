@@ -72,5 +72,15 @@ public class MemberController {
 		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
 		return "login";
 	}
+	
+	@GetMapping("/findId")
+	public String findId() {
+		return "member/findId";
+	}
+	
+	@GetMapping("/findPw")
+	public String findPw() {
+		return "member/findPw";
+	}
 
 }
