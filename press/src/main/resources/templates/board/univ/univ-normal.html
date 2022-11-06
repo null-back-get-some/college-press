@@ -15,6 +15,7 @@
 							<a href="/board/boardDetail?news=" th:attrappend="href=${board.news}">
 								<h3 th:text="${board.title}"></h3>
 							</a>
+							<div th:text="${next}"></div>
 							<h6 th:text="${board.member}"></h6>
 							<h6 th:text="${board.news}"></h6>
 						</div>
@@ -58,5 +59,12 @@
 				</div>
 			</div>
 		</div>
+		<div class="paging-block">
+		<th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+			<a th:if="${page != nowPage}"
+				th:href="@{/board/univ/normal(page=${page-1})}" th:text="${page}"></a>
+			<strong th:if="${page==nowPage}" th:text="${page}" style="color: red"></strong>
+		</th:block>
+	</div>
 	</div>
 </html>

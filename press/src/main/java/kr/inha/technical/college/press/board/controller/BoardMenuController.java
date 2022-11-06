@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,104 +41,198 @@ public class BoardMenuController {
 	List<Category> category;
 	List<SubCategory> subCategories;
 
+
 	// 보도대학 - 일반
 	// category.get(0) = 보도대학(1)
 	@GetMapping("/univ/normal")
-	public String univNormal(Model model) {
-
-		List<Board> board = loadPage(0, "일반");
-
+	public String univNormal(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		//List<Board> board = loadPage(0, "일반", pageable);
+		Page<Board> board = loadPage(1, "일반", pageable);
+        
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
+		//model.addAttribute("board", board);
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/univ/univ-normal";
 	}
 
 	// 보도대학 - 수업 교육
 	@GetMapping("/univ/class")
-	public String univClass(Model model) {
-		List<Board> board = loadPage(0, "수업 교육");
-
+	public String univClass(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(1, "수업 교육", pageable);
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/univ/univ-class";
 	}
 
 	// 보도대학 - 대학 행정
 	@GetMapping("/univ/admin")
-	public String univAdmin(Model model) {
-		List<Board> board = loadPage(0, "대학 행정");
+	public String univAdmin(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(1, "대학 행정",pageable);
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/univ/univ-admin";
 	}
 
 	// 사회 - 일반 사회
 	// category.get(1) = 사회(2)
 	@GetMapping("/social/normal")
-	public String socialNormal(Model model) {
-		List<Board> board = loadPage(1, "일반 사회");
+	public String socialNormal(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(2, "일반 사회",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/social/social-normal";
 	}
 
 	// 사회 - 경제
 	@GetMapping("/social/economy")
-	public String socialEconomy(Model model) {
-		List<Board> board = loadPage(1, "경제");
+	public String socialEconomy(Model model,  @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(2, "경제",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/social/social-economy";
 	}
 
 	// 사회 - 국제사회
 	@GetMapping("/social/intl")
-	public String socialIntl(Model model) {
-		List<Board> board = loadPage(1, "국제 사회");
+	public String socialIntl(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(2, "국제 사회",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/social/social-intl";
 	}
 
 	// 종합문화 게시판 - 종합
 	@GetMapping("/culture/total")
-	public String cultureTotal(Model model) {
-		List<Board> board = loadPage(2, "종합");
+	public String cultureTotal(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(3, "종합",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/culture/culture-total";
 	}
 
 	// 종합문화 게시판 - 문화
 	@GetMapping("/culture/cul")
-	public String cultureCul(Model model) {
-		List<Board> board = loadPage(2, "문화");
+	public String cultureCul(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(3, "문화",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/culture/culture-cul";
 	}
 
 	// 종합문화 게시판 - 오피니언
 	@GetMapping("/culture/opinion")
-	public String cultureOpinion(Model model) {
-		List<Board> board = loadPage(2, "오피니언");
+	public String cultureOpinion(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(3, "오피니언",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/culture/culture-opinion";
 	}
 
 	// 사진/영상 게시판 - 행사
 	@GetMapping("/picture/evnet")
-	public String pictureEvnet(Model model) {
-		List<Board> board = loadPage(3, "행사");
+	public String pictureEvnet(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(4, "행사",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/picture/picture-event";
 	}
 
 	// 사진/영상 게시판 - 보도
 	@GetMapping("/picture/news")
-	public String pictureNews(Model model) {
-		List<Board> board = loadPage(3, "보도");
+	public String pictureNews(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(4, "보도",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/picture/picture-news";
 	}
 
 	// 사진/영상 게시판 - 영상
 	@GetMapping("/picture/video")
-	public String pictureVideo(Model model) {
-		List<Board> board = loadPage(3, "영상");
+	public String pictureVideo(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
+		Page<Board> board = loadPage(4, "영상",pageable);
+
+		int nowPage =  board.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 5, board.getTotalPages());
+		
 		model.addAttribute("board", board);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 		return "board/picture/picture-video";
 	}
 
@@ -157,10 +256,9 @@ public class BoardMenuController {
 	}
 
 	//카테고리에 맞게 기사 로딩하는 메소드
-	public List<Board> loadPage(int categories, String subcategory) {
-		category = categorySevice.findAll();
-		String cateNum = Integer.toString(category.get(categories).getCategory());
-		List<Board> board = boardService.findByCategory(cateNum, subcategory);
+	public Page<Board> loadPage(int categories, String subcategory, Pageable pageable) {
+		Page<Board> board = boardService.findByCategoryAndSubcategory(categories, subcategory, pageable);
+        
 		System.out.println(subcategory + " : " + board);
 		return board;
 	}

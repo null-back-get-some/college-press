@@ -13,7 +13,7 @@
 						<div class="board_list_img"><img src="/img/test3.jpg"></div>
 						<div class="board_content">
 							<a href="/board/boardDetail?news=" th:attrappend="href=${board.news}">
-								<h th:text="${board.title}"></h>
+								<h3 th:text="${board.title}"></h3>
 							</a>
 							<h6 th:text="${board.member}"></h6>
 						</div>
@@ -49,5 +49,12 @@
 				</div>
 			</div>
 		</div>
+		<div class="paging-block">
+		<th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+			<a th:if="${page != nowPage}"
+				th:href="@{/board/culture/cul(page=${page-1})}" th:text="${page}"></a>
+			<strong th:if="${page==nowPage}" th:text="${page}" style="color: red"></strong>
+		</th:block>
+	</div>
 	</div>
 </html>

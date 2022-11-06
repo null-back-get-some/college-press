@@ -2,7 +2,6 @@ package kr.inha.technical.college.press.manager.entity;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -22,49 +21,31 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "TB_NEWS_BOARD")
+@Table(name = "TB_FILE")
 @Getter 
 @Setter 
 @NoArgsConstructor 
 @AllArgsConstructor
 @ToString
 @Transactional
-public class Board {
+public class File {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // GenerationType.IDENTITY : 기본키 생성을 데이터베이스에 위임
-	@Column(name = "NEWS")
-	private Long news;			
+	@Column(name = "F_ID")
+	private Long id;			
 	
-	@Column(name = "TITLE", nullable = false)
-	private String title;
+	@ManyToOne
+	@JoinColumn(name="NEWS")
+	private Board board;	
 	
-	@Column(name = "CONTENTS", nullable = false, length = 500000)
-	private String contents;
+	@Column(name="F_ORIGINAL_NAME")
+	private String originalFileName;
 	
-	@Column(name = "MEMBER")
-	private String member;
+	@Column(name="F_STORED_PATH")
+	private String storedFilePath;
 	
-	@Column(name = "REGDATE")
-	private String regdate;
-	
-	@Column(name = "VIEWCNT")
-	private int viewcnt;
-	
-	@Column(name = "CATEGORY")
-	private int category;
-	
-	@Column(name = "SUBCATEGORY")
-	private String subcategory;
-	
-	@Column(name = "PHOTO")
-	private String photo;
-	
-	@Column(name = "EMOJI")
-	private int emoji;
-	
-	@JoinColumn(name = "F_ID")
-	@OneToOne
-	private File file;
+	@Column(name="F_FILESIZE")
+	private long fielSize;
 	
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
 
@@ -114,12 +116,12 @@ public class ManagerController {
 	}
 
 	@PostMapping("/manager/boardInsert")
-	public String boardInsert(Board board, Principal principal, HttpServletRequest httpServletRequest) {
+	public String boardInsert(Board board, Principal principal, MultipartHttpServletRequest httpServletRequest) {
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
-		board.setRegdate(LocalDateTime.now());
+		board.setRegdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
 		service.boardInsert(board);
-		System.out.println("boardInsert 실행 : " + board.getContents());
-		return "/manager/manager";
+		System.out.println("boardInsert 실행 : " + board.getTitle());
+		return "redirect:/manager/manager";
 	}
 
 	@RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
