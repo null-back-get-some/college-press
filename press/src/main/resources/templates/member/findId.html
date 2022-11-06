@@ -4,7 +4,7 @@
 
 <div layout:fragment="content">
 	<div class="loginContainer">
-		<h2 class="loginTitle">로그인</h2>
+		<h2 class="loginTitle">아이디 찾기</h2>
 		<form action="/members/login" method="post" class="loginForm mx-auto">
 			<div class="mb-3 inputForm">
 				<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -14,19 +14,17 @@
 
 				<label th:for="email">이메일주소</label>
 				<input class="loginInput" type="email" name="email" id="email" placeholder="이메일을 입력하세요">
-				<label th:for="password">비밀번호</label>
-				<input class="loginInput" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요">
+				<label th:for="password">아이디</label>
+				<input class="loginInput" type="password" name="password" id="password" placeholder="아이디를 입력하세요">
 
 				<p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
-				<button class="loginInput" type="submit">로그인</button>
+				<button class="loginInput" type="submit">아이디 찾기</button>
 
 			</div>
 
 			<hr class="loginhr" />
 			<div class="loginOther">
-				<a class="findID" href="/members/findId">아이디 찾기</a>
-				<a class="findPW" href="/members/findPw">패스워드 찾기</a>
-				<a class="join" href="/members/new">회원가입</a>
+				<a class="login" href="/login">로그인으로 돌아가기</a>
 			</div>
 
 		</form>

@@ -4,7 +4,7 @@
 
 <div layout:fragment="content">
 	<div class="loginContainer">
-		<h2 class="loginTitle">로그인</h2>
+		<h2 class="loginTitle">비밀번호 찾기</h2>
 		<form action="/members/login" method="post" class="loginForm mx-auto">
 			<div class="mb-3 inputForm">
 				<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -24,9 +24,7 @@
 
 			<hr class="loginhr" />
 			<div class="loginOther">
-				<a class="findID" href="/members/findId">아이디 찾기</a>
-				<a class="findPW" href="/members/findPw">패스워드 찾기</a>
-				<a class="join" href="/members/new">회원가입</a>
+				<a class="login" href="/login">로그인으로 돌아가기</a>
 			</div>
 
 		</form>
