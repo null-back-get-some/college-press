@@ -12,7 +12,7 @@
 							th:each="board : ${board}" >
 						<div class="board_list_img"><img src="/img/test4.jpg"></div>
 						<div class="board_content">
-							<a href="#">
+							<a href="/board/boardDetail?news=" th:attrappend="href=${board.news}">
 								<h th:text="${board.title}"></h>
 							</a>
 							<h6 th:text="${board.member}"></h6>

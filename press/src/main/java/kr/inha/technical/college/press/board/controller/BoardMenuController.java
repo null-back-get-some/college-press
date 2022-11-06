@@ -64,11 +64,11 @@ public class BoardMenuController {
 		return "board/univ/univ-admin";
 	}
 
-	// 사회 - 일반
+	// 사회 - 일반 사회
 	// category.get(1) = 사회(2)
 	@GetMapping("/social/normal")
 	public String socialNormal(Model model) {
-		List<Board> board = loadPage(1, "일반");
+		List<Board> board = loadPage(1, "일반 사회");
 		model.addAttribute("board", board);
 		return "board/social/social-normal";
 	}
@@ -84,7 +84,7 @@ public class BoardMenuController {
 	// 사회 - 국제사회
 	@GetMapping("/social/intl")
 	public String socialIntl(Model model) {
-		List<Board> board = loadPage(1, "국제사회");
+		List<Board> board = loadPage(1, "국제 사회");
 		model.addAttribute("board", board);
 		return "board/social/social-intl";
 	}
