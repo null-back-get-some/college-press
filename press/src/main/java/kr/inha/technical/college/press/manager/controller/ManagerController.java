@@ -1,11 +1,15 @@
 package kr.inha.technical.college.press.manager.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -32,6 +36,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
 
+import kr.inha.technical.college.press.calendar.entity.entity;
 import kr.inha.technical.college.press.manager.entity.Board;
 import kr.inha.technical.college.press.manager.entity.Category;
 import kr.inha.technical.college.press.manager.entity.SubCategory;
@@ -54,28 +59,27 @@ public class ManagerController {
 
 	@Autowired
 	CategorySevice categorySevice;
-	
+
 	@Autowired
 	SubCategoryRepository subCategory;
 
 	// 관리자 게시판
 	@GetMapping("/manager/manager")
 	public String manager(Model model) {
-		
-		//관리자 권한을 갖고 있는 유저만 불러와서 관리자 리스트 작성
+
+		// 관리자 권한을 갖고 있는 유저만 불러와서 관리자 리스트 작성
 		List<Member> member = memberService.findByRole(Role.ADMIN);
 		model.addAttribute("member", member);
 		return "manager/manager";
 	}
-	
-	
+
 	@PatchMapping("/manager/manager")
 	public @ResponseBody ResponseEntity deleteAdmin(@RequestBody Map<String, String> email, Model model) {
 
 		String user_email = email.get("email");
-		System.out.println("===========>"+user_email);
+		System.out.println("===========>" + user_email);
 		memberService.deleteAdmin(user_email);
-		
+
 		return new ResponseEntity<Map>(email, HttpStatus.OK);
 	}
 
@@ -91,7 +95,7 @@ public class ManagerController {
 
 		return new ResponseEntity<Map>(email, HttpStatus.OK);
 	}
-	
+
 	// 게시판 작성
 	@RequestMapping("/manager/boardWrite")
 	public String boardWrite(Model model, Principal principal) {
@@ -116,18 +120,49 @@ public class ManagerController {
 	}
 
 	@PostMapping("/manager/boardInsert")
-	public String boardInsert(Board board, Principal principal, MultipartHttpServletRequest httpServletRequest) {
+	@ResponseBody
+	public ResponseEntity boardInsert(Board board, Principal principal) {
+		String img = board.getContents();
+		String data = img.replaceAll("data:image/png;base64,","");
+		String i = img.split("src=")[1];
+		System.out.println(img);
+		String myimg = i.substring(1,i.indexOf("style=")-2);
+		System.out.println(myimg);
+		
+		int idx = img.indexOf("base64,");
+		String newImg = img.substring(idx+7);
+		String newImgs = newImg.substring(0,newImg.indexOf("style="));
+		String myImg = newImgs.substring(0,newImgs.length()-2);
+		System.out.println("new img : "+myImg);
+		
+		
+		byte[] testToByte = myImg.getBytes();
+
+		Encoder encode = Base64.getEncoder();
+		Decoder decode = Base64.getDecoder();
+
+		// Base64 인코딩
+		byte[] encodeByte = encode.encode(testToByte);
+
+		// Base64 디코딩
+		byte[] decodeByte = decode.decode(encodeByte);
+
+		System.out.println("인코딩 전: " + myImg);
+		System.out.println("인코딩: " + new String(encodeByte));
+		System.out.println("디코딩: " + new String(decodeByte));
+
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
 		board.setRegdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+		board.setPhoto(myimg);
 		service.boardInsert(board);
-		System.out.println("boardInsert 실행 : " + board.getTitle());
-		return "redirect:/manager/manager";
+		System.out.println("boardInsert 실행 : " + board.getContents());
+		return new ResponseEntity<Board>(board, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
-			HttpServletRequest request) {
+			HttpServletRequest request, Board board) {
 		JsonObject jsonObject = new JsonObject();
 
 		/*
@@ -157,6 +192,8 @@ public class ManagerController {
 			e.printStackTrace();
 		}
 		String a = jsonObject.toString();
+		board.setPhoto(a);
+
 		System.out.println("===================>image upload" + a);
 		return a;
 	}

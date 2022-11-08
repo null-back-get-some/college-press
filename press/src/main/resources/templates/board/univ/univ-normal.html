@@ -8,9 +8,10 @@
 			<div class="news_board_r1">
 				<div class="board_top"><h5>일반</h5></div>
 				<div class="board_bottom">
+				
 					<div class="board_list" th:if="${!#lists.isEmpty(board)}"
 							th:each="board : ${board}" >
-						<div class="board_list_img"><img src="/img/test4.jpg"></div>
+						<div class="board_list_img"><img th:src="${board.photo}" style="width: 150px; height:100px;"></div>
 						<div class="board_content">
 							<a href="/board/boardDetail?news=" th:attrappend="href=${board.news}">
 								<h3 th:text="${board.title}"></h3>

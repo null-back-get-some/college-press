@@ -23,7 +23,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "TB_NEWS_BOARD")
-@Getter 
+@Getter
 @Setter 
 @NoArgsConstructor 
 @AllArgsConstructor
@@ -57,7 +57,7 @@ public class Board {
 	@Column(name = "SUBCATEGORY")
 	private String subcategory;
 	
-	@Column(name = "PHOTO")
+	@Column(name = "PHOTO", length = 500000)
 	private String photo;
 	
 	@Column(name = "EMOJI")

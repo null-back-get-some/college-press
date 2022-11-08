@@ -53,6 +53,7 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		System.out.println("photo : "+board.getContent().get(0).getPhoto());
 		//model.addAttribute("board", board);
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);

@@ -4,6 +4,7 @@
 	layout:decorate="~{layout/manager_default}">
 <head>
 	<script th:inline="javascript"> 
+	
 		function categoryChange(num){
 			console.log(num.value);
 			var num = num.value;
@@ -93,6 +94,31 @@
 				});
 		});
 		
+		$(function(){
+	        $('#submit').on("click",function () {
+
+	            var form1 = $("#form").serialize();
+	            console.log(form1);
+	            data = new FormData();
+				
+	            $.ajax({
+	                type: "post",
+	                url: "/manager/boardInsert",
+	                data: form1,
+	                dataType: 'json',
+	                success: function (data) {
+	                    alert("success");
+	                    console.log(data);
+	                    //window.location.href = "/manager/manager";
+	                },
+	                error: function (request, status, error) {
+	                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+	                }
+	            });
+	        });
+	    });
+		
 		
 		/**
 		* 이미지 파일 업로드
@@ -126,10 +152,9 @@
 	
 <div layout:fragment="content">
 	<div id="mainPage">
-
 		<div class="container manager-container">
 			<h2>기사 쓰기</h2>
-	    	<form id="frm" name="frm" method="post" action="/manager/boardInsert" enctype="multipart/form-data">
+	    	<form id="form" name="form" method="post" action="/manager/boardInsert" enctype="multipart/form-data">
 	    		
 	    		<table class="board_detail">
 					<tr>
@@ -172,7 +197,7 @@
 				<div class="filechooser">
 					<!-- <span>대표 사진 : </span>
 					<input type="file" id="files" name="files" multiple="multiple"> -->
-					<input type="submit" id="submit" value="저장" class="btn btn-outline-primary"/>
+					<button type="button" id="submit" value="저장" class="btn btn-outline-primary">저장</button>
 				</div>
 	    	</form>
 		

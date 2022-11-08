@@ -30,6 +30,8 @@ spring:
 
 server:
   port: 8000
+  max-http-header-size:
+    4000000
 
 logging:
   level:

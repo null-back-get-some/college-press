@@ -21,4 +21,8 @@ public class ManagerService {
 		List<Board> list =  repository.findAll();
 		return list;
 	}
+	
+	public void insertPhoto() {
+		
+	}
 }
