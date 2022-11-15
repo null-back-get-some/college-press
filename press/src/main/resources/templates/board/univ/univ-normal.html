@@ -11,7 +11,7 @@
 				
 					<div class="board_list" th:if="${!#lists.isEmpty(board)}"
 							th:each="board : ${board}" >
-						<div class="board_list_img"><img th:src="${board.photo}" style="width: 150px; height:100px;"></div>
+						<div class="board_list_img"><img th:src="${board.photo}" th:if="${board.photo!=null}" style="width: 150px; height:100px;"></div>
 						<div class="board_content">
 							<a href="/board/boardDetail?news=" th:attrappend="href=${board.news}">
 								<h3 th:text="${board.title}"></h3>
