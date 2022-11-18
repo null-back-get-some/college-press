@@ -243,7 +243,8 @@ public class BoardMenuController {
 		// List<Board> board=boardService.findAll();
 		Optional<Board> list = boardService.findByNews(news);
 		Board board = list.get();
-
+		board.setViewcnt(board.getViewcnt()+1);
+		boardService.saveBoard(board);
 		System.out.println("boardDetail : " + board);
 
 		model.addAttribute("board", board);

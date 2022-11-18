@@ -6,83 +6,112 @@
   <div layout:fragment="content">
     <div class="container_frame">
     <!-- 메인 뉴스 기사-->
-    <div class="main_news">
+    <h5>헤드라인 기사</h5>
+    <a href="/board/boardDetail?news=" th:attrappend="href=${mainArticle.news}">
+    	<div class="main_news">
       <div class="main_news_l">
-        <img class="main_img rounded" src="img/test1.jpg"/>
+        <img class="main_img rounded" th:src="${mainArticle.photo}" style=" object-fit: contain"/>
       </div>
       <div class="main_news_r">
-        <h1>학우들의 목소리를 대변하는 학생자치운영위원회를 만나다</h1>
-        <p>우리 대학 학우들의 목소리를 대변하는 학생기구. 발열검사소 설치부터 등록금 반환까지, 학우들을 위해 열일하는 학생자치운영위원회 기계과 김종운 위원장과 메카트로닉스과 이승호 수석 부위원장을 만나 인터뷰를 진행했다.</p>
+        	<h1 th:text="${mainArticle.title}"></h1>
+        <p th:utext="${mainArticle.contents !=null and #strings.length(mainArticle.contents)>0}? 
+        ${#strings.abbreviate(mainArticle.contents,10)}:'내용'">
+        </p>
+        <div th:text="${mainArticle.regdate}"> </div>
       </div>
     </div>
-
-
+    </a>
+    
     <!-- 보도대학 뉴스 -->
     <div class="category_news">
-      <h5 class="category_name">보도 대학</h5>
+      <h3 class="category_name">보도 대학</h3>
       <div class="category_content">
-        <div class="category_l">
-          <div><img class="rounded" src="img/test2.jpg"></div>
-          <h3 class="category_l_title">연습을 실전처럼 'VR 모의면접 체험'</h2>
-          <p>우리 대학 학우들의 목소리를 대변하는 학생기구. 발열검사소 설치부터 등록금 반환까지, 학우들을 위해 열일하는 학생자치운영위원회 기계과 김종운 위원장과 메카트로닉스과 이승호 수석 부위원장을 만나 인터뷰를 진행했다.</p>
-        </div>
+        <a href="/board/boardDetail?news=" th:attrappend="href=${univ[0].news}">
+        	<div class="category_l">
+	          <div><img class="rounded" th:src="${univ[0].photo}"></div>
+	        		<h1 th:text="${univ[0].title}"></h1>
+	          	<p th:utext="${univ[0].contents !=null and #strings.length(univ[0].contents)>0}? 
+	       	 		${#strings.abbreviate(univ[0].contents,10)}:'내용'">
+	        	</p>
+	        	<p th:text="${univ[0].regdate}"></p>
+        	</div>
+        </a>
         <div class="category_r">
-          <div class="category_r_top">
+          <a href="/board/boardDetail?news=" th:attrappend="href=${univ[1].news}">
+          	<div class="category_r_top">
               <div class="category_r_content">
-                <h5 class="category_r_title">코로나 학점 인플레이션</h3>
-                <div class="category_time">2022-09-17</div>
+                <h3 class="category_r_title" th:text="${univ[1].title}">코로나 학점 인플레이션</h3>
+                <div class="category_time" th:text="${univ[1].regdate}">2022-09-17</div>
+                
               </div>
-              <img class="category_r_img rounded" src="img/test1.jpg">
-          </div>
-          <div class="category_r_center">
+              <img class="category_r_img rounded" th:src="${univ[1].photo}">
+          	</div>
+          </a>
+          <a href="/board/boardDetail?news=" th:attrappend="href=${univ[2].news}">
+          	<div class="category_r_center">
               <div class="category_r_content">
-                <h5 class="category_r_title">비대면 2년차도 막지 못한 이러닝 오류</h3>
-                <div class="category_time">2022-09-17</div>
+                <h3 class="category_r_title" th:text="${univ[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                <div class="category_time" th:text="${univ[2].regdate}">2022-09-17</div>
               </div>
-              <img class="category_r_img rounded" src="img/test1.jpg">
-          </div>
-          <div class="category_r_bottom">
-              <div class="category_r_content">
-                <h5 class="category_r_title">비대면 2년차도 막지 못한 이러닝 오류</h3>
-                <div class="category_time">2022-09-17</div>
-              </div>
-              <img class="category_r_img rounded" src="img/test1.jpg"> 
-          </div>
+              <img class="category_r_img rounded" th:src="${univ[2].photo}">
+          	</div>
+          </a>
+          <a href="/board/boardDetail?news=" th:attrappend="href=${univ[3].news}">
+	          <div class="category_r_bottom">
+	              <div class="category_r_content">
+	                <h3 class="category_r_title" th:text="${univ[3].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                	<div class="category_time" th:text="${univ[3].regdate}">2022-09-17</div>
+	              </div>
+	              <img class="category_r_img rounded" th:src="${univ[3].photo}"> 
+	          </div>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- 사회 뉴스 -->
     <div class="category_news">
-      <h5 class="category_name">사회</h5>
+      <h3 class="category_name">사회</h3>
       <div class="category_content">
-        <div class="category_l">
-          <div><img class="rounded" src="img/test3.jpg"></div>
-          <h3 class="category_l_title">챗봇 '이루다' 논란, 인공지능 윤리는 어디에</h2>
-          <p>우리 대학 학우들의 목소리를 대변하는 학생기구. 발열검사소 설치부터 등록금 반환까지, 학우들을 위해 열일하는 학생자치운영위원회 기계과 김종운 위원장과 메카트로닉스과 이승호 수석 부위원장을 만나 인터뷰를 진행했다.</p>
-        </div>
+        <a href="/board/boardDetail?news=" th:attrappend="href=${social[0].news}">
+        	<div class="category_l">
+	          <div><img class="rounded" th:src="${social[0].photo}"></div>
+	        		<h1 th:text="${social[0].title}"></h1>
+	          	<p th:utext="${social[0].contents !=null and #strings.length(social[0].contents)>0}? 
+	       	 		${#strings.abbreviate(social[0].contents,10)}:'내용'">
+	        	</p>
+	        	<p th:text="${social[0].regdate}"></p>
+        	</div>
+        </a>
         <div class="category_r">
-          <div class="category_r_top">
+          <a href="/board/boardDetail?news=" th:attrappend="href=${social[1].news}">
+          	<div class="category_r_top">
               <div class="category_r_content">
-                <h5 class="category_r_title">정인이 사건에서 우리가 기억해야 할 것은</h3>
-                <div class="category_time">2022-09-17</div>
+                <h3 class="category_r_title" th:text="${social[1].title}">코로나 학점 인플레이션</h3>
+                <div class="category_time" th:text="${social[1].regdate}">2022-09-17</div>
+                
               </div>
-              <img class="category_r_img rounded" src="img/test1.jpg">
-          </div>
-          <div class="category_r_center">
+              <img class="category_r_img rounded" th:src="${social[1].photo}">
+          	</div>
+          </a>
+          <a href="/board/boardDetail?news=" th:attrappend="href=${social[2].news}">
+          	<div class="category_r_center">
               <div class="category_r_content">
-                <h5 class="category_r_title">정인이 사건에서 우리가 기억해야 할 것은</h3>
-                <div class="category_time">2022-09-17</div>
+                <h3 class="category_r_title" th:text="${social[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                <div class="category_time" th:text="${social[2].regdate}">2022-09-17</div>
               </div>
-              <img class="category_r_img rounded" src="img/test1.jpg">
-          </div>
-          <div class="category_r_bottom">
-              <div class="category_r_content">
-                <h5 class="category_r_title">정인이 사건에서 우리가 기억해야 할 것은</h3>
-                <div class="category_time">2022-09-17</div>
-              </div>
-              <img class="category_r_img rounded" src="img/test1.jpg"> 
-          </div>
+              <img class="category_r_img rounded" th:src="${social[2].photo}">
+          	</div>
+          </a>
+          <a href="/board/boardDetail?news=" th:attrappend="href=${social[3].news}">
+	          <div class="category_r_bottom">
+	              <div class="category_r_content">
+	                <h3 class="category_r_title" th:text="${social[3].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                	<div class="category_time" th:text="${social[3].regdate}">2022-09-17</div>
+	              </div>
+	              <img class="category_r_img rounded" th:src="${social[3].photo}"> 
+	          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -91,38 +120,51 @@
 
     <!-- 카테고리 뉴스 -->
     <div class="category_news">
-      <h5 class="category_name">종합 문화</h5>
+      <h3 class="category_name">종합 문화</h3>
       <div class="category_content">
-        <div class="category_l">
-          <div><img class="rounded" src="img/test4.jpg"></div>
-          <h3 class="category_l_title">SK에서 신세계로, 와이번스의 새출발</h2>
-          <p>우리 대학 학우들의 목소리를 대변하는 학생기구. 발열검사소 설치부터 등록금 반환까지, 학우들을 위해 열일하는 학생자치운영위원회 기계과 김종운 위원장과 메카트로닉스과 이승호 수석 부위원장을 만나 인터뷰를 진행했다.</p>
-        </div>
+        <a href="/board/boardDetail?news=" th:attrappend="href=${culture[0].news}">
+        	<div class="category_l">
+	          <div><img class="rounded" th:src="${culture[0].photo}"></div>
+	        		<h1 th:text="${culture[0].title}"></h1>
+	          	<p th:utext="${culture[0].contents !=null and #strings.length(culture[0].contents)>0}? 
+	       	 		${#strings.abbreviate(culture[0].contents,10)}:'내용'">
+	        	</p>
+	        	<p th:text="${culture[0].regdate}"></p>
+        	</div>
+        </a>
         <div class="category_r">
-          <div class="category_r_top">
+          <a href="/board/boardDetail?news=" th:attrappend="href=${culture[1].news}">
+          	<div class="category_r_top">
               <div class="category_r_content">
-                <h5 class="category_r_title">"선처는 없다", 프로야구 업로드 금지</h3>
-                <div class="category_time">2022-09-17</div>
+                <h3 class="category_r_title" th:text="${culture[1].title}">코로나 학점 인플레이션</h3>
+                <div class="category_time" th:text="${culture[1].regdate}">2022-09-17</div>
+                
               </div>
-              <img class="category_r_img rounded" src="img/test1.jpg">
-          </div>
-          <div class="category_r_center">
+              <img class="category_r_img rounded" th:src="${culture[1].photo}">
+          	</div>
+          </a>
+          <a href="/board/boardDetail?news=" th:attrappend="href=${culture[2].news}">
+          	<div class="category_r_center">
               <div class="category_r_content">
-                <h5 class="category_r_title">'인천에서 인천으로' 목적지 없는 비행</h3>
-                <div class="category_time">2022-09-17</div>
+                <h3 class="category_r_title" th:text="${culture[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                <div class="category_time" th:text="${culture[2].regdate}">2022-09-17</div>
               </div>
-              <img class="category_r_img rounded" src="img/test1.jpg">
-          </div>
-          <div class="category_r_bottom">
-              <div class="category_r_content">
-                <h5 class="category_r_title">'인천에서 인천으로' 목적지 없는 비행</h3>
-                <div class="category_time">2022-09-17</div>
-              </div>
-              <img class="category_r_img rounded" src="img/test1.jpg"> 
-          </div>
+              <img class="category_r_img rounded" th:src="${culture[2].photo}">
+          	</div>
+          </a>
+          <a href="/board/boardDetail?news=" th:attrappend="href=${culture[3].news}">
+	          <div class="category_r_bottom">
+	              <div class="category_r_content">
+	                <h3 class="category_r_title" th:text="${culture[3].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                	<div class="category_time" th:text="${culture[3].regdate}">2022-09-17</div>
+	              </div>
+	              <img class="category_r_img rounded" th:src="${culture[3].photo}"> 
+	          </div>
+          </a>
         </div>
       </div>
     </div>
+
 
 
 

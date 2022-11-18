@@ -24,6 +24,10 @@ public class BoardService {
 	@Autowired
 	EntityManager em;
 	
+	public void saveBoard(Board board) {
+		repository.save(board);
+	}
+	
 	public List<Board> findAll() {
 		List<Board> list =  repository.findAll();
 		return list;
@@ -47,15 +51,21 @@ public class BoardService {
 				.fetch();
 		return list;
 	}
-	
-	/*
-	 * public List<Board> findByCategoryAndSubcategory(int category, String
-	 * subcategory) { return
-	 * repository.findByCategoryAndSubcategory(category,subcategory); }
-	 */
+
 	
 	public Page<Board> findByCategoryAndSubcategory(int category, String subcategory, Pageable pageable) {
 		return repository.findByCategoryAndSubcategory(category,subcategory, pageable);
+	}
+	
+	//index 페이지 메인 기사 select(조회수 순으로)
+	public Board findMaxBoard(){
+		Board board = repository.findFirstByOrderByViewcntDesc();
+		return board;
+	}
+	
+	public List<Board> findArticleByViewCnt(int category){
+		List<Board> board = repository.findFirst4ByCategoryOrderByViewcntDesc(category);
+		return board;
 	}
 	
 }
