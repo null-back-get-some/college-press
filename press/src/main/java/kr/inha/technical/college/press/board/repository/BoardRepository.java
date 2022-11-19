@@ -10,8 +10,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import kr.inha.technical.college.press.manager.entity.Board;
 
-public interface BoardRepository extends JpaRepository<Board, Long>, 
-QuerydslPredicateExecutor<Board>{ // Board 엔티티
+public interface BoardRepository extends JpaRepository<Board, Long>{ // Board 엔티티
 	
 	Page<Board> findByCategoryAndSubcategory(int category, String subcategory, Pageable pageable);
 	
