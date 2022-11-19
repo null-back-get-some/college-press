@@ -190,7 +190,7 @@ public class BoardMenuController {
 	}
 
 	// 사진/영상 게시판 - 행사
-	@GetMapping("/picture/evnet")
+	@GetMapping("/picture/event")
 	public String pictureEvnet(Model model, @PageableDefault(size=10,sort="news", direction = Sort.Direction.DESC)Pageable pageable) {
 		Page<Board> board = loadPage(4, "행사",pageable);
 

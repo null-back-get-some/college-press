@@ -57,7 +57,7 @@ public class Board {
 	@Column(name = "SUBCATEGORY")
 	private String subcategory;
 	
-	@Column(name = "PHOTO", length = 500000)
+	@Column(name = "PHOTO", length = 100000000)
 	private String photo;
 	
 	@Column(name = "EMOJI")

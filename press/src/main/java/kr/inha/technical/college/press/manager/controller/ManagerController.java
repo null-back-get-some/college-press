@@ -13,6 +13,8 @@ import java.util.Base64.Encoder;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -123,33 +125,44 @@ public class ManagerController {
 	@ResponseBody
 	public ResponseEntity boardInsert(Board board, Principal principal) {
 		String img = board.getContents();
-		String data = img.replaceAll("data:image/png;base64,","");
 		String i = img.split("src=")[1];
 		System.out.println(img);
 		String myimg = i.substring(1,i.indexOf("style=")-2);
-		System.out.println(myimg);
 		
-		int idx = img.indexOf("base64,");
-		String newImg = img.substring(idx+7);
-		String newImgs = newImg.substring(0,newImg.indexOf("style="));
-		String myImg = newImgs.substring(0,newImgs.length()-2);
-		System.out.println("new img : "+myImg);
+		//Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+		//Matcher match = pattern.matcher(img);
 		
 		
-		byte[] testToByte = myImg.getBytes();
-
-		Encoder encode = Base64.getEncoder();
-		Decoder decode = Base64.getDecoder();
-
-		// Base64 인코딩
-		byte[] encodeByte = encode.encode(testToByte);
-
-		// Base64 디코딩
-		byte[] decodeByte = decode.decode(encodeByte);
-
-		System.out.println("인코딩 전: " + myImg);
-		System.out.println("인코딩: " + new String(encodeByte));
-		System.out.println("디코딩: " + new String(decodeByte));
+		String text = "<!DOCTYPE html><head><meta charset='UTF-8'><title>Insert title here</title></head><h1>img html</h1><img src='img/Chrysanthemum.jpg'/><img src='img/Desert.jpg'/><img src='img/Hydrangeas.jpg'/>";
+        Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+        Matcher matcher = pattern.matcher(img);
+        
+        while(matcher.find()){
+            System.out.println("===============>matcher : "+matcher.group(1));
+        }
+        System.out.println("=========>myimg : "+myimg);
+		//System.out.println("matcher : "+match);
+		
+		/*
+		 * System.out.println(myimg);
+		 * 
+		 * int idx = img.indexOf("base64,"); String newImg = img.substring(idx+7);
+		 * String newImgs = newImg.substring(0,newImg.indexOf("style=")); String myImg =
+		 * newImgs.substring(0,newImgs.length()-2);
+		 * System.out.println("new img : "+myImg);
+		 * 
+		 * 
+		 * byte[] testToByte = myImg.getBytes();
+		 * 
+		 * Encoder encode = Base64.getEncoder(); Decoder decode = Base64.getDecoder();
+		 * 
+		 * // Base64 인코딩 byte[] encodeByte = encode.encode(testToByte);
+		 * 
+		 * // Base64 디코딩 byte[] decodeByte = decode.decode(encodeByte);
+		 * 
+		 * System.out.println("인코딩 전: " + myImg); System.out.println("인코딩: " + new
+		 * String(encodeByte)); System.out.println("디코딩: " + new String(decodeByte));
+		 */
 
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
 		board.setRegdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));

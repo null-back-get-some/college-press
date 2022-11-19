@@ -6,135 +6,25 @@
 	<div layout:fragment="content">
 		<div class="new_board_r">
 			<div class="news_board_r1">
-				<div class="picture_top"><h5>헹사 사진</h5></div>
+				<div class="picture_top"><h5>행사 사진</h5></div>
 				<div class="picture_bottom">
+					<div class="picture_list" th:if="${!#lists.isEmpty(board)}"
+							th:each="board : ${board}">
+						<div class="picture_list_img">
+						<a href="#">
+							<img th:src="${board.photo}" class="img-fluid" >
+						</a>
+						</div>
+					</div>
+					<!-- <div class="picture_list">
+						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
+						<div class="picture_content" th:text="${t}"></div>
+					</div> -->
 					
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}" ></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}" ></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}" ></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}" ></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}" ></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
-					<div class="picture_list">
-						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
-						<div class="picture_content" th:text="${t}"></div>
-					</div>
 				</div>
 			</div>
 
-			<div class="news_board_r2">
-				<div>
-					<h5>많이 본 뉴스</h5>
-				</div>
-				<div>
-					<div id="first"	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </html>

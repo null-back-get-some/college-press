@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import kr.inha.technical.college.press.board.repository.BoardRepository;
 import kr.inha.technical.college.press.board.service.BoardService;
 import kr.inha.technical.college.press.manager.entity.Board;
 
@@ -15,6 +16,10 @@ public class IndexController {
 
 	@Autowired
 	BoardService service;
+	
+	@Autowired
+	BoardRepository repository;
+	
 	// 로그인 페이지
 	@GetMapping("/login")
 	public String login() {
@@ -33,8 +38,9 @@ public class IndexController {
 //	}
 
 	// 메인 페이지
-	@GetMapping("/index")
+	@GetMapping(value = {"/", "/index"})
 	public String index(Model model) {
+		System.out.println("index 접근");
 		//매개변수 : 카테고리
 		List<Board> univ = service.findArticleByViewCnt(1); 	//보도대학
 		List<Board> social = service.findArticleByViewCnt(2); 	//사회
