@@ -23,6 +23,7 @@ public class MemberController {
 	private final MemberService memberService;
 	private final PasswordEncoder passwordEncoder;
 	
+	// 회원가입 페이지 연결
 	@GetMapping(value = "/new")
 	public String memberForm(Model model) {
 		model.addAttribute("memberFormDto", new MemberFormDto());
@@ -39,11 +40,13 @@ public class MemberController {
 //		
 //	}
 	
+	// 로그인 페이지 연결
 	@GetMapping("/login")
 	public String loginMember() {
 		return "login";
 	}
 	
+	// 회원가입시 성공, 실패
 	@PostMapping(value = "/new")
 	public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 		
@@ -67,17 +70,20 @@ public class MemberController {
 		
 	}
 	
+	// 로그인 에러시
 	@GetMapping("/login/error")
 	public String loginError(Model model) {
 		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
 		return "login";
 	}
 	
+	// 아이디 찾기 페이지 연결
 	@GetMapping("/findId")
 	public String findId() {
 		return "member/findId";
 	}
 	
+	// 비밀번호 찾기 페이지 연결
 	@GetMapping("/findPw")
 	public String findPw() {
 		return "member/findPw";
