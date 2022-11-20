@@ -10,14 +10,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
+import kr.inha.technical.college.press.board.dto.BoardSearchDto;
 import kr.inha.technical.college.press.board.repository.BoardRepository;
 import kr.inha.technical.college.press.manager.entity.Board;
+
+import kr.inha.technical.college.press.board.repository.BoardRepositoryCustom;
 
 @Service
 public class BoardService {
 	@Autowired
 	BoardRepository repository;
+
+	@Autowired
+	BoardRepositoryCustom repositoryCustom;
 	
 	@Autowired
 	EntityManager em;
@@ -49,6 +54,11 @@ public class BoardService {
 	public List<Board> findArticleByViewCnt(int category){
 		List<Board> board = repository.findFirst4ByCategoryOrderByViewcntDesc(category);
 		return board;
+	}
+
+	public Page<Board> getSearchList(BoardSearchDto boardSearchDto, Pageable pageable) {
+		Page<Board> boardSearchDtos = repositoryCustom.findByTitle(boardSearchDto, pageable);
+		return boardSearchDtos;
 	}
 	
 }
