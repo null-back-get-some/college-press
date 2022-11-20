@@ -11,7 +11,10 @@
 				
 					<div class="board_list" th:if="${!#lists.isEmpty(board)}"
 							th:each="board : ${board}" >
-						<div class="board_list_img"><img th:src="${board.photo}" th:if="${board.photo!=null}" style="width: 150px; height:100px;"></div>
+						<div class="board_list_img">
+							<img th:src="${board.photo}" th:if="${!#strings.isEmpty(board.photo)}" style="width: 150px; height:100px;">
+							<img th:if="${#strings.isEmpty(board.photo)}" src="https://dummyimage.com/200x200/dee2e6/6c757d.jpg" class="img-fluid rounded mb-4 mb-lg-0"
+						  alt="..." style="width: 150px; height:100px;"></div>
 						<div class="board_content">
 							<a href="/board/boardDetail?news=" th:attrappend="href=${board.news}">
 								<h3 th:text="${board.title}"></h3>
@@ -37,26 +40,15 @@
 					<h5>많이 본 뉴스</h5>
 				</div>
 				<div>
-					<div id="first"	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
+					<div class="rank" th:if="${!#lists.isEmpty(manySee)}"
+							th:each="manySee : ${manySee}">
+						<a href="/board/boardDetail?news=" th:attrappend="href=${manySee.news}">
+							<div th:text="${manySee.title}" >많이 본 뉴스</div>
+							<div th:text="|${manySee.regdate} , ${manySee.member} 기자 | " >많이 본 뉴스</div>
+						</a>
 					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
+					
+					
 				</div>
 			</div>
 		</div>

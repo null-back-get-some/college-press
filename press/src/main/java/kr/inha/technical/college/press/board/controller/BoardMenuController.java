@@ -1,5 +1,7 @@
 package kr.inha.technical.college.press.board.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,8 +55,9 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(1); //보도대학 많이 본 뉴스
 		System.out.println("photo : "+board.getContent().get(0).getPhoto());
-		//model.addAttribute("board", board);
+		model.addAttribute("manySee", ManySee);		//많이 본 뉴스
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -70,6 +73,8 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(1);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -85,6 +90,8 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(1);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -102,6 +109,8 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(2);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -117,7 +126,9 @@ public class BoardMenuController {
 		int nowPage =  board.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
-		
+
+		List<Board> ManySee = boardService.findArticleByViewCnt(2);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -134,6 +145,8 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(2);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -150,6 +163,8 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(3);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -166,6 +181,8 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(3);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -182,6 +199,8 @@ public class BoardMenuController {
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 5, board.getTotalPages());
 		
+		List<Board> ManySee = boardService.findArticleByViewCnt(3);
+		model.addAttribute("manySee", ManySee);	
 		model.addAttribute("board", board);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
@@ -250,6 +269,22 @@ public class BoardMenuController {
 		model.addAttribute("board", board);
 		return "board/boardDetail";
 	}
+	
+	
+	@GetMapping("/pictureDetail")
+	public String pictureDetail(@RequestParam Long news, Model model) {
+
+		// List<Board> board=boardService.findAll();
+		Optional<Board> list = boardService.findByNews(news);
+		Board board = list.get();
+		board.setViewcnt(board.getViewcnt()+1);
+		boardService.saveBoard(board);
+		System.out.println("boardDetail : " + board);
+
+		model.addAttribute("board", board);
+		return "board/pictureDetail";
+	}
+	
 
 	// 신문보기 게시판
 	@GetMapping("/paper")

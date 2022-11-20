@@ -11,7 +11,7 @@
 					<div class="picture_list" th:if="${!#lists.isEmpty(board)}"
 							th:each="board : ${board}">
 						<div class="picture_list_img">
-						<a href="#">
+						<a href="/board/pictureDetail?news=" th:attrappend="href=${board.news}">
 							<img th:src="${board.photo}" class="img-fluid" >
 						</a>
 						</div>
@@ -21,6 +21,9 @@
 						<div class="picture_content" th:text="${t}"></div>
 					</div> -->
 					
+
+
+
 				</div>
 			</div>
 
