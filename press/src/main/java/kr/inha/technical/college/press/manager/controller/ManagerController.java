@@ -125,20 +125,25 @@ public class ManagerController {
 	@ResponseBody
 	public ResponseEntity boardInsert(Board board, Principal principal) {
 		String img = board.getContents();
-		String i = img.split("src=")[1];
-		System.out.println(img);
-		String myimg = i.substring(1,i.indexOf("style=")-2);
+		/*
+		 * String i = img.split("src=")[1]; System.out.println("흐아ㅏ앙 : "+i.length());
+		 * 
+		 * System.out.println(img); String myimg = i.substring(1,i.indexOf("style=")-2);
+		 */
+		String myimg = "";
+		/*
+		 * Pattern pattern =
+		 * Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); Matcher match =
+		 * pattern.matcher(img);
+		 */
 		
-		//Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
-		//Matcher match = pattern.matcher(img);
 		
-		
-		String text = "<!DOCTYPE html><head><meta charset='UTF-8'><title>Insert title here</title></head><h1>img html</h1><img src='img/Chrysanthemum.jpg'/><img src='img/Desert.jpg'/><img src='img/Hydrangeas.jpg'/>";
         Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
         Matcher matcher = pattern.matcher(img);
         
         while(matcher.find()){
             System.out.println("===============>matcher : "+matcher.group(1));
+            myimg = matcher.group(1);
         }
         System.out.println("=========>myimg : "+myimg);
 		//System.out.println("matcher : "+match);
