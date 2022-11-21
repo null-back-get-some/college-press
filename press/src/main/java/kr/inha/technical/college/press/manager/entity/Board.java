@@ -39,7 +39,7 @@ public class Board {
 	@Column(name = "TITLE", nullable = false)
 	private String title;
 	
-	@Column(name = "CONTENTS", nullable = false, length = 50000000)
+	@Column(name = "CONTENTS", nullable = false, length = 1000000000)
 	private String contents;
 	
 	@Column(name = "MEMBER")
