@@ -28,7 +28,7 @@
       <div class="main_news_r">
         	<h1 th:text="${mainArticle.title}"></h1>
         <p th:utext="${mainArticle.contents !=null and #strings.length(mainArticle.contents)>0}? 
-        ${#strings.abbreviate(mainArticle.contents,10)}:'내용'">
+        ${#strings.abbreviate(mainArticle.contents,100)}:'내용'">
         </p>
         <div th:text="${mainArticle.regdate}"> </div>
       </div>
@@ -44,7 +44,7 @@
 	          <div><img class="rounded" th:src="${univ[0].photo}"></div>
 	        		<h1 th:text="${univ[0].title}"></h1>
 	          	<p th:utext="${univ[0].contents !=null and #strings.length(univ[0].contents)>0}? 
-	       	 		${#strings.abbreviate(univ[0].contents,10)}:'내용'">
+	       	 		${#strings.abbreviate(univ[0].contents,50)}:'내용'">
 	        	</p>
 	        	<p th:text="${univ[0].regdate}"></p>
         	</div>
@@ -54,6 +54,9 @@
           	<div class="category_r_top">
               <div class="category_r_content">
                 <h3 class="category_r_title" th:text="${univ[1].title}">코로나 학점 인플레이션</h3>
+                <p th:utext="${univ[1].contents !=null and #strings.length(univ[1].contents)>0}? 
+	       	 		${#strings.abbreviate(univ[1].contents,50)}:'내용'">
+	        	</p>
                 <div class="category_time" th:text="${univ[1].regdate}">2022-09-17</div>
                 
               </div>
@@ -63,7 +66,10 @@
           <a href="/board/boardDetail?news=" th:attrappend="href=${univ[2].news}">
           	<div class="category_r_center">
               <div class="category_r_content">
-                <h3 class="category_r_title" th:text="${univ[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                <h3 class="category_r_title" th:text="${univ[2].title}"></h3>
+                <p th:utext="${univ[2].contents !=null and #strings.length(univ[2].contents)>0}? 
+	       	 		${#strings.abbreviate(univ[2].contents,50)}:'내용'">
+	        	</p>
                 <div class="category_time" th:text="${univ[2].regdate}">2022-09-17</div>
               </div>
               <img class="category_r_img rounded" th:src="${univ[2].photo}">
@@ -73,6 +79,9 @@
 	          <div class="category_r_bottom">
 	              <div class="category_r_content">
 	                <h3 class="category_r_title" th:text="${univ[3].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                	<p th:utext="${univ[3].contents !=null and #strings.length(univ[3].contents)>0}? 
+	       	 		${#strings.abbreviate(univ[3].contents,50)}:'내용'">
+	        		</p>
                 	<div class="category_time" th:text="${univ[3].regdate}">2022-09-17</div>
 	              </div>
 	              <img class="category_r_img rounded" th:src="${univ[3].photo}"> 
@@ -91,7 +100,7 @@
 	          <div><img class="rounded" th:src="${social[0].photo}"></div>
 	        		<h1 th:text="${social[0].title}"></h1>
 	          	<p th:utext="${social[0].contents !=null and #strings.length(social[0].contents)>0}? 
-	       	 		${#strings.abbreviate(social[0].contents,10)}:'내용'">
+	       	 		${#strings.abbreviate(social[0].contents,50)}:'내용'">
 	        	</p>
 	        	<p th:text="${social[0].regdate}"></p>
         	</div>
@@ -101,6 +110,9 @@
           	<div class="category_r_top">
               <div class="category_r_content">
                 <h3 class="category_r_title" th:text="${social[1].title}">코로나 학점 인플레이션</h3>
+                <p th:utext="${social[1].contents !=null and #strings.length(social[1].contents)>0}? 
+	       	 		${#strings.abbreviate(social[1].contents,50)}:'내용'">
+	        	</p>
                 <div class="category_time" th:text="${social[1].regdate}">2022-09-17</div>
                 
               </div>
@@ -111,6 +123,9 @@
           	<div class="category_r_center">
               <div class="category_r_content">
                 <h3 class="category_r_title" th:text="${social[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                <p th:utext="${social[2].contents !=null and #strings.length(social[2].contents)>0}? 
+	       	 		${#strings.abbreviate(social[2].contents,50)}:'내용'">
+	        	</p>
                 <div class="category_time" th:text="${social[2].regdate}">2022-09-17</div>
               </div>
               <img class="category_r_img rounded" th:src="${social[2].photo}">
@@ -120,6 +135,9 @@
 	          <div class="category_r_bottom">
 	              <div class="category_r_content">
 	                <h3 class="category_r_title" th:text="${social[3].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                	<p th:utext="${social[3].contents !=null and #strings.length(social[3].contents)>0}? 
+	       	 		${#strings.abbreviate(social[3].contents,50)}:'내용'">
+	        		</p>
                 	<div class="category_time" th:text="${social[3].regdate}">2022-09-17</div>
 	              </div>
 	              <img class="category_r_img rounded" th:src="${social[3].photo}"> 
@@ -150,6 +168,9 @@
           	<div class="category_r_top">
               <div class="category_r_content">
                 <h3 class="category_r_title" th:text="${culture[1].title}">코로나 학점 인플레이션</h3>
+                <p th:utext="${culture[1].contents !=null and #strings.length(culture[1].contents)>0}? 
+	       	 		${#strings.abbreviate(culture[1].contents,10)}:'내용'">
+	        	</p>
                 <div class="category_time" th:text="${culture[1].regdate}">2022-09-17</div>
                 
               </div>
@@ -160,6 +181,9 @@
           	<div class="category_r_center">
               <div class="category_r_content">
                 <h3 class="category_r_title" th:text="${culture[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                <p th:utext="${culture[2].contents !=null and #strings.length(culture[2].contents)>0}? 
+	       	 		${#strings.abbreviate(culture[2].contents,10)}:'내용'">
+	        	</p>
                 <div class="category_time" th:text="${culture[2].regdate}">2022-09-17</div>
               </div>
               <img class="category_r_img rounded" th:src="${culture[2].photo}">
@@ -169,6 +193,9 @@
 	          <div class="category_r_bottom">
 	              <div class="category_r_content">
 	                <h3 class="category_r_title" th:text="${culture[3].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+                	<p th:utext="${culture[3].contents !=null and #strings.length(culture[3].contents)>0}? 
+	       	 		${#strings.abbreviate(culture[3].contents,10)}:'내용'">
+	        		</p>
                 	<div class="category_time" th:text="${culture[3].regdate}">2022-09-17</div>
 	              </div>
 	              <img class="category_r_img rounded" th:src="${culture[3].photo}"> 
