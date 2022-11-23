@@ -11,4 +11,17 @@ public class MainController {
 		return "index";
 	}
 	
+	@GetMapping("/pdftest")
+	public String pdftest() {
+		return "pdftest";
+	}
+	@GetMapping("/pdfjstest")
+	public String pdfjstest() {
+		return "pdfjstest";
+	}
+	
+	@GetMapping("/viewer")
+	public String viewer() {
+		return "viewer";
+	}
 }

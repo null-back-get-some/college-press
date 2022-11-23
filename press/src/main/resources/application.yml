@@ -1,4 +1,10 @@
 spring:
+  servlet:
+    multipart:
+      location : C:/shop/upload/
+      max-file-size : 100MB
+      max-request-size : 100MB
+  
   datasource:
     url: jdbc:mysql://114.71.137.154:52208/spring?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -40,3 +46,8 @@ logging:
         type:
           descriptor:
             sql: trace
+
+file:
+  upload:
+    location : C:/shop/upload/
+

@@ -1,13 +1,10 @@
 package kr.inha.technical.college.press.board.controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -22,7 +19,6 @@ import kr.inha.technical.college.press.board.service.BoardService;
 import kr.inha.technical.college.press.manager.entity.Board;
 import kr.inha.technical.college.press.manager.entity.Category;
 import kr.inha.technical.college.press.manager.entity.SubCategory;
-import kr.inha.technical.college.press.manager.repository.CategoryRepository;
 import kr.inha.technical.college.press.manager.repository.SubCategoryRepository;
 import kr.inha.technical.college.press.manager.service.CategorySevice;
 
@@ -269,6 +265,7 @@ public class BoardMenuController {
 		model.addAttribute("board", board);
 		return "board/boardDetail";
 	}
+	
 	
 	
 	@GetMapping("/pictureDetail")

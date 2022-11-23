@@ -25,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -45,6 +46,7 @@ import kr.inha.technical.college.press.manager.entity.SubCategory;
 import kr.inha.technical.college.press.manager.repository.CategoryRepository;
 import kr.inha.technical.college.press.manager.repository.SubCategoryRepository;
 import kr.inha.technical.college.press.manager.service.CategorySevice;
+import kr.inha.technical.college.press.manager.service.FileService;
 import kr.inha.technical.college.press.manager.service.ManagerService;
 import kr.inha.technical.college.press.member.constant.Role;
 import kr.inha.technical.college.press.member.entity.Member;
@@ -65,6 +67,9 @@ public class ManagerController {
 	@Autowired
 	SubCategoryRepository subCategory;
 
+	@Autowired
+	FileService fileService;
+	
 	// 관리자 게시판
 	@GetMapping("/manager/manager")
 	public String manager(Model model) {
@@ -116,15 +121,29 @@ public class ManagerController {
 		return "manager/boardWrite";
 	}
 
-	@GetMapping("/manager/pictureWrite")
+	@GetMapping("/manager/newspaperWrite")
 	public String pictureWrite() {
-		return "manager/pictureWrite";
+		return "manager/newspaperWrite";
+	}
+	
+	@PostMapping("/manager/fileUpload")
+	public String fileUpload(@RequestParam("file") List<MultipartFile> files) throws IOException {
+		
+        for (MultipartFile multipartFile : files) {
+            fileService.saveFile(multipartFile);
+        }
+
+        return "redirect:/";
+		//return "manager/fileUpload";
 	}
 
+	
 	@PostMapping("/manager/boardInsert")
 	@ResponseBody
-	public ResponseEntity boardInsert(Board board, Principal principal) {
+	public ResponseEntity boardInsert(Board board, Principal principal, BindingResult bindingResult , @RequestParam("itemImgFile") List<MultipartFile> pdfFileList) {
 		String img = board.getContents();
+		
+		System.out.println(pdfFileList);
 		/*
 		 * String i = img.split("src=")[1]; System.out.println("흐아ㅏ앙 : "+i.length());
 		 * 
@@ -146,28 +165,7 @@ public class ManagerController {
             myimg = matcher.group(1);
         }
         System.out.println("=========>myimg : "+myimg);
-		//System.out.println("matcher : "+match);
 		
-		/*
-		 * System.out.println(myimg);
-		 * 
-		 * int idx = img.indexOf("base64,"); String newImg = img.substring(idx+7);
-		 * String newImgs = newImg.substring(0,newImg.indexOf("style=")); String myImg =
-		 * newImgs.substring(0,newImgs.length()-2);
-		 * System.out.println("new img : "+myImg);
-		 * 
-		 * 
-		 * byte[] testToByte = myImg.getBytes();
-		 * 
-		 * Encoder encode = Base64.getEncoder(); Decoder decode = Base64.getDecoder();
-		 * 
-		 * // Base64 인코딩 byte[] encodeByte = encode.encode(testToByte);
-		 * 
-		 * // Base64 디코딩 byte[] decodeByte = decode.decode(encodeByte);
-		 * 
-		 * System.out.println("인코딩 전: " + myImg); System.out.println("인코딩: " + new
-		 * String(encodeByte)); System.out.println("디코딩: " + new String(decodeByte));
-		 */
 
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
 		board.setRegdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));

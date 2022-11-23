@@ -63,8 +63,4 @@ public class Board {
 	@Column(name = "EMOJI")
 	private int emoji;
 	
-	@JoinColumn(name = "F_ID")
-	@OneToOne
-	private File file;
-	
 }
