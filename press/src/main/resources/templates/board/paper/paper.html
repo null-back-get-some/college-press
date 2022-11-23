@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+
+	<div layout:fragment="content">
+		<div id="board_grid_paper" class="container_frame">
+			
+			<div class="news_board_r1">
+				<div class="board_top">
+					<span class="paper_month">
+						<a><</a>
+						<h5>10월</h5>
+						<a>></a>
+					</span>
+				</div>
+				<div class="board_bottom">
+					<div class="paper_list" th:if="${!#lists.isEmpty(board)}"
+							th:each="board : ${board}">
+						<div class="paper_list_img"><img src="/img/paper.png"></div>
+						<div class="paper_content">
+							<a href="/board/paperDetail?id=" th:attrappend="href=${board.id}" class="">
+								<div class="paper_title">
+									<h1 th:text="${board.title}"></h1>
+								</div>
+								<div th:text = "${board.member}"></div>
+								<div th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd')}"></div>
+							</a>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="news_board_r2">
+				
+			</div>
+		</div>
+	</div>
+</html>

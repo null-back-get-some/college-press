@@ -122,15 +122,18 @@ public class ManagerController {
 	}
 
 	@GetMapping("/manager/newspaperWrite")
-	public String pictureWrite() {
+	public String pictureWrite(Model model ,Principal principal) {
+		String username = memberService.findByEmail(principal.getName()).getName();
+		model.addAttribute("username", username);
 		return "manager/newspaperWrite";
 	}
 	
 	@PostMapping("/manager/fileUpload")
-	public String fileUpload(@RequestParam("file") List<MultipartFile> files) throws IOException {
-		
+	public String fileUpload(@RequestParam("file") List<MultipartFile> files, @RequestParam("title") String title,
+			Principal principal) throws IOException {
+		String username = memberService.findByEmail(principal.getName()).getName();
         for (MultipartFile multipartFile : files) {
-            fileService.saveFile(multipartFile);
+            fileService.saveFile(multipartFile, title, username);
         }
 
         return "redirect:/";

@@ -18,9 +18,11 @@ import groovy.util.logging.Log4j2;
 import kr.inha.technical.college.press.board.service.BoardService;
 import kr.inha.technical.college.press.manager.entity.Board;
 import kr.inha.technical.college.press.manager.entity.Category;
+import kr.inha.technical.college.press.manager.entity.FileEntity;
 import kr.inha.technical.college.press.manager.entity.SubCategory;
 import kr.inha.technical.college.press.manager.repository.SubCategoryRepository;
 import kr.inha.technical.college.press.manager.service.CategorySevice;
+import kr.inha.technical.college.press.manager.service.FileService;
 
 @Controller
 @Log4j2
@@ -32,7 +34,11 @@ public class BoardMenuController {
 
 	@Autowired
 	CategorySevice categorySevice;
-
+	
+	@Autowired
+	FileService fileService;
+	
+	
 	@Autowired
 	SubCategoryRepository subCategoryRepository;
 
@@ -254,7 +260,7 @@ public class BoardMenuController {
 
 	@GetMapping("/boardDetail")
 	public String boardDetail(@RequestParam Long news, Model model) {
-
+		
 		// List<Board> board=boardService.findAll();
 		Optional<Board> list = boardService.findByNews(news);
 		Board board = list.get();
@@ -282,12 +288,26 @@ public class BoardMenuController {
 		return "board/pictureDetail";
 	}
 	
-
 	// 신문보기 게시판
-	@GetMapping("/paper")
-	public String paper() {
-		return "board/paper";
+	@GetMapping("paper/paper")
+	public String paper(Model model) {
+		List<FileEntity> board = fileService.findAll();
+		System.out.println(board.get(0).getOriginalFileName());
+		model.addAttribute("board", board);
+		return "board/paper/paper";
 	}
+	
+	@GetMapping("/paperDetail")
+	public String paperDetail(@RequestParam Long id, Model model) {
+		Optional<FileEntity> list = fileService.findbyId(id);
+		FileEntity board = list.get();
+		
+		model.addAttribute("board", board);
+		return "board/paperDetail";
+	}
+	
+
+	
 
 	//카테고리에 맞게 기사 로딩하는 메소드
 	public Page<Board> loadPage(int categories, String subcategory, Pageable pageable) {

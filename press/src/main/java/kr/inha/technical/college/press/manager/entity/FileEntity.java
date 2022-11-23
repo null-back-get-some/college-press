@@ -35,6 +35,9 @@ public class FileEntity {
 	@Column(name = "F_ID")
 	private Long id;			
 	
+	@Column(name = "F_BOARD_TITLE")
+	private String title;
+	
 	@Column(name="F_ORIGINAL_NAME")
 	private String originalFileName;
 	
@@ -44,10 +47,18 @@ public class FileEntity {
 	@Column(name="F_SAVED_PATH")
 	private String savedPath;
 	
+	@Column(name= "F_CREATE_DATE")
+	private LocalDateTime createTime;
+	
+	@Column(name="F_MEMBER")
+	private String member;
 	
 	@Builder
-	public FileEntity(Long id, String originalFileName, String savedName, String savedPath) {
+	public FileEntity(Long id, String title, String member, LocalDateTime createTime, String originalFileName, String savedName, String savedPath) {
 		this.id = id;
+		this.title = title;
+		this.member = member;
+		this.createTime = createTime;
 		this.originalFileName = originalFileName;
 		this.savedName = savedName;
 		this.savedPath = savedPath;

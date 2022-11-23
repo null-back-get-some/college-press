@@ -2,6 +2,9 @@ package kr.inha.technical.college.press.manager.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +26,7 @@ public class FileService {
 	
 	private final FileRepository fileRepository;
 	
-	public Long saveFile(MultipartFile files) throws IOException {
+	public Long saveFile(MultipartFile files, String title, String member) throws IOException {
 		if(files.isEmpty()) {
 			return null;
 		}
@@ -44,7 +47,12 @@ public class FileService {
 		String savePath = fileDir + savedName;
 		log.info("savePath name : "+savePath);
 		
+		
+		
 		FileEntity file = FileEntity.builder()
+				.title(title)
+				.createTime(LocalDateTime.now())
+				.member(member)
 				.originalFileName(originalName)
 				.savedName(savedName)
 				.savedPath(savePath)
@@ -60,4 +68,13 @@ public class FileService {
 		return savedFile.getId();
 	}
 	
+	public List<FileEntity> findAll(){
+		List<FileEntity> board = fileRepository.findAll();
+		return board;
+	}
+	
+	public Optional<FileEntity> findbyId(Long id){
+		Optional<FileEntity> board = fileRepository.findById(id);
+		return board;
+	}
 }
