@@ -143,36 +143,44 @@ public class ManagerController {
 	
 	@PostMapping("/manager/boardInsert")
 	@ResponseBody
-	public ResponseEntity boardInsert(Board board, Principal principal, BindingResult bindingResult , @RequestParam("itemImgFile") List<MultipartFile> pdfFileList) {
+	public ResponseEntity boardInsert(Board board, Principal principal) {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>board:"+board);
 		String img = board.getContents();
-		
-		System.out.println(pdfFileList);
-		/*
-		 * String i = img.split("src=")[1]; System.out.println("흐아ㅏ앙 : "+i.length());
-		 * 
-		 * System.out.println(img); String myimg = i.substring(1,i.indexOf("style=")-2);
-		 */
-		String myimg = "";
+		String i = "";
+		try {
+			i = img.split("src=")[1]; 
+			if(i.length()==0) {
+				System.out.println("으아아아아ㅏ앙ㄱ");
+			}else {
+				 String myimg = i.substring(1,i.indexOf("style=")-2);
+				 System.out.println("=========>myimg : "+myimg);
+				 board.setPhoto(myimg);
+			}
+		}catch (Exception e) {
+			System.out.println("취소");
+		}
+		 //String myimg = "";
 		/*
 		 * Pattern pattern =
 		 * Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); Matcher match =
 		 * pattern.matcher(img);
 		 */
-		
-		
-        Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
-        Matcher matcher = pattern.matcher(img);
+	
+		/*
+		 * Pattern pattern =
+		 * Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출
+		 * 정규표현식 Matcher matcher = pattern.matcher(img);
+		 */
         
-        while(matcher.find()){
-            System.out.println("===============>matcher : "+matcher.group(1));
-            myimg = matcher.group(1);
-        }
-        System.out.println("=========>myimg : "+myimg);
-		
-
+		/*
+		 * while(matcher.find()){
+		 * System.out.println("===============>matcher : "+matcher.group(1)); myimg =
+		 * matcher.group(1); }
+		 */
+        
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
 		board.setRegdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
-		board.setPhoto(myimg);
+		
 		service.boardInsert(board);
 		System.out.println("boardInsert 실행 : " + board.getContents());
 		return new ResponseEntity<Board>(board, HttpStatus.OK);

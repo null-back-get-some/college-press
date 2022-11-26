@@ -60,7 +60,11 @@ public class Board {
 	@Column(name = "PHOTO", length = 100000000)
 	private String photo;
 	
-	@Column(name = "EMOJI")
-	private int emoji;
+	@Column(name="TEXT", length = 100000000)
+	private String text;
+	
+	/*
+	 * @Column(name = "EMOJI") private int emoji;
+	 */
 	
 }

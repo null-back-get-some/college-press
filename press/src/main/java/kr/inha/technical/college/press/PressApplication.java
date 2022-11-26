@@ -12,5 +12,8 @@ public class PressApplication {
 		SpringApplication.run(PressApplication.class, args);
 	}
 
-	
+	@Bean
+	public Java8TimeDialect java8TimeDialect() {
+		return new Java8TimeDialect();
+	}
 }

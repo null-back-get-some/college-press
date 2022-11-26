@@ -3,17 +3,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/default">
 <head>
-	<meta name="_csrf" content="${_csrf.token}"/>
-	<!-- default header name is X-CSRF-TOKEN -->
-	<meta name="_csrf_header" content="${_csrf.headerName}"/>
-	<script>
-	$(function () {
-	    var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-	    $(document).ajaxSend(function(e, xhr, options) {
-	        xhr.setRequestHeader(header, token);
-	    });
-	});
+	<script th:inline="javascript">
+		
 	</script>
 </head>
   <div layout:fragment="content">
@@ -27,8 +18,8 @@
       </div>
       <div class="main_news_r">
         	<h1 th:text="${mainArticle.title}"></h1>
-        <p th:utext="${mainArticle.contents !=null and #strings.length(mainArticle.contents)>0}? 
-        ${#strings.abbreviate(mainArticle.contents,100)}:'내용'">
+        <p class="index-contents" th:utext="${mainArticle.text !=null and #strings.length(mainArticle.text)>0}? 
+        ${#strings.abbreviate(mainArticle.text,100)}:'내용'">
         </p>
         <div th:text="${mainArticle.regdate}"> </div>
       </div>
@@ -43,10 +34,10 @@
         	<div class="category_l">
 	          <div><img class="rounded" th:src="${univ[0].photo}"></div>
 	        		<h1 th:text="${univ[0].title}"></h1>
-	          	<p th:utext="${univ[0].contents !=null and #strings.length(univ[0].contents)>0}? 
-	       	 		${#strings.abbreviate(univ[0].contents,50)}:'내용'">
+	          	<p class="index-contents" th:utext="${univ[1].text !=null and #strings.length(univ[1].text)>0}? 
+	       	 		${#strings.abbreviate(univ[0].text,40)}:'내용'">
 	        	</p>
-	        	<p th:text="${univ[0].regdate}"></p>
+	        	<p th:text="${social[0].regdate}"></p>
         	</div>
         </a>
         <div class="category_r">
@@ -54,9 +45,10 @@
           	<div class="category_r_top">
               <div class="category_r_content">
                 <h3 class="category_r_title" th:text="${univ[1].title}">코로나 학점 인플레이션</h3>
-                <p th:utext="${univ[1].contents !=null and #strings.length(univ[1].contents)>0}? 
-	       	 		${#strings.abbreviate(univ[1].contents,50)}:'내용'">
+                <p class="index-contents" th:utext="${univ[1].contents !=null and #strings.length(univ[1].contents)>0}? 
+	       	 		${#strings.abbreviate(#strings.substringAfter(#strings.substringBefore(univ[1].contents, '</p>'),'<p>'),30)}:'내용'">
 	        	</p>
+	        	
                 <div class="category_time" th:text="${univ[1].regdate}">2022-09-17</div>
                 
               </div>
@@ -66,7 +58,7 @@
           <a href="/board/boardDetail?news=" th:attrappend="href=${univ[2].news}">
           	<div class="category_r_center">
               <div class="category_r_content">
-                <h3 class="category_r_title" th:text="${univ[2].title}"></h3>
+                <h3 class="category_r_title" th:text="${univ[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
                 <p th:utext="${univ[2].contents !=null and #strings.length(univ[2].contents)>0}? 
 	       	 		${#strings.abbreviate(univ[2].contents,50)}:'내용'">
 	        	</p>
@@ -111,7 +103,7 @@
               <div class="category_r_content">
                 <h3 class="category_r_title" th:text="${social[1].title}">코로나 학점 인플레이션</h3>
                 <p th:utext="${social[1].contents !=null and #strings.length(social[1].contents)>0}? 
-	       	 		${#strings.abbreviate(social[1].contents,50)}:'내용'">
+	       	 		${#strings.abbreviate(social[1].contents,10)}:'내용'">
 	        	</p>
                 <div class="category_time" th:text="${social[1].regdate}">2022-09-17</div>
                 
@@ -209,4 +201,14 @@
 
 
   </div>
+  <script th:inline="javascript">
+	
+	// JavaScript
+		var jb = $('.index-contents').text();
+		console.log(jb);
+		const reg = /<[^>]*>?/g
+		var text = jb.replace(reg,"");	
+		console.log(text);
+		$('.index-contents').text(jb.replace(reg,""));
+	</script>
 </html>
