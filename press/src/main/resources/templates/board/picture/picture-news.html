@@ -2,25 +2,77 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/picture_board_default">
-
+<head>
+	
+</head>
 	<div layout:fragment="content">
 		<div class="new_board_r">
 			<div class="news_board_r1">
 				<div class="picture_top"><h5>보도 사진전</h5></div>
 				<div class="picture_bottom">
-					
 					<div class="picture_list" th:if="${!#lists.isEmpty(board)}"
 							th:each="board : ${board}">
 						<div class="picture_list_img">
-						<a href="#">
+						<a class="open-modal" href="/board/pictureDetail?news=" th:attrappend="href=${board.news}" th:value="${board.news}"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">
 							<img th:src="${board.photo}" class="img-fluid" >
 						</a>
 						</div>
+						
 					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-xl modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title title" id="exampleModalLabel">관리자 추가</h5>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body hi" style="margin:0 auto;">
+										<div class="modal-contents"></div>
+										<img class="img-fluid myimg" >
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					<!-- <div class="picture_list">
+						<div class="picture_list_img"><img src="/img/test4.jpg" class="img-fluid" ></div>
+						<div class="picture_content" th:text="${t}"></div>
+					</div> -->
+					
 				</div>
+				<script th:inline="javascript">
+					const list = [[${board}]];
+					console.log(list.content[0]);
+					
+					var title = document.getElementsByClassName("title");
+					var contents = document.getElementsByClassName("modal-contents");
+					
+					$(document).on("click",".open-modal",function(){
+						var id= $(this).attr('value');
+						for (var i = 0; i < list.content.length; i++) {
+							if(id==list.content[i].news){
+								title[0].innerHTML = list.content[i].title;
+								$(".myimg").attr("src", list.content[i].photo);
+								//contents[0].innerHTML = list.content[i].contents;
+							}
+							console.log(list.content[i].news);
+						} 
+					});
+					
+					
+				</script>
+				
 			</div>
 
 			
 		</div>
 	</div>
+	
 </html>

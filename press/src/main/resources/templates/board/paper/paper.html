@@ -19,7 +19,7 @@
 							th:each="board : ${board}">
 						<div class="paper_list_img"><img src="/img/paper.png"></div>
 						<div class="paper_content">
-							<a href="/board/paperDetail?id=" th:attrappend="href=${board.id}" class="">
+							<a href="/board/paperDetail?id=" th:attrappend="href=${board.id}" class="" >
 								<div class="paper_title">
 									<h1 th:text="${board.title}"></h1>
 								</div>
@@ -31,6 +31,7 @@
 					</div>
 					
 				</div>
+				
 			</div>
 
 			<div class="news_board_r2">
