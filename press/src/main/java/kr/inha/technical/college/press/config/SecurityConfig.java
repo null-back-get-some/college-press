@@ -21,7 +21,6 @@ import kr.inha.technical.college.press.member.service.MemberService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
 	@Autowired
 	MemberService memberService;
 
