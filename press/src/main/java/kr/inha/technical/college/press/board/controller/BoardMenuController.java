@@ -13,10 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import groovy.util.logging.Log4j2;
-import kr.inha.technical.college.press.board.dto.BoardSearchDto;
 import kr.inha.technical.college.press.board.service.BoardService;
 import kr.inha.technical.college.press.manager.entity.Board;
 import kr.inha.technical.college.press.manager.entity.Category;
@@ -317,16 +315,5 @@ public class BoardMenuController {
         
 		System.out.println(subcategory + " : " + board);
 		return board;
-	}
-	
-	@GetMapping("/getSearchList")
-	@ResponseBody
-	private List<BoardSearchDto> getSearchList(@RequestParam("CATEGORY") String searchType,
-			@RequestParam("TITLE") String keyword, Model model) throws Exception {
-		BoardSearchDto boardSearchDto = new BoardSearchDto();
-		boardSearchDto.setSearchType(searchType);
-		boardSearchDto.setKeyword(keyword);
-		//return boardService.getSearchList(boardSearchDto);
-		return null;
 	}
 }
