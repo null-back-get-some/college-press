@@ -9,21 +9,25 @@
 	<div id="mainPage">
 
 		<div class="container manager-container">
-			<h2>사진/영상</h2>
+			<h2>신문</h2>
     	
-	    	<form id="frm" name="frm" method="post" action="/board/boardInsert" enctype="multipart/form-data">
+	    	<form id="frm" name="frm" method="post" action="/manager/fileUpload" enctype="multipart/form-data">
 	    		<table class="board_detail">
 					<tr>
 						<td>제목</td>
 						<td><input type="text" id="title" name="title"/></td>
 					</tr>
 					<tr>
+						<td>작성자</td>
+						<td><div name="writer" th:text = "${username}"></div></td>
+					</tr>
+					<!-- <tr>
 						<td>카테고리</td>
 						<td><input type="text" id="category" name="category" disabled/></td>
-					</tr>
+					</tr> -->
 				</table>
 				<div class="filechooser">
-					<input type="file" onChange="readURL(this);" id="files" name="files" multiple="multiple">
+					<input type="file" accept=".pdf" onChange="readURL(this);" id="files" name="file" multiple="multiple">
 					<input type="submit" id="submit" value="저장" class="btn btn-outline-primary"/>
 					<div>
 						<img id="preview" style="max-width:700px; height:300px; padding-top:10px;"/>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>pdf 뷰어 테스트</title>
+</head>
+<body>
+	<h1>pdf 테스트</h1>
+    <div id="example1" style="height:300rem;"></div>
+    
+    <script src="js/pdfobject.js"></script>
+    <!-- PDFObject.embed("pdf파일 경로", "태그 id"); -->
+    <script>PDFObject.embed("js/compressed.tracemonkey-pldi-09.pdf", "#example1");</script>
+</body>
+</html>

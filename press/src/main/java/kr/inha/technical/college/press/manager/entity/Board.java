@@ -39,7 +39,7 @@ public class Board {
 	@Column(name = "TITLE", nullable = false)
 	private String title;
 	
-	@Column(name = "CONTENTS", nullable = false, length = 500000)
+	@Column(name = "CONTENTS", nullable = false, length = 1000000000)
 	private String contents;
 	
 	@Column(name = "MEMBER")
@@ -60,11 +60,11 @@ public class Board {
 	@Column(name = "PHOTO", length = 100000000)
 	private String photo;
 	
-	@Column(name = "EMOJI")
-	private int emoji;
+	@Column(name="TEXT", length = 100000000)
+	private String text;
 	
-	@JoinColumn(name = "F_ID")
-	@OneToOne
-	private File file;
+	/*
+	 * @Column(name = "EMOJI") private int emoji;
+	 */
 	
 }

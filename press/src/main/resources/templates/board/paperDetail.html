@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+<div layout:fragment="content">
+	<h1>pdf 테스트</h1>
+    <div id="example1" style="height:300rem;"></div>
+    
+    
+    <!-- PDFObject.embed("pdf파일 경로", "태그 id"); -->
+    <script th:inline = "javascript">
+    
+    const list = [[${board}]];
+    console.log(list.originalFileName);
+    var fileName = list.originalFileName
+    PDFObject.embed("/js/compressed.tracemonkey-pldi-09.pdf", "#example1");
+    
+    
+    </script>
+	<div th:text="${board.originalFileName}"></div>
+</div>
+
+
+</html>

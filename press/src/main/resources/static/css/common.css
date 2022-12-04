@@ -19,3 +19,8 @@
   padding-top: 0.5rem;
   padding-left: 20px;
 }
+
+/*topbar search form*/
+.searchForm{
+	display: flex;
+}

@@ -2,23 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/social_board_default">
-	
+
 	<div layout:fragment="content">
 		<div class="new_board_r">
 			<div class="news_board_r1">
 				<div class="board_top"><h5>국제 사회</h5></div>
 				<div class="board_bottom">
+				
 					<div class="board_list" th:if="${!#lists.isEmpty(board)}"
 							th:each="board : ${board}" >
-						<div class="board_list_img"><img src="/img/test2.jpg"></div>
+						<div class="board_list_img">
+							<img th:src="${board.photo}" th:if="${!#strings.isEmpty(board.photo)}" style="width: 150px; height:100px;">
+							<img th:if="${#strings.isEmpty(board.photo)}" src="https://dummyimage.com/200x200/dee2e6/6c757d.jpg" class="img-fluid rounded mb-4 mb-lg-0"
+						  alt="..." style="width: 150px; height:100px;"></div>
 						<div class="board_content">
 							<a href="/board/boardDetail?news=" th:attrappend="href=${board.news}">
 								<h3 th:text="${board.title}"></h3>
 							</a>
+							<div th:text="${next}"></div>
 							<h6 th:text="${board.member}"></h6>
+							<h6 th:text="${board.news}"></h6>
 						</div>
 					</div>
-				</div>
+					<!-- <div class="board_list" >
+						<div class="board_list_img"><img src="/img/test4.jpg"></div>
+						<div class="board_content">
+							<h th:text="${t}"></h>
+							<p th:text="${c}"></p>
+						</div>
+					</div> -->
+
+				</div> 
 			</div>
 
 			<div class="news_board_r2">
@@ -26,33 +40,22 @@
 					<h5>많이 본 뉴스</h5>
 				</div>
 				<div>
-					<div id="first"	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
+					<div class="rank" th:if="${!#lists.isEmpty(manySee)}"
+							th:each="manySee : ${manySee}">
+						<a href="/board/boardDetail?news=" th:attrappend="href=${manySee.news}">
+							<div th:text="${manySee.title}" >많이 본 뉴스</div>
+							<div th:text="|${manySee.regdate} , ${manySee.member} 기자 | " >많이 본 뉴스</div>
+						</a>
 					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
-					<div 	class="rank">
-						<div >많이 본 뉴스</div>
-						<div>2021.09.03 | aaa기자</div>
-					</div>
+					
+					
 				</div>
 			</div>
 		</div>
 		<div class="paging-block">
 		<th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
 			<a th:if="${page != nowPage}"
-				th:href="@{/board/social/intl(page=${page-1})}" th:text="${page}"></a>
+				th:href="@{/board/univ/normal(page=${page-1})}" th:text="${page}"></a>
 			<strong th:if="${page==nowPage}" th:text="${page}" style="color: red"></strong>
 		</th:block>
 	</div>

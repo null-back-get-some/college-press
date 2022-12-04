@@ -25,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -45,6 +46,7 @@ import kr.inha.technical.college.press.manager.entity.SubCategory;
 import kr.inha.technical.college.press.manager.repository.CategoryRepository;
 import kr.inha.technical.college.press.manager.repository.SubCategoryRepository;
 import kr.inha.technical.college.press.manager.service.CategorySevice;
+import kr.inha.technical.college.press.manager.service.FileService;
 import kr.inha.technical.college.press.manager.service.ManagerService;
 import kr.inha.technical.college.press.member.constant.Role;
 import kr.inha.technical.college.press.member.entity.Member;
@@ -65,6 +67,9 @@ public class ManagerController {
 	@Autowired
 	SubCategoryRepository subCategory;
 
+	@Autowired
+	FileService fileService;
+	
 	// 관리자 게시판
 	@GetMapping("/manager/manager")
 	public String manager(Model model) {
@@ -116,57 +121,66 @@ public class ManagerController {
 		return "manager/boardWrite";
 	}
 
-	@GetMapping("/manager/pictureWrite")
-	public String pictureWrite() {
-		return "manager/pictureWrite";
+	@GetMapping("/manager/newspaperWrite")
+	public String pictureWrite(Model model ,Principal principal) {
+		String username = memberService.findByEmail(principal.getName()).getName();
+		model.addAttribute("username", username);
+		return "manager/newspaperWrite";
+	}
+	
+	@PostMapping("/manager/fileUpload")
+	public String fileUpload(@RequestParam("file") List<MultipartFile> files, @RequestParam("title") String title,
+			Principal principal) throws IOException {
+		String username = memberService.findByEmail(principal.getName()).getName();
+        for (MultipartFile multipartFile : files) {
+            fileService.saveFile(multipartFile, title, username);
+        }
+
+        return "redirect:/";
+		//return "manager/fileUpload";
 	}
 
+	
 	@PostMapping("/manager/boardInsert")
 	@ResponseBody
 	public ResponseEntity boardInsert(Board board, Principal principal) {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>board:"+board);
 		String img = board.getContents();
-		String i = img.split("src=")[1];
-		System.out.println(img);
-		String myimg = i.substring(1,i.indexOf("style=")-2);
-		
-		//Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
-		//Matcher match = pattern.matcher(img);
-		
-		
-		String text = "<!DOCTYPE html><head><meta charset='UTF-8'><title>Insert title here</title></head><h1>img html</h1><img src='img/Chrysanthemum.jpg'/><img src='img/Desert.jpg'/><img src='img/Hydrangeas.jpg'/>";
-        Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
-        Matcher matcher = pattern.matcher(img);
-        
-        while(matcher.find()){
-            System.out.println("===============>matcher : "+matcher.group(1));
-        }
-        System.out.println("=========>myimg : "+myimg);
-		//System.out.println("matcher : "+match);
-		
+		String i = "";
+		try {
+			i = img.split("src=")[1]; 
+			if(i.length()==0) {
+				System.out.println("으아아아아ㅏ앙ㄱ");
+			}else {
+				 String myimg = i.substring(1,i.indexOf("style=")-2);
+				 System.out.println("=========>myimg : "+myimg);
+				 board.setPhoto(myimg);
+			}
+		}catch (Exception e) {
+			System.out.println("취소");
+		}
+		 //String myimg = "";
 		/*
-		 * System.out.println(myimg);
-		 * 
-		 * int idx = img.indexOf("base64,"); String newImg = img.substring(idx+7);
-		 * String newImgs = newImg.substring(0,newImg.indexOf("style=")); String myImg =
-		 * newImgs.substring(0,newImgs.length()-2);
-		 * System.out.println("new img : "+myImg);
-		 * 
-		 * 
-		 * byte[] testToByte = myImg.getBytes();
-		 * 
-		 * Encoder encode = Base64.getEncoder(); Decoder decode = Base64.getDecoder();
-		 * 
-		 * // Base64 인코딩 byte[] encodeByte = encode.encode(testToByte);
-		 * 
-		 * // Base64 디코딩 byte[] decodeByte = decode.decode(encodeByte);
-		 * 
-		 * System.out.println("인코딩 전: " + myImg); System.out.println("인코딩: " + new
-		 * String(encodeByte)); System.out.println("디코딩: " + new String(decodeByte));
+		 * Pattern pattern =
+		 * Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); Matcher match =
+		 * pattern.matcher(img);
 		 */
-
+	
+		/*
+		 * Pattern pattern =
+		 * Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출
+		 * 정규표현식 Matcher matcher = pattern.matcher(img);
+		 */
+        
+		/*
+		 * while(matcher.find()){
+		 * System.out.println("===============>matcher : "+matcher.group(1)); myimg =
+		 * matcher.group(1); }
+		 */
+        
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
 		board.setRegdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
-		board.setPhoto(myimg);
+		
 		service.boardInsert(board);
 		System.out.println("boardInsert 실행 : " + board.getContents());
 		return new ResponseEntity<Board>(board, HttpStatus.OK);

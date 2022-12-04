@@ -26,6 +26,12 @@ public class IndexController {
 		return "login";
 	}
 	
+	@GetMapping("/test")
+	public String test() {
+
+		return "/test";
+	}
+	
 	// 회원가입
 	@GetMapping("/member/memberForm")
 	public String memberForm() {

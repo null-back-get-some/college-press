@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,27 +27,40 @@ import lombok.ToString;
 @Getter 
 @Setter 
 @NoArgsConstructor 
-@AllArgsConstructor
 @ToString
-@Transactional
-public class File {
+public class FileEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // GenerationType.IDENTITY : 기본키 생성을 데이터베이스에 위임
 	@Column(name = "F_ID")
 	private Long id;			
 	
-	@ManyToOne
-	@JoinColumn(name="NEWS")
-	private Board board;	
+	@Column(name = "F_BOARD_TITLE")
+	private String title;
 	
 	@Column(name="F_ORIGINAL_NAME")
 	private String originalFileName;
 	
-	@Column(name="F_STORED_PATH")
-	private String storedFilePath;
+	@Column(name="F_SAVED_NAME")
+	private String savedName;
 	
-	@Column(name="F_FILESIZE")
-	private long fielSize;
+	@Column(name="F_SAVED_PATH")
+	private String savedPath;
 	
+	@Column(name= "F_CREATE_DATE")
+	private LocalDateTime createTime;
+	
+	@Column(name="F_MEMBER")
+	private String member;
+	
+	@Builder
+	public FileEntity(Long id, String title, String member, LocalDateTime createTime, String originalFileName, String savedName, String savedPath) {
+		this.id = id;
+		this.title = title;
+		this.member = member;
+		this.createTime = createTime;
+		this.originalFileName = originalFileName;
+		this.savedName = savedName;
+		this.savedPath = savedPath;
+	}
 }
