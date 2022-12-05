@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
+import kr.inha.technical.college.press.board.dto.BoardSearchDto;
 import kr.inha.technical.college.press.board.repository.BoardRepository;
 import kr.inha.technical.college.press.manager.entity.Board;
 
@@ -50,5 +50,11 @@ public class BoardService {
 		List<Board> board = repository.findFirst4ByCategoryOrderByViewcntDesc(category);
 		return board;
 	}
+	
+	public Page<Board> getAdminItemPage(BoardSearchDto boardSearchDto, Pageable pageable) {
+		return repository.getAdminItemPage(boardSearchDto, pageable);
+	}
+	
+	
 	
 }
