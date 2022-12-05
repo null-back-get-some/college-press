@@ -2,36 +2,92 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/default">
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+
+        $(document).ready(function(){
+            $("#searchBtn").on("click",function(e) {
+                e.preventDefault();
+                page(0);
+            });
+        });
+
+        function page(page){
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val();
+
+            location.href="/board/searchDetail/" + page +
+            + "&searchBy=" + searchBy
+            + "&searchQuery=" + searchQuery;
+        }
+
+    </script>
+</th:block>
+
 <div layout:fragment="content">
 	<div style=" margin: 0 auto; padding: 0 15rem; padding-top: 120px;">
-		<!-- <div class="article-header">
-			<div class="article-header-title">
-			<h1 th:text="${board.title}" 
-			style="font-weight: bold; letter-spacing: 0; font-size: 33px;line-height: 43px;">
-			</h1>
-			</div>
-			<div class="article-header-date">
-				<td th:text="|작성일  ${board.regdate} |"></td>
-			</div>
-			<div class="article-header-member">
-				<div th:text="|${board.member} 기자 |" >
-			</div>
-			<div class="article-header-viewCnt">
-				<td th:text="|조회수 ${board.viewcnt}|"></td>
-			</div>
-			</div>
-		</div> -->
-		<div class="new_board_r">
-			<div class="news_board_r1">
-				<div class="board_top"><h5>검색</h5></div>
-			</div>
+		<div class="news_board_r1">
+			<div class="board_top"><h5>검색</h5></div>
 		</div>
-		<hr>
-		<!-- <div class="article-body">
-			<div th:utext="${board.contents}"></div>
-		</div> -->
-		
+
+		<!--<form th:action="@{'/board/searchDetail/' + ${items.news}}" role="form" method="get" th:object="${items}">-->
+		<form role="form" method="get" th:object="${items}">
+			<table class="table">
+				<thead>
+				<tr>
+					<td>No.</td>
+					<td>제목</td>
+					<td>작성자</td>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="item, status: ${items.getContent()}">
+					<td th:text="${item.news}"></td>
+					<td>
+						<a th:href="'/searchDetail/'+${item.news}" th:text="${item.title}"></a>
+					</td>
+					<td th:text="${item.member}"></td>
+				</tr>
+				</tbody>
+			</table>
+			
+			<!-- <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+				<ul class="pagination justify-content-center">
+	
+					<li class="page-item" th:classappend="${items.first}?'disabled'">
+						<a th:onclick="'javascript:page(' + ${items.number - 1} + ')'" aria-label='Previous' class="page-link">
+							<span aria-hidden='true'>Previous</span>
+						</a>
+					</li>
+	
+					<li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+						<a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+					</li>
+	
+					<li class="page-item" th:classappend="${items.last}?'disabled'">
+						<a th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' class="page-link">
+							<span aria-hidden='true'>Next</span>
+						</a>
+					</li>
+	
+				</ul>
+			</div> -->
+			
+			<div class="form-inline justify-content-center" th:object="${boardSearchDto}">
+				<input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+				<button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+			</div>
+			
+		</form>
+
 	</div>
+
+
+
+	
+	
 </div>
 
 

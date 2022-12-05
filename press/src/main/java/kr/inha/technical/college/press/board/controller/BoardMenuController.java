@@ -323,7 +323,7 @@ public class BoardMenuController {
 	@GetMapping({"/searchDetail", "/searchDetail/{page}"})
 	public String itemPageList(BoardSearchDto boardSearchDto, Model model, @PathVariable("page") Optional<Integer> page) {
 				
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
 		Page<Board> items = boardService.getAdminItemPage(boardSearchDto, pageable);
 		
 		log.info("개수: " + items.getContent().size());
