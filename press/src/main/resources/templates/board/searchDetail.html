@@ -19,7 +19,7 @@
             var searchQuery = $("#searchQuery").val();
 
             location.href="/board/searchDetail/" + page +
-            + "&searchBy=" + searchBy
+            + "?searchBy=" + searchBy
             + "&searchQuery=" + searchQuery;
         }
 
@@ -33,7 +33,7 @@
 		</div>
 
 		<!--<form th:action="@{'/board/searchDetail/' + ${items.news}}" role="form" method="get" th:object="${items}">-->
-		<form role="form" method="get" th:object="${items}">
+		<form th:action="@{'/board/searchDetail/' + ${items.news}}" role="form" method="get" th:object="${items}">
 			<table class="table">
 				<thead>
 				<tr>
