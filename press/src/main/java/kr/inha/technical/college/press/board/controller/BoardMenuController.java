@@ -5,16 +5,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import groovy.util.logging.Log4j2;
+import kr.inha.technical.college.press.board.dto.BoardSearchDto;
 import kr.inha.technical.college.press.board.service.BoardService;
 import kr.inha.technical.college.press.manager.entity.Board;
 import kr.inha.technical.college.press.manager.entity.Category;
@@ -23,9 +26,11 @@ import kr.inha.technical.college.press.manager.entity.SubCategory;
 import kr.inha.technical.college.press.manager.repository.SubCategoryRepository;
 import kr.inha.technical.college.press.manager.service.CategorySevice;
 import kr.inha.technical.college.press.manager.service.FileService;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Log4j2
+@Slf4j
 @RequestMapping("/board")
 public class BoardMenuController {
 
@@ -306,9 +311,6 @@ public class BoardMenuController {
 		return "board/paperDetail";
 	}
 	
-
-	
-
 	//카테고리에 맞게 기사 로딩하는 메소드
 	public Page<Board> loadPage(int categories, String subcategory, Pageable pageable) {
 		Page<Board> board = boardService.findByCategoryAndSubcategory(categories, subcategory, pageable);
@@ -316,4 +318,24 @@ public class BoardMenuController {
 		System.out.println(subcategory + " : " + board);
 		return board;
 	}
+	
+	// 검색 페이지
+	@GetMapping({"/searchDetail", "/searchDetail/{page}"})
+	public String itemPageList(BoardSearchDto boardSearchDto, Model model, @PathVariable("page") Optional<Integer> page) {
+				
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+		Page<Board> items = boardService.getAdminItemPage(boardSearchDto, pageable);
+		
+		log.info("개수: " + items.getContent().size());
+		log.info("number: " + items.getNumber());
+		log.info("pages: " + items.getTotalPages());
+		
+		model.addAttribute("items", items);
+		model.addAttribute("boardSearchDto", boardSearchDto);
+		model.addAttribute("maxPage", 5);
+		
+		return "board/searchDetail";
+		
+	}
+	
 }
