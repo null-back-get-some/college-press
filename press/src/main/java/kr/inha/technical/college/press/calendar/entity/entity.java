@@ -37,8 +37,8 @@ public class entity {
 	private String title;
 	
 	@Column(name = "START", nullable = false)
-	private LocalDateTime start;
+	private String start;
 	
 	@Column(name = "END")
-	private LocalDateTime end;
+	private String end;
 }
