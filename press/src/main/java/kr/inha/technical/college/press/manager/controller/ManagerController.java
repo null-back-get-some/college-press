@@ -179,7 +179,7 @@ public class ManagerController {
 		 */
         
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
-		board.setRegdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+		board.setRegdate(LocalDateTime.now());
 		
 		service.boardInsert(board);
 		System.out.println("boardInsert 실행 : " + board.getContents());

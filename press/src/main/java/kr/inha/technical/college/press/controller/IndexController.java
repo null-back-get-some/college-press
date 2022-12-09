@@ -52,18 +52,23 @@ public class IndexController {
 		List<Board> social = service.findArticleByViewCnt(2); 	//사회
 		List<Board> culture = service.findArticleByViewCnt(3);	//종합문화
 		Board board = service.findMaxBoard();
-		
-		if(board==null) {
-			return "index";
-		}
 		for (Board board2 : univ) {
 			System.out.println(board2.getTitle()+", "+board2.getViewcnt()+", "+board2.getCategory()+", "+board2.getSubcategory());
 		}
-		model.addAttribute("univ", univ);
-		model.addAttribute("social", social);
-		model.addAttribute("culture", culture);
-		model.addAttribute("mainArticle", board);
-		return "index";
+		System.out.println("univ : "+univ);
+		System.out.println("social : "+social);
+		System.out.println("culture : "+culture);
+		if(board==null) {
+			return "index";
+		}else {
+			model.addAttribute("univ", univ);
+			model.addAttribute("social", social);
+			model.addAttribute("culture", culture);
+			model.addAttribute("mainArticle", board);
+			return "index";
+		}
+		
+		
 	}
 
 }
