@@ -52,8 +52,10 @@ public class IndexController {
 		List<Board> social = service.findArticleByViewCnt(2); 	//사회
 		List<Board> culture = service.findArticleByViewCnt(3);	//종합문화
 		Board board = service.findMaxBoard();
-		System.out.println("=========>"+board.getTitle()+", "+board.getViewcnt());
 		
+		if(board==null) {
+			return "index";
+		}
 		for (Board board2 : univ) {
 			System.out.println(board2.getTitle()+", "+board2.getViewcnt()+", "+board2.getCategory()+", "+board2.getSubcategory());
 		}

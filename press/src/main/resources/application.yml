@@ -6,9 +6,10 @@ spring:
       max-request-size : 100MB
   
   datasource:
-    url: jdbc:mysql://114.71.137.154:52208/spring?serverTimezone=UTC
+    ##url: jdbc:mysql://114.71.137.154:52208/spring?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/spring?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: project
+    username: root
     password: 1234
   mvc:
     converters:
