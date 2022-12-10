@@ -4,6 +4,7 @@
 	layout:decorate="layout/default">
 
 	<div layout:fragment="content">
+		
 		<div id="board_grid_paper" class="container_frame">
 			
 			<div class="news_board_r1">
@@ -19,7 +20,10 @@
 							th:each="board : ${board}">
 						<div class="paper_list_img"><img src="/img/paper.png"></div>
 						<div class="paper_content">
-							<a href="/board/paperDetail?id=" th:attrappend="href=${board.id}" class="" >
+							<span th:text="${board.id}"></span>
+							<!-- <a href="/board/paperDetail?id=" th:attrappend="href=${board.id}" class="" > -->
+							<a th:href="@{paper/download(idx=${board.id})}">
+							
 								<div class="paper_title">
 									<h1 th:text="${board.title}"></h1>
 								</div>

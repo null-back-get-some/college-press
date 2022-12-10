@@ -58,14 +58,37 @@
 	                <!-- <p class="index-contents" th:utext="${univ[1].contents !=null and #strings.length(univ[1].contents)>0}? 
 		       	 		${#strings.abbreviate(#strings.substringAfter(#strings.substringBefore(univ[1].contents, '</p>'),'<p>'),30)}:'내용'">
 		        	</p> -->
-		        	<div class="index-contents" th:text="${univ[1].text}"></div>
+		        	<!-- <div class="index-contents" th:text="${univ[1].text}"></div> -->
 	                <div class="category_time" th:text="${univ[1].regdate}">2022-09-17</div>
 	                
 	              </div>
 	              <img class="category_r_img rounded" th:src="${univ[1].photo}">
 	          	</div>
 	          </a>
-	         
+	         <a href="/board/boardDetail?news=" th:attrappend="href=${univ[2].news}">
+	          	<div class="category_r_center">
+	              <div class="category_r_content">
+	                <h3 class="category_r_title" th:text="${univ[2].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+	                <p th:utext="${univ[2].text !=null and #strings.length(univ[2].text)>0}? 
+		       	 		${#strings.abbreviate(univ[2].text,50)}:'내용'">
+		        	</p>
+	                <div class="category_time" th:text="${univ[2].regdate}">2022-09-17</div>
+	              </div>
+	              <img class="category_r_img rounded" th:src="${univ[2].photo}">
+	          	</div>
+	          </a>
+	          <a href="/board/boardDetail?news=" th:attrappend="href=${univ[3].news}">
+		          <div class="category_r_bottom">
+		              <div class="category_r_content">
+		                <h3 class="category_r_title" th:text="${univ[3].title}">비대면 2년차도 막지 못한 이러닝 오류</h3>
+	                	<p th:utext="${univ[3].text !=null and #strings.length(univ[3].text)>0}? 
+		       	 		${#strings.abbreviate(univ[3].text,50)}:'내용'">
+		        		</p>
+	                	<div class="category_time" th:text="${univ[3].regdate}">2022-09-17</div>
+		              </div>
+		              <img class="category_r_img rounded" th:src="${univ[3].photo}"> 
+		          </div>
+	          </a>
 	        </div>
 	      </div>
 	    </div>

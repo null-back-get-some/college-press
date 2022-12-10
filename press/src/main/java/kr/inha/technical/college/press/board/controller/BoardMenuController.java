@@ -1,20 +1,38 @@
 package kr.inha.technical.college.press.board.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriUtils;
 
 import groovy.util.logging.Log4j2;
 import kr.inha.technical.college.press.board.dto.BoardSearchDto;
@@ -50,7 +68,13 @@ public class BoardMenuController {
 	List<Category> category;
 	List<SubCategory> subCategories;
 
+	 ResourceLoader resourceLoader;
 
+    @Autowired
+    public BoardMenuController (ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
+	
 	// 보도대학 - 일반
 	// category.get(0) = 보도대학(1)
 	@GetMapping("/univ/normal")
@@ -297,7 +321,7 @@ public class BoardMenuController {
 	@GetMapping("paper/paper")
 	public String paper(Model model) {
 		List<FileEntity> board = fileService.findAll();
-		System.out.println(board.get(0).getOriginalFileName());
+		System.out.println("==========??? : "+board.get(0).getOriginalFileName());
 		model.addAttribute("board", board);
 		return "board/paper/paper";
 	}
@@ -311,13 +335,51 @@ public class BoardMenuController {
 		return "board/paperDetail";
 	}
 	
-	//카테고리에 맞게 기사 로딩하는 메소드
-	public Page<Board> loadPage(int categories, String subcategory, Pageable pageable) {
-		Page<Board> board = boardService.findByCategoryAndSubcategory(categories, subcategory, pageable);
-        
-		System.out.println(subcategory + " : " + board);
-		return board;
+	// 첨부 파일 다운로드
+    @GetMapping("/paper/{id}")
+    public ResponseEntity<Resource> downloadAttach(@PathVariable Long id) throws MalformedURLException {
+
+        FileEntity file = fileService.findbyEntity(id);
+
+        UrlResource resource = new UrlResource("file:" + file.getSavedPath());
+
+        String encodedFileName = UriUtils.encode(file.getOriginalFileName(), StandardCharsets.UTF_8);
+
+        // 파일 다운로드 대화상자가 뜨도록 하는 헤더를 설정해주는 것
+        // Content-Disposition 헤더에 attachment; filename="업로드 파일명" 값을 준다.
+        String contentDisposition = "attachment; filename=\"" + encodedFileName + "\"";
+
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,contentDisposition).body(resource);
+    }
+
+    @RequestMapping("paper/download")
+	public String downloadBoardFile(@RequestParam Long idx, //파일 인덱스 
+			HttpServletResponse response) throws Exception {
+			
+			Optional<FileEntity> boardFile = fileService.findbyId(idx);
+		
+			if(ObjectUtils.isEmpty(boardFile)==false) {
+				String fileName = boardFile.get().getOriginalFileName();
+				byte[] files = FileUtils.readFileToByteArray(new File(boardFile.get().getSavedPath()));
+			
+			//response 헤더에 설정
+			response.setContentType("application/octet-stream");
+			response.setContentLength(files.length);
+			response.setHeader("Content-Disposition", 
+					"attachment; filename=\"" +URLEncoder.encode(fileName,"UTF-8")+"\";");
+			response.setHeader("Content-Transfer-Encoing", "binary");
+			
+			response.getOutputStream().write(files);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		}
+		
+		
+		return "redirect:/";
 	}
+    
+    
+    
 	
 	// 검색 페이지
 	@GetMapping({"/searchDetail", "/searchDetail/{page}"})
@@ -336,6 +398,16 @@ public class BoardMenuController {
 		
 		return "board/searchDetail";
 		
+	}
+	
+	
+	
+	//카테고리에 맞게 기사 로딩하는 메소드
+	public Page<Board> loadPage(int categories, String subcategory, Pageable pageable) {
+		Page<Board> board = boardService.findByCategoryAndSubcategory(categories, subcategory, pageable);
+        
+		System.out.println(subcategory + " : " + board);
+		return board;
 	}
 	
 }

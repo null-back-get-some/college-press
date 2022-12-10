@@ -3,12 +3,15 @@ package kr.inha.technical.college.press.manager.service;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.inha.technical.college.press.manager.entity.FileEntity;
@@ -30,6 +33,54 @@ public class FileService {
 		if(files.isEmpty()) {
 			return null;
 		}
+		
+		
+		//파일이 업로드될 폴더 생성
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyMMdd");
+		ZonedDateTime current = ZonedDateTime.now();
+		String path = "files/"+current.format(format);
+		
+		File myfile = new File(path);
+		if (myfile.exists()==false) {
+			myfile.mkdirs();
+		}
+		
+		String originalFileExtension = null;
+		if(files.isEmpty()==false) {
+			String contentType = files.getContentType();
+			if(ObjectUtils.isEmpty(contentType)) {
+				break;
+				
+			}else {
+				if(contentType.contains("image/jpeg")) {
+					originalFileExtension = ".jpg";
+				}else if(contentType.contains("image/png")){
+					originalFileExtension = ".png";
+				}
+				else if(contentType.contains("image/gif")){
+					originalFileExtension = ".gif";
+				}else {
+					break;
+				}
+			}
+			
+			String newFileName = Long.toString(System.nanoTime())+originalFileExtension;
+			
+			myfile = new File(path+"/"+newFileName);
+			try {
+				multipartFile.transferTo(file);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
 		//원래 파일 이름 추출
 		String originalName = files.getOriginalFilename();
 		log.info("original name : "+originalName);
@@ -76,5 +127,9 @@ public class FileService {
 	public Optional<FileEntity> findbyId(Long id){
 		Optional<FileEntity> board = fileRepository.findById(id);
 		return board;
+	}
+	
+	public FileEntity findbyEntity(Long id) {
+		return fileRepository.findById(id).orElse(null);
 	}
 }
