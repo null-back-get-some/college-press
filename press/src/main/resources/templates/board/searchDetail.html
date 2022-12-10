@@ -2,10 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
-
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
-    <script th:inline="javascript">
+    <script th:inline="javascript" src="https://code.jquery.com/jquery-3.6.1.min.js">
 
         $(document).ready(function(){
             $("#searchBtn").on("click",function(e) {
