@@ -30,56 +30,6 @@ public class FileService {
 	private final FileRepository fileRepository;
 	
 	public Long saveFile(MultipartFile files, String title, String member) throws IOException {
-		if(files.isEmpty()) {
-			return null;
-		}
-		
-		
-		//파일이 업로드될 폴더 생성
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyMMdd");
-		ZonedDateTime current = ZonedDateTime.now();
-		String path = "files/"+current.format(format);
-		
-		File myfile = new File(path);
-		if (myfile.exists()==false) {
-			myfile.mkdirs();
-		}
-		
-		String originalFileExtension = null;
-		if(files.isEmpty()==false) {
-			String contentType = files.getContentType();
-			if(ObjectUtils.isEmpty(contentType)) {
-				break;
-				
-			}else {
-				if(contentType.contains("image/jpeg")) {
-					originalFileExtension = ".jpg";
-				}else if(contentType.contains("image/png")){
-					originalFileExtension = ".png";
-				}
-				else if(contentType.contains("image/gif")){
-					originalFileExtension = ".gif";
-				}else {
-					break;
-				}
-			}
-			
-			String newFileName = Long.toString(System.nanoTime())+originalFileExtension;
-			
-			myfile = new File(path+"/"+newFileName);
-			try {
-				multipartFile.transferTo(file);
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
-		
 		
 		//원래 파일 이름 추출
 		String originalName = files.getOriginalFilename();
@@ -97,6 +47,63 @@ public class FileService {
 		//파일을 불러올 때 사용할 파일 경로
 		String savePath = fileDir + savedName;
 		log.info("savePath name : "+savePath);
+		
+		
+		if(files.isEmpty()) {
+			return null;
+		}
+		
+		
+		//파일이 업로드될 폴더 생성
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyMMdd");
+		ZonedDateTime current = ZonedDateTime.now();
+//		String path = "files/"+current.format(format);
+		String path = "files/";
+		
+		File myfile = new File(fileDir);
+		if (myfile.exists()==false) {
+			myfile.mkdirs();
+		}
+		
+		String originalFileExtension = null;
+		if(files.isEmpty()==false) {
+			String contentType = files.getContentType();
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>content type : "+contentType);
+			if(ObjectUtils.isEmpty(contentType)) {
+				
+			}else {
+				if(contentType.contains("application/pdf")) {
+					originalFileExtension = ".pdf";
+				}else if(contentType.contains("image/png")){
+					originalFileExtension = ".png";
+				}
+				else if(contentType.contains("image/gif")){
+					originalFileExtension = ".gif";
+				}else {
+					
+				}
+			}
+			
+			String newFileName = Long.toString(System.nanoTime())+originalFileExtension;
+			
+			//myfile = new File(path+"/"+savedName);
+			myfile = new File(path+"/"+savedName);
+			System.out.println(">>>>>>>>>>>>..myfile : "+myfile);
+			try {
+				files.transferTo(myfile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+		
 		
 		
 		

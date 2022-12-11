@@ -2,11 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
+<head>
+	<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-
-<!-- 사용자 스크립트 추가 -->
-<th:block layout:fragment="script">
+	<!-- 사용자 스크립트 추가 -->
     <script th:inline="javascript">
 
         $(document).ready(function(){
@@ -25,7 +24,8 @@
         }
 
     </script>
-</th:block>
+</head>
+
 
 <div layout:fragment="content">
 	<div style=" margin: 0 auto; padding: 0 15rem; padding-top: 120px;">

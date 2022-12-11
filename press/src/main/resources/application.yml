@@ -1,7 +1,8 @@
 spring:
   servlet:
     multipart:
-      location : C:/shop/upload/
+      ##location : C:/shop/upload/
+      location : C:\Users\User\AppData\Local\Temp\tomcat.8000.17091637343945212200\work\Tomcat-4\localhost\ROOT\
       max-file-size : 100MB
       max-request-size : 100MB
   
@@ -50,5 +51,5 @@ logging:
 
 file:
   upload:
-    location : C:/shop/upload/
+    location : C:\Users\User\AppData\Local\Temp\tomcat.8000.17091637343945212200\work\Tomcat-4\localhost\ROOT\
 
