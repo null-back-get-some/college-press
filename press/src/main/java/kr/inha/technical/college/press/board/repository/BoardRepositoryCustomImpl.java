@@ -30,9 +30,9 @@ public class BoardRepositoryCustomImpl implements BoardRepositoryCustom {
 	private BooleanExpression searchByLike(String searchBy, String searchQuery) {
 		if(StringUtils.equals("title", searchQuery)) {
 			return board.title.like("%" + searchQuery + "%");
-		} // else if (StringUtils.equals("createdBy", searchQuery)) {
-//			return item.createdBy.like("%" + searchQuery + "%");
-//		}
+		} else if (StringUtils.equals("member", searchQuery)) {
+			return board.member.like("%" + searchQuery + "%");
+		}
 		
 		return null;
 		
@@ -43,18 +43,15 @@ public class BoardRepositoryCustomImpl implements BoardRepositoryCustom {
 
 		List<Board> itemList = queryFactory
 			.selectFrom(board)
-			.where(
-					searchByLike(boardSearchDto.getSearchBy(),
-					boardSearchDto.getSearchQuery())
-					)
+			.where(searchByLike(boardSearchDto.getSearchBy(),
+					boardSearchDto.getSearchQuery()))
 			.orderBy(board.news.desc())
 			.offset(pageable.getOffset())		// 어디부터 시작할거냐? 페이지 시작을 어디부터 할거냐?
 			.limit(pageable.getPageSize())
 			.fetch();
 		
         long total = queryFactory.select(Wildcard.count).from(board)
-                .where(
-                        searchByLike(boardSearchDto.getSearchBy(), boardSearchDto.getSearchQuery()))
+                .where(searchByLike(boardSearchDto.getSearchBy(), boardSearchDto.getSearchQuery()))
                 .fetchOne()
                 ;
 			

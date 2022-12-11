@@ -9,12 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.inha.technical.college.press.board.dto.BoardSearchDto;
 import kr.inha.technical.college.press.board.repository.BoardRepository;
 import kr.inha.technical.college.press.manager.entity.Board;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class BoardService {
 	@Autowired
 	BoardRepository repository;
@@ -51,6 +55,7 @@ public class BoardService {
 		return board;
 	}
 	
+	@Transactional(readOnly = true)
 	public Page<Board> getAdminItemPage(BoardSearchDto boardSearchDto, Pageable pageable) {
 		return repository.getAdminItemPage(boardSearchDto, pageable);
 	}

@@ -47,11 +47,13 @@ import kr.inha.technical.college.press.manager.service.CategorySevice;
 import kr.inha.technical.college.press.manager.service.FileService;
 import kr.inha.technical.college.press.member.entity.Member;
 import kr.inha.technical.college.press.member.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Log4j2
 @Slf4j
+@RequiredArgsConstructor
 @RequestMapping("/board")
 public class BoardMenuController {
 
