@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/default">
+	
 <div layout:fragment="content">
 	<div style=" margin: 0 auto; padding: 0 15rem; padding-top: 120px;">
 		<div class="article-header">
 			<div class="article-header-title">
-			<h1 th:text="${board.title}" 
-			style="font-weight: bold; letter-spacing: 0; font-size: 33px;line-height: 43px;">
-			</h1>
+				<h1 th:text="${board.title}" 
+				style="font-weight: bold; letter-spacing: 0; font-size: 33px;line-height: 43px;">
+				</h1>
 			</div>
+			<div th:if="${#strings.equals(#authentication.name, email) and !#authentication.name.equals('anonymousUser')}">
+				<span>
+				<a href="/board/boardModify?news=" th:attrappend="href=${board.news}">수정</a>
+				</span> 
+				/
+				<span><a href="#">삭제</a></span>
+				
+			</div>
+			
+			<p th:if="${#authentication.name.equals('${email}') and !#authentication.name.equals('anonymousUser')} " th:text="${#authentication.name}"></p>
+			<!-- <div th:text="${email}"></div>
+			<div th:text="${#authentication.name}"></div> -->
+			<!-- <div id="username" th:value="${#authentication.getPrincipal().attributes.name}" style="display:none"></div> -->
 			<div class="article-header-date">
 				<td th:text="|작성일  ${board.regdate} |"></td>
 			</div>

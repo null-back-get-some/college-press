@@ -46,7 +46,7 @@ public class Board {
 	private String member;
 	
 	@Column(name = "REGDATE")
-	private LocalDateTime regdate;
+	private String regdate;
 	
 	@Column(name = "VIEWCNT")
 	private int viewcnt;

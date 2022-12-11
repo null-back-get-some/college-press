@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,8 @@ import kr.inha.technical.college.press.manager.entity.SubCategory;
 import kr.inha.technical.college.press.manager.repository.SubCategoryRepository;
 import kr.inha.technical.college.press.manager.service.CategorySevice;
 import kr.inha.technical.college.press.manager.service.FileService;
+import kr.inha.technical.college.press.member.entity.Member;
+import kr.inha.technical.college.press.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -61,6 +64,8 @@ public class BoardMenuController {
 	@Autowired
 	FileService fileService;
 	
+	@Autowired
+	MemberService memberService;
 	
 	@Autowired
 	SubCategoryRepository subCategoryRepository;
@@ -68,7 +73,7 @@ public class BoardMenuController {
 	List<Category> category;
 	List<SubCategory> subCategories;
 
-	 ResourceLoader resourceLoader;
+	ResourceLoader resourceLoader;
 
     @Autowired
     public BoardMenuController (ResourceLoader resourceLoader) {
@@ -289,16 +294,28 @@ public class BoardMenuController {
 
 	@GetMapping("/boardDetail")
 	public String boardDetail(@RequestParam Long news, Model model) {
-		
 		// List<Board> board=boardService.findAll();
 		Optional<Board> list = boardService.findByNews(news);
 		Board board = list.get();
 		board.setViewcnt(board.getViewcnt()+1);
 		boardService.saveBoard(board);
 		System.out.println("boardDetail : " + board);
-
+		String email = memberService.findEmail(board.getMember());
+		
+		System.out.println(">>>>>>>>>>>myemail : "+email);
+		model.addAttribute("email", email);
 		model.addAttribute("board", board);
 		return "board/boardDetail";
+	}
+	
+	@GetMapping("/boardModify")
+	public String boardModify(@RequestParam Long news, Model model, Principal principal) {
+		// List<Board> board=boardService.findAll();
+		Optional<Board> list = boardService.findByNews(news);
+		Board board = list.get();
+		
+		model.addAttribute("board", board);
+		return "board/boardModify";
 	}
 	
 	
@@ -335,22 +352,6 @@ public class BoardMenuController {
 		return "board/paperDetail";
 	}
 	
-	// 첨부 파일 다운로드
-    @GetMapping("/paper/{id}")
-    public ResponseEntity<Resource> downloadAttach(@PathVariable Long id) throws MalformedURLException {
-
-        FileEntity file = fileService.findbyEntity(id);
-
-        UrlResource resource = new UrlResource("file:" + file.getSavedPath());
-
-        String encodedFileName = UriUtils.encode(file.getOriginalFileName(), StandardCharsets.UTF_8);
-
-        // 파일 다운로드 대화상자가 뜨도록 하는 헤더를 설정해주는 것
-        // Content-Disposition 헤더에 attachment; filename="업로드 파일명" 값을 준다.
-        String contentDisposition = "attachment; filename=\"" + encodedFileName + "\"";
-
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,contentDisposition).body(resource);
-    }
 
     @RequestMapping("paper/download")
 	public String downloadBoardFile(@RequestParam Long idx, //파일 인덱스 

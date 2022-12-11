@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+	
+	
+<div layout:fragment="content">
+	<div id="mainPage">
+		<div class="container manager-container">
+			<h2>기사 쓰기</h2>
+	    	<form id="form" name="form" method="post" action="/manager/boardInsert" enctype="multipart/form-data">
+	    		
+	    		<table class="board_detail">
+					<tr>
+						<td>제목</td>
+						<td><input type="text" id="title" name="title"/></td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td th:text = "${username}"></td>
+					</tr>
+					<tr>
+						<td>카테고리</td>
+						<!--  <td><input type="text" id="category" name="category" disabled/></td>-->
+						<td>
+						  <select  id="main_category" name="category" class="categorys" onchange="categoryChange(this)">
+						    <option value="" disabled selected>=== 선택 ===</option>
+						    <option th:each="mainCateList : ${mainCateList}" th:value = "${mainCateList.category}" th:name = "${mainCateList.category_name}" th:utext="${mainCateList.category_name}"></option> <!-- 보도/대학 -->
+						    <!-- <option th:value = "${mainCateList[1].category}" th:name = "${mainCateList[1].category_name}" th:text="${mainCateList[1].category_name}"></option> 사회
+						    <option th:value = "${mainCateList[2].category}" th:name = "${mainCateList[2].category_name}" th:text="${mainCateList[2].category_name}"></option> 종합 문화
+						    <option th:value = "${mainCateList[3].category}" th:name = "${mainCateList[3].category_name}" th:text="${mainCateList[3].category_name}"></option> 종합 문화 -->
+						  </select>
+						  
+						  <select id="sub_category" name="subcategory" class="categorys">
+						    <option value="none">=== 선택 ===</option>
+						    <!-- <option value="univ" th:text="${subCateList[0].sub_category_name}"></option> 보도/대학
+						    <option value="social" th:text="${subCateList[1].sub_category_name}"></option> 사회
+						    <option value="culture" th:text="${subCateList[2].sub_category_name}"></option> 종합 문화 -->
+						  </select>
+						</td>
+						
+					</tr>
+					<tr>
+						<td colspan="4">
+							<textarea id="summernote" name="contents"></textarea>
+						</td>
+						
+					</tr>
+					
+				</table>
+				<div class="filechooser">
+					<!-- <span>대표 사진 : </span>
+					<input type="file" id="files" name="files" multiple="multiple"> -->
+					<button type="button" id="submit" value="저장" class="btn btn-outline-primary">저장</button>
+				</div>
+	    	</form>
+		
+		</div>
+	</div>
+</div>
+
+
+</html>

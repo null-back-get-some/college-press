@@ -47,7 +47,8 @@
 				<tr th:each="item, status: ${items.getContent()}">
 					<td th:text="${item.news}"></td>
 					<td>
-						<a th:text="${item.title}"></a>
+						<a href="/board/boardDetail?news=" th:attrappend="href=${item.news}"
+							th:text="${item.title}"></a>
 					</td>
 					<td th:text="${item.member}"></td>
 				</tr>
