@@ -4,12 +4,17 @@
 <head>
 	<title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">인하전대 학보사</title>
 	<th:block th:replace="fragments/config :: configFragment"></th:block>
+	
+	<!-- include libraries(summernote lite version) -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" integrity="sha512-ZbehZMIlGA8CTIOtdE+M81uj3mrcgyrh6ZFeG33A4FHECakGrOsTPlPQ8ijjLkxgImrdmSVUHn1j+ApjodYZow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js" integrity="sha512-lVkQNgKabKsM1DA/qbhJRFQU8TuwkLF2vSN3iU/c7+iayKs08Y8GXqfFxxTZr1IcpMovXnf2N/ZZoMgmZep1YQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/lang/summernote-ko-KR.min.js"></script>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
 
 <div>
 	<th:block th:replace="fragments/topbar :: topbarFragment"></th:block>
-	<th:block layout:fragment="content"></th:block>
+		<th:block layout:fragment="content"></th:block>
 	<footer th:replace="fragments/footer :: footerFragment"></footer>
 </div>
 

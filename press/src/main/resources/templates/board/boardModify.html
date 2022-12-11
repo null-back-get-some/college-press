@@ -1,19 +1,143 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout/default">
+	layout:decorate="~{layout/default}">
+
+<head>
+	<script th:inline="javascript">
+	const board = [[${board}]]; 
+	var textsss = "";
+	function categoryChange(num){
+		console.log(num.value);
+		var num = num.value;
+		var target = document.getElementById("sub_category");
+		var category = new Array();
+		if(num == "none"){
+			var opt = document.createElement("option");
+			var text = "=== 선택 ===";
+			category[0] = text;
+			opt.value = category[0];
+			opt.innerHTML = category[0];
+			target.appendChild(opt);
+		}
+		const subcategory = [[${subCateList}]];
+		
+		
+		for(var i = 0; i<subcategory.length; i++){
+			if(subcategory[i].category==num){
+				console.log(subcategory[i].sub_category_name);
+				category[i] = subcategory[i].sub_category_name;
+			}
+		}
+		
+		target.options.length = 0;
+		
+		for(x in category){
+			var opt = document.createElement("option");
+			opt.value = category[x];
+			opt.innerHTML = category[x];
+			target.appendChild(opt);
+			
+		}
+		
+		console.log($("#main_category").val());
+		console.log($("#frm").serialize());
+	}
+	$(document).ready(function() {
+		$("#summernote").summernote('code', board.contents);
+		  $("#summernote").summernote({
+		    	placeholder: '입력해 주세요',
+		    	//width :1000,
+		        minHeight: 500,
+		        maxHeight: null,
+		        insertText : "Hello",
+		        focus: true, 
+		        lang : 'ko-KR',
+		        toolbar: [
+				    // 글꼴 설정
+				    ['fontname', ['fontname']],
+				    // 글자 크기 설정
+				    ['fontsize', ['fontsize']],
+				    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+				    // 글자색
+				    ['color', ['forecolor','color']],
+				    // 표만들기
+				    ['table', ['table']],
+				    // 글머리 기호, 번호매기기, 문단정렬
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    // 줄간격
+				    ['height', ['height']],
+				    // 그림첨부, 링크만들기, 동영상첨부
+				    ['insert',['picture','link','video']],
+				    // 코드보기, 확대해서보기, 도움말
+				    /* ['view', ['codeview', 'help']] */
+				  ],
+				  // 추가한 글꼴
+				fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+				 // 추가한 폰트사이즈
+				fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+					
+					onChange:function(contents, $editable){ //텍스트 글자수 및 이미지등록개수
+						console.log(contents);
+		                setContentsLength(contents, 0);
+		            }
+				}
+				});
+		});
 	
+	$(function(){
+        $('#submit').on("click",function () {
+        	var target = document.getElementById("main_category");
+        	console.log("target")
+        	console.log(target.options[target.selectedIndex].value);
+        	if(target.options[target.selectedIndex].value==""){
+        		alert("카테고리를 골라주세요");
+        	}else{
+        		var form1 = $("#form").serializeArray(false);
+                var form2 = $("#form").serialize();
+                console.log(form1);
+                var contents = form1[2].value;
+                console.log(contents);
+                const reg = /<[^>]*>?/g
+            	var text = contents.replace(reg," ");	
+                form2 += "&text="+ textsss;
+                form2 += "&news="+ board.news;
+                
+                $.ajax({
+                    type: "PATCH",
+                    url: "/manager/boardModify",
+                    data: form2,
+                    dataType: 'json',
+                    success: function (form2) {
+                        alert("success");
+                        console.log(form2);
+                        //window.location.href = "/manager/manager";
+                    },
+                    error: function (request, status, error) {
+                        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+                    }
+                });
+        	}
+            
+        });
+    });
+	</script>
+</head>
+
 	
 <div layout:fragment="content">
-	<div id="mainPage">
+	<div id="mainPage" class="modify-container">
 		<div class="container manager-container">
-			<h2>기사 쓰기</h2>
+			<h2>기사 수정</h2>
 	    	<form id="form" name="form" method="post" action="/manager/boardInsert" enctype="multipart/form-data">
 	    		
 	    		<table class="board_detail">
 					<tr>
 						<td>제목</td>
-						<td><input type="text" id="title" name="title"/></td>
+						<td><input type="text" id="title" name="title" th:value="${board.title}"/></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -25,7 +149,7 @@
 						<td>
 						  <select  id="main_category" name="category" class="categorys" onchange="categoryChange(this)">
 						    <option value="" disabled selected>=== 선택 ===</option>
-						    <option th:each="mainCateList : ${mainCateList}" th:value = "${mainCateList.category}" th:name = "${mainCateList.category_name}" th:utext="${mainCateList.category_name}"></option> <!-- 보도/대학 -->
+						    <option th:each="mainCateList : ${mainCateList}" th:value = "${mainCateList.category}" th:name = "${mainCateList.category_name}" th:text="${mainCateList.category_name}"></option> <!-- 보도/대학 -->
 						    <!-- <option th:value = "${mainCateList[1].category}" th:name = "${mainCateList[1].category_name}" th:text="${mainCateList[1].category_name}"></option> 사회
 						    <option th:value = "${mainCateList[2].category}" th:name = "${mainCateList[2].category_name}" th:text="${mainCateList[2].category_name}"></option> 종합 문화
 						    <option th:value = "${mainCateList[3].category}" th:name = "${mainCateList[3].category_name}" th:text="${mainCateList[3].category_name}"></option> 종합 문화 -->
@@ -42,7 +166,7 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<textarea id="summernote" name="contents"></textarea>
+							<textarea id="summernote" name="contents" ></textarea>
 						</td>
 						
 					</tr>
@@ -51,7 +175,7 @@
 				<div class="filechooser">
 					<!-- <span>대표 사진 : </span>
 					<input type="file" id="files" name="files" multiple="multiple"> -->
-					<button type="button" id="submit" value="저장" class="btn btn-outline-primary">저장</button>
+					<button type="button" id="submit" value="저장" class="btn btn-outline-primary">수정</button>
 				</div>
 	    	</form>
 		

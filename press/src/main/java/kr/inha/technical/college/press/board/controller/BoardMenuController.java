@@ -314,6 +314,18 @@ public class BoardMenuController {
 		Optional<Board> list = boardService.findByNews(news);
 		Board board = list.get();
 		
+		String username = memberService.findByEmail(principal.getName()).getName();
+
+		List<Category> mainCategory = categorySevice.findAll();
+		List<SubCategory> sub_category = subCategoryRepository.findAll();
+
+		model.addAttribute("username", username);
+		model.addAttribute("mainCateList", mainCategory);
+		model.addAttribute("subCateList", sub_category);
+		System.out.println(mainCategory);
+		System.out.println(sub_category);
+		
+		
 		model.addAttribute("board", board);
 		return "board/boardModify";
 	}

@@ -134,33 +134,39 @@
 		}
 		
 		$(function(){
+			var target = document.getElementById("main_category");
 	        $('#submit').on("click",function () {
 	        	console.log(textsss);
-	            var form1 = $("#form").serializeArray(false);
-	            var form2 = $("#form").serialize();
-	            var contents = form1[3].value;
-	            console.log(contents);
-	            const reg = /<[^>]*>?/g
-	        	var text = contents.replace(reg," ");	
-	            form2 += "&text="+ textsss;
-	            console.log(form2);
-	            console.log(textsss);
-	            
-	            $.ajax({
-	                type: "post",
-	                url: "/manager/boardInsert",
-	                data: form2,
-	                dataType: 'json',
-	                success: function (form2) {
-	                    alert("success");
-	                    console.log(form2);
-	                    //window.location.href = "/manager/manager";
-	                },
-	                error: function (request, status, error) {
-	                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	        	if(target.options[target.selectedIndex].value==""){
+	        		alert("카테고리를 골라주세요");
+	        	}else{
+	        		var form1 = $("#form").serializeArray(false);
+		            var form2 = $("#form").serialize();
+		            var contents = form1[3].value;
+		            console.log(contents);
+		            const reg = /<[^>]*>?/g
+		        	var text = contents.replace(reg," ");	
+		            form2 += "&text="+ textsss;
+		            console.log(form2);
+		            console.log(textsss);
+		            
+		            $.ajax({
+		                type: "post",
+		                url: "/manager/boardInsert",
+		                data: form2,
+		                dataType: 'json',
+		                success: function (form2) {
+		                    alert("success");
+		                    console.log(form2);
+		                    //window.location.href = "/manager/manager";
+		                },
+		                error: function (request, status, error) {
+		                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
-	                }
-	            });
+		                }
+		            });
+	        	}
+	            
 	        });
 	    });
 		
