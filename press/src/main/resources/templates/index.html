@@ -22,7 +22,8 @@
 	        <p class="index-contents" th:utext="${mainArticle.text !=null and #strings.length(mainArticle.text)>0}? 
 	        ${#strings.abbreviate(mainArticle.text,100)}:'내용'">
 	        </p>
-	        <div th:text="${#temporals.format(mainArticle.regdate, 'yyyy-MM-dd HH:mm:ss')}"></div>
+	       <!--  <div th:text="${#temporals.format(mainArticle.regdate, 'yyyy-MM-dd HH:mm:ss')}"></div> -->
+	        <div th:text="${mainArticle.regdate}"></div>
 	      </div>
 	    </div>
 	    </a>
@@ -44,7 +45,8 @@
 		          	<p class="index-contents" th:utext="${univ[0].text !=null and #strings.length(univ[0].text)>0}? 
 		       	 		${#strings.abbreviate(univ[0].text,40)} :' '">
 		        	</p>
-		        	<p th:text="${#temporals.format(social[0].regdate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+		        	<!-- <p th:text="${#temporals.format(univ[0].regdate, 'yyyy-MM-dd HH:mm:ss')}"></p> -->
+		        	<p th:text="${univ[0].regdate}"></p>
 	        	</div>
 	        </a>
 	        <div class="category_r">
