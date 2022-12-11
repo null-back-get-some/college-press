@@ -37,8 +37,8 @@
 				location.reload();
 				alert("delete "+status);
 			}).fail(function(request, status, error) {
-				history.back();
-				alert("delete 에러 발생 : " + error);
+				window.location.href = "/index";
+				//alert("delete 에러 발생 : " + error);
 				//location.href="/index";
 			})
 		}
