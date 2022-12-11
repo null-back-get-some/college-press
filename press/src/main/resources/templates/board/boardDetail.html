@@ -3,7 +3,47 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout/default">
-	
+<head>
+	<script th:inline="javascript">
+		function boardDelete(){
+			if(confirm("삭제하시겠습니까?")){
+				var list = [[${board}]];
+				alert(list.news);
+				var myNews = list.news;
+				var board = {
+					news : myNews
+				};
+				
+				var jsondata = JSON.stringify(board);
+				
+				deleteData(jsondata);
+			}else{
+				
+			}
+		}
+		
+		//데이터 삭제 메소드
+		function deleteData(deletedata) {
+			console.log(deletedata);
+			const url = "/manager/boardDelete"
+			$.ajax({
+				type : "DELETE",
+				url : url,
+				contentType : "application/json",
+				data : deletedata,
+				dataType : "json",
+				
+			}).done(function(result, status) {
+				location.reload();
+				alert("delete "+status);
+			}).fail(function(request, status, error) {
+				history.back();
+				alert("delete 에러 발생 : " + error);
+				//location.href="/index";
+			})
+		}
+	</script>
+</head>	
 <div layout:fragment="content">
 	<div style=" margin: 0 auto; padding: 0 15rem; padding-top: 120px;">
 		<div class="article-header">
@@ -17,7 +57,7 @@
 				<a href="/board/boardModify?news=" th:attrappend="href=${board.news}">수정</a>
 				</span> 
 				/
-				<span><a href="#">삭제</a></span>
+				<span><a href="#" onclick="boardDelete();">삭제</a></span>
 				
 			</div>
 			

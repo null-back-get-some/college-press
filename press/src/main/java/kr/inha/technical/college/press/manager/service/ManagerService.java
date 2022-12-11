@@ -25,4 +25,8 @@ public class ManagerService {
 	public void insertPhoto() {
 		
 	}
+
+	public void boardDelete(Long id) {
+		repository.deleteById(id);
+	}
 }

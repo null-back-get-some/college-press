@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -205,7 +206,6 @@ public class ManagerController {
 		}catch (Exception e) {
 			System.out.println("취소");
 		}
-
 		
 		board.setMember(memberService.findByEmail(principal.getName()).getName());
 		board.setRegdate(LocalDateTime.now().toString());
@@ -215,6 +215,18 @@ public class ManagerController {
 		return new ResponseEntity<Board>(board, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/manager/boardDelete", method = RequestMethod.DELETE)
+    public @ResponseBody ResponseEntity deleteEvent(@RequestBody Board board) {
+		System.out.println("삭제 시작");
+		System.out.println(board);
+		Long id = board.getNews();
+		
+		service.boardDelete(id);
+		
+		return new ResponseEntity<List<Board>>(HttpStatus.OK);
+    }
+	
+	
 	@RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
