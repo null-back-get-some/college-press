@@ -20,7 +20,7 @@
 	      <div class="main_news_r">
 	        	<h1 th:text="${mainArticle.title}"></h1>
 	        <p class="index-contents" th:utext="${mainArticle.text !=null and #strings.length(mainArticle.text)>0}? 
-	        ${#strings.abbreviate(mainArticle.text,100)}:'내용'">
+	        ${#strings.abbreviate(mainArticle.text,100)}:' '">
 	        </p>
 	       <!--  <div th:text="${#temporals.format(mainArticle.regdate, 'yyyy-MM-dd HH:mm:ss')}"></div> -->
 	        <div th:text="${mainArticle.regdate}"></div>
