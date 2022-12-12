@@ -4,7 +4,7 @@
 	layout:decorate="layout/manager_default">
 
 <head>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 </head>
 
 <th:block layout:fragment="content">
@@ -165,14 +165,11 @@
 	//데이터 json 형태로 가공하는 메소드
 	function allSave() {
 		var allEvent = calendar.getEvents();
-		
-		console.log("allevnet id : ");
-		console.log(allEvent[0].id);
 		var events = new Array();
 		for (var i = 0; i < allEvent.length; i++) {
 			
 			var obj = new Object();
-			obj.id = allEvent[i].id
+			//obj.id = allEvent[i].id;
 			obj.writer = 'name';
 			obj.title = allEvent[i]._def.title;
 			//moment.js 이용하여 날짜 포맷 변환
