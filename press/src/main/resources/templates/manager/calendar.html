@@ -14,7 +14,6 @@
 	
 	function loadData(){ //db에서 일정 받아오는 메소드
 		const list = [[${list}]];
-		 
 		 var events = new Array();
 			for (var i = 0; i < list.length; i++) {
 				var obj = new Object();
@@ -35,7 +34,11 @@
 	 
 	 
 	 var calendar = null;
+	 
 	 var loadingData = loadData(); //디비에서 받아온 일정들
+	 
+	 console.log("loadData");
+	 console.log(loadingData);
 	 
 	 document.addEventListener('DOMContentLoaded', function() {
 		 
@@ -162,11 +165,14 @@
 	//데이터 json 형태로 가공하는 메소드
 	function allSave() {
 		var allEvent = calendar.getEvents();
-		//console.log(allEvent);
+		
+		console.log("allevnet id : ");
+		console.log(allEvent[0].id);
 		var events = new Array();
 		for (var i = 0; i < allEvent.length; i++) {
 			
 			var obj = new Object();
+			obj.id = allEvent[i].id
 			obj.writer = 'name';
 			obj.title = allEvent[i]._def.title;
 			//moment.js 이용하여 날짜 포맷 변환

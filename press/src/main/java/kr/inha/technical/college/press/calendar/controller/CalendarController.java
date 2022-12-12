@@ -51,7 +51,7 @@ public class CalendarController {
 		for (int i = 0; i < calList.size(); i++) { //디비에 저장되어있는 리스트만큼
 			System.out.println("==============>중복 검사 시작");
 			for (int j = 0; j < calDTOList.size(); j++) { //뷰에서 가져온 리스트만큼
-				if((calDTOList.get(j).getTitle().equals(calList.get(i).getTitle()))
+				if((calDTOList.get(j).getId()==calList.get(i).getId())||(calDTOList.get(j).getTitle().equals(calList.get(i).getTitle()))
 						&&(calDTOList.get(j).getStart().equals(calList.get(i).getStart())
 								&&(calDTOList.get(j).getEnd().equals(calList.get(i).getEnd())))) {
 					System.out.println("중복된 이벤트 : "+calDTOList.get(j).getTitle());
