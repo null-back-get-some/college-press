@@ -35,6 +35,7 @@ saveBtn.addEventListener('click', function() {
 
 
 deleteBtn.addEventListener('click', function() {
+	alert("delete?");
 	var email = document.querySelector('.member-email').innerHTML;
 	var data = {
 		"email": email
