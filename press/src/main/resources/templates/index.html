@@ -60,7 +60,7 @@
 	                <!-- <p class="index-contents" th:utext="${univ[1].contents !=null and #strings.length(univ[1].contents)>0}? 
 		       	 		${#strings.abbreviate(#strings.substringAfter(#strings.substringBefore(univ[1].contents, '</p>'),'<p>'),30)}:'내용'">
 		        	</p> -->
-		        	<!-- <div class="index-contents" th:text="${univ[1].text}"></div> -->
+		        	<div class="index-contents" th:text="${univ[1].text}"></div> 
 	                <div class="category_time" th:text="${univ[1].regdate}">2022-09-17</div>
 	                
 	              </div>
